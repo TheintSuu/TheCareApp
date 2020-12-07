@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "876065384399",
+    "firebase_url": "https://the-care-app-5a7c8.firebaseio.com",
+    "project_id": "the-care-app-5a7c8",
+    "storage_bucket": "the-care-app-5a7c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876065384399:android:e1903cbb3208262507d4ba",
+        "android_client_info": {
+          "package_name": "com.theintsuhtwe.doctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876065384399-gkdtp3sbapglijf62jb1u7olpn8osm8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQo4sDrzeLOxTd2mYNY3QFQfn-hZgkpFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "876065384399-gkdtp3sbapglijf62jb1u7olpn8osm8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876065384399:android:d2247e94780e89cd07d4ba",
+        "android_client_info": {
+          "package_name": "com.theintsuhtwe.shared"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876065384399-gkdtp3sbapglijf62jb1u7olpn8osm8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQo4sDrzeLOxTd2mYNY3QFQfn-hZgkpFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "876065384399-gkdtp3sbapglijf62jb1u7olpn8osm8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876065384399:android:08e348a0607c334407d4ba",
+        "android_client_info": {
+          "package_name": "com.theintsuhtwe.thecareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876065384399-gkdtp3sbapglijf62jb1u7olpn8osm8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQo4sDrzeLOxTd2mYNY3QFQfn-hZgkpFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "876065384399-gkdtp3sbapglijf62jb1u7olpn8osm8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

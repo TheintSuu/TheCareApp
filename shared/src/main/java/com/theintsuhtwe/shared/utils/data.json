@@ -1,0 +1,23 @@
+{
+    "doctors": {
+        "doc001": {
+            "id": "doc001",
+            "name": "Professor U Aung Win",
+            "Phone": "09 79363 33177",
+            "image": " ",
+            "specialities": {
+                "id": "category000",
+                "name": "Coronavirus Related"
+            },
+            "biography": "Professor U Aung Win have started his carrier since 2000 and then he is working at Bumrungrad International Hospital",
+            "degrees": [
+                "M.B.B.S(YGN)",
+                "DCH",
+                "MRCP(UK)",
+                "DCH(Glasgow)",
+                "DTM & H (London)"
+            ],
+            "device_token": "eXtOYb6USvWuty6lDtynZ-:APA91bHry8SrjUJSkD2XyV-xX0zJFlgbysrUaSwingfiKEi6K5mBRtwW8PIFT0MED_4m_R6tSxRdFleiHAuIPbkVlRUoTDxh2nrJ5JygvIG5o9asyTcd85Sg29BHmkDI37iiuaihhsU_"
+        }
+    }
+}

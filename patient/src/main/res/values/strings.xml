@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name_patient">TheCareApp</string>
+    <string name="app_name_doctor">TheCareAppForDoctor</string>
+    <string name="facebook_app_id">178405037253092</string>
+    <string name="fb_login_protocol_scheme">fb178405037253092</string>
+</resources>

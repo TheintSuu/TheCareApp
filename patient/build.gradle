@@ -1,0 +1,115 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+//    id 'com.google.gms.google-services'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.theintsuhtwe.thecareapp"
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        flavorDimensions  "appModule"
+        def BASE_URL_FIELD =  "BASE_URL_FIELD"
+        def BASE_PATIENT_FIELD = "\"https://dev.padcmyanmar.com\""
+        def BASE_DOCTOR_FIELD = "\"https://padcmyanmar.com\""
+        dev{
+            dimension = "appModule"
+            applicationIdSuffix = ".patient"
+            manifestPlaceholders = [appName : "@string/app_name_patient"]
+            buildConfigField 'String', BASE_URL_FIELD, BASE_PATIENT_FIELD
+        }
+        prod{
+            dimension = "appModule"
+            applicationIdSuffix = ".doctor"
+            manifestPlaceholders = [appName : "@string/app_name_doctpr"]
+            buildConfigField 'String', BASE_URL_FIELD, BASE_DOCTOR_FIELD
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //libraries.gradle
+
+    implementation project(':shared')
+    implementation rootProject.ext.libraries.constraintlayout
+    implementation rootProject.ext.libraries.gson
+    implementation rootProject.ext.libraries.retrofit
+    implementation rootProject.ext.libraries.retrofitConverter
+    implementation rootProject.ext.libraries.retrofitAdapter
+    implementation rootProject.ext.libraries.rxKotlin
+    implementation rootProject.ext.libraries.rxAndroid
+    implementation rootProject.ext.libraries.rxJavaAndroid
+    implementation rootProject.ext.libraries.rxJava
+    implementation rootProject.ext.libraries.okHttp
+
+
+    // communicate with libraries.gradle file
+    implementation rootProject.ext.libraries.glide
+    implementation rootProject.ext.libraries.glideAnotationProcessor
+    implementation rootProject.ext.libraries.ktx
+
+
+
+    // live data and lifecycle components
+    implementation rootProject.ext.libraries.liveData
+    implementation rootProject.ext.libraries.lifecycleComponent
+    kapt rootProject.ext.libraries.lifecycleKapt
+    kapt rootProject.ext.libraries.lifecyleArcKapt
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+
+    // firebase auth
+    // Import the BoM for the Firebase platform
+//    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+//    implementation 'com.google.firebase:firebase-auth-ktx'
+   // implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
+//    implementation 'com.google.firebase:firebase-crashlytics'
+//    implementation 'com.google.firebase:firebase-analytics'
+//    implementation 'com.google.firebase:firebase-database-ktx'
+//    implementation 'com.google.firebase:firebase-firestore-ktx'
+//    implementation 'com.google.firebase:firebase-config-ktx'
+//    implementation 'com.google.firebase:firebase-messaging-ktx'
+//    implementation 'com.google.firebase:firebase-dynamic-links-ktx'
+   // implementation 'com.google.firebase:firebase-storage:19.2.0'
+   // implementation 'com.facebook.android:facebook-login:[8.1)'
+
+    //swiperefresh
+    implementation rootProject.ext.libraries.swipeRefresh
+}
