@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/margin_medium_2"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:src="@drawable/ic_baseline_priority_high_24"
+            />
+        <TextView
+
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_toRightOf="@id/imageView"
+            android:layout_alignTop="@id/imageView"
+            android:text="Confirm Consultation"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+
+            android:id="@+id/tvConfirmMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_below="@id/tvTitle"
+            android:text="You received a consultation confirm message from Processor Doctor U Aung Win"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <com.theintsuhtwe.thecareapp.views.components.RoundedCornerImageView
+            android:id="@+id/ivConfirmDoctorImage"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_below="@id/tvConfirmMessage"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:src="@mipmap/ic_launcher"
+            app:cornerRadius="28dp"
+            android:layout_alignBottom="@id/tvDoctorSpeciality"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+
+            android:id="@+id/tvDoctorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_below="@id/tvConfirmMessage"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:text="Professor Doctor U Aung Win "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+
+            android:id="@+id/tvDoctorSpeciality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:layout_alignStart="@id/tvDoctorName"
+            android:text="Dental"
+            android:layout_below="@id/tvDoctorName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+
+            android:id="@+id/tvDoctorSpecialityBiography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_alignStart="@id/ivConfirmDoctorImage"
+            android:text="@string/biography"
+            android:layout_below="@id/ivConfirmDoctorImage"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+
+        <TextView
+
+            android:id="@+id/btnStartConsultation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDoctorSpecialityBiography"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="7dp"
+           android:background="@drawable/text_underline"
+            android:padding="@dimen/margin_medium"
+            android:text="Start Consultation"
+
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular_2x" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

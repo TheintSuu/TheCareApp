@@ -17,5 +17,5 @@ data class DoctorVO(
         @SerializedName("degrees") var degrees : List<String> ?= null,
         @SerializedName("device_token") var device_token: String = "",
         @SerializedName("image") var image: String = "",
-        @SerializedName("specialities")  var specialities  : CategoryVO ?= null
+        @SerializedName("specialities")  var specialities  : String = ""
     )

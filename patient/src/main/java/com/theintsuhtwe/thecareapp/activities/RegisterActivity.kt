@@ -42,6 +42,10 @@ class RegisterActivity : BaseActivity(), RegisterView {
 
     }
 
+    override fun showErrorMessage(error: String) {
+
+    }
+
     private fun setUpPresenter(){
         mPresenter = getPresenter<RegisterPresenterImpl, RegisterView>()
     }

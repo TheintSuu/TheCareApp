@@ -3,22 +3,35 @@ package com.theintsuhtwe.thecareapp.activities
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.shared.activities.BaseActivity
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.thecareapp.R
-import com.theintsuhtwe.thecareapp.mvp.presenters.MainPresenter
-import com.theintsuhtwe.thecareapp.mvp.presenters.MainPresenterImpl
-import com.theintsuhtwe.thecareapp.mvp.views.MainView
+import com.theintsuhtwe.thecareapp.fragments.ConsultationHistoryFragment
+import com.theintsuhtwe.thecareapp.fragments.HomeFragment
+import com.theintsuhtwe.thecareapp.fragments.ProfileFragment
+import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenter
+import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenterImpl
+import com.theintsuhtwe.thecareapp.mvp.views.HomeView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity :  BaseActivity(), MainView {
+class MainActivity :  BaseActivity() {
 
-    private lateinit var mPresenter: MainPresenter
+
+    private var homeFragment = HomeFragment.newInstance("a", "b")
+
+    private var consultationFragment = ConsultationHistoryFragment.newInstance("a", "b")
+
+    private var profileFragment = ProfileFragment.newInstance("a", "b")
+
+    private var activeFragment : Fragment = HomeFragment.newInstance("a", "b")
 
 
     companion object {
@@ -33,73 +46,52 @@ class MainActivity :  BaseActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setUpPresenter()
+        setupFragmentManager()
 
-        setUpRecyclerView()
+        callFragment(homeFragment)
 
-        setUpListener()
+        setUpBottomNavigation()
 
-        getToken()
-
-
-
-        mPresenter.onUiReady(this)
-    }
-
-    @SuppressLint("LongLogTag")
-    override fun displaySpecialities(category: List<CategoryVO>) {
-        Log.d("Show data from Network Layer", category.toMutableList().toString())
-    }
-
-    @SuppressLint("LongLogTag")
-    override fun displayDoctorBySpecialities(doctor: List<DoctorVO>) {
-        Log.d("Broadcast Request to Suitable Doctor", doctor.toMutableList().toString())
-        mPresenter.onTapConsultationRequest(CaseSummaryVO(), Patient(), CategoryVO())
 
     }
 
-    override fun displayConsultationConfirm(doctor: DoctorVO) {
+    private fun setUpBottomNavigation(){
+        BottomNav.setOnNavigationItemSelectedListener (object : BottomNavigationView.OnNavigationItemSelectedListener {
+            override fun onNavigationItemSelected(item: MenuItem): Boolean {
+                when (item.itemId) {
+                    R.id.nav_home -> {
+                        callFragment(homeFragment)
+                        return true
+                    }
 
-    }
+                    R.id.nav_history -> {
+                        callFragment(consultationFragment)
+                        return true
+                    }
+                    R.id.nav_profile -> {
+                        callFragment(profileFragment)
+                        return true
+                    }
 
-    override fun displayQuestions(qustions: List<QuestionVO>) {
-
-    }
-
-    override fun displayRecentDoctorList(doctors: List<DoctorVO>) {
-
-    }
-
-    private fun setUpPresenter(){
-        mPresenter = getPresenter<MainPresenterImpl, MainView>()
-    }
-
-    private fun setUpRecyclerView(){
-
-    }
-
-    private fun setUpListener(){
-        mPresenter.onTapCategory("category001")
-
-    }
-
-    private fun getToken(){
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.w("Token", "getInstanceId failed", task.exception)
-                    return@OnCompleteListener
                 }
+                return false
 
-                // Get new Instance ID token
-                val token = task.result?.token
+            }
+        })
+    }
 
-                // Log and toast
-                val msg ="token :  $token"
-                Log.i("Token ", msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+    private fun setupFragmentManager() {
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.container, homeFragment).hide(homeFragment)
+            add(R.id.container, consultationFragment).hide(consultationFragment)
+            add(R.id.container, profileFragment).hide(profileFragment)
+        }.commit()
 
+    }
 
-            })
+    fun callFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment).commit()
+        activeFragment = fragment
+
     }
 }

@@ -20,11 +20,7 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
     }
 
     @SuppressLint("LongLogTag")
-    override fun onTapRegister(
-        email: String,
-        password: String,
-        userName: String
-    ) {
+    override fun onTapRegister(email: String, password: String, userName: String, token: String) {
         mAuthenticationModel.register(email,password,userName,  onSuccess = {
             Log.d("Register Patient", "Success")
 
@@ -35,8 +31,8 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
 
         mPatientModel.addPatient(
             Patient(id = "Patient001",
-          name = userName, image = "", email = email
-        ),
+                name = userName, image = "", email = email
+            ),
             onSuccess = {
                 Log.d("Add Doctor", "Success")
             },
@@ -45,6 +41,8 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
             }
         )
     }
+
+
 
 
 }

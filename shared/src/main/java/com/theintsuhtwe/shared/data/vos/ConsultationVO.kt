@@ -12,7 +12,7 @@ data class ConsultationVO(
         @SerializedName("patient") var patient: Patient ?= null,
         @SerializedName("doctor") var doctor: DoctorVO ?= null,
         @SerializedName("chats") var message : List<MessageVO> ?= null,
-        @SerializedName("prescription") var medicine : List<`List<MedicineVO>`> ?= null,
+        @SerializedName("prescription") var medicine : List<MedicineVO> ?= null,
         @SerializedName("case_summary") var caseSummary : CaseSummaryVO ?= null
 
 )

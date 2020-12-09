@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/margin_medium_2"
+    app:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvConsultDate"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/margin_medium_2"
+            android:text="25/11/2020"
+            />
+        <com.theintsuhtwe.thecareapp.views.components.RoundedCornerImageView
+            android:id="@+id/ivConfirmDoctorImage"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:layout_below="@id/tvConsultDate"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:src="@mipmap/ic_launcher"
+            app:cornerRadius="36dp"
+            android:layout_alignBottom="@id/tvDoctorSpeciality"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+
+            android:id="@+id/tvDoctorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_below="@id/tvConsultDate"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:text="Professor Doctor U Aung Win "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+
+            android:id="@+id/tvDoctorSpeciality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:layout_alignStart="@id/tvDoctorName"
+            android:text="Dental"
+            android:layout_below="@id/tvDoctorName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+        <TableRow
+            android:id="@+id/tb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_below="@id/ivConfirmDoctorImage"
+            android:weightSum="2" >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendChat"
+                style="@style/btnStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_white"
+                android:gravity="center"
+                android:text="Send Message"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_message_24"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPrescription"
+                style="@style/btnStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_white"
+                android:gravity="center"
+                android:text="Prescription"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_sticky_note_2_24"
+                app:iconGravity="textStart" />
+        </TableRow>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

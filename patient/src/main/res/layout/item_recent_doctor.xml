@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_height="180dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/margin_small"
+    android:background="@color/white"
+    app:cardUseCompatPadding="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_medium"
+    android:layout_height="wrap_content">
+
+    <com.theintsuhtwe.thecareapp.views.components.RoundedCornerImageView
+        android:id="@+id/ivrecentDoctorImage"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:src="@mipmap/ic_launcher"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+
+        android:id="@+id/tvRecentDoctorName"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/margin_medium"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular_2x"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="Professor U Aung Win" />
+    <TextView
+
+        android:id="@+id/tvSpecialityName"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_medium"
+        android:textSize="@dimen/text_regular"
+        android:textColor="@color/textColorGray"
+        android:text="Dental" />
+</LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/margin_small"
+    android:background="@color/white"
+    app:cardUseCompatPadding="true">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:text="Prescription"
+        android:background="@drawable/btn_background"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:layout_marginTop="@dimen/margin_medium_2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/rvMedicine"
+        android:id="@+id/drawer1"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="#c0c0c0"/>
+
+    <TextView
+        android:id="@+id/tvSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:text="@string/subtotal"
+        android:layout_below="@id/drawer1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+    <TextView
+
+        android:id="@+id/tvSubAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:layout_below="@id/drawer1"
+        android:text="@string/_18_500"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+    <TextView
+
+        android:id="@+id/tvDev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+       android:layout_alignLeft="@id/tvSub"
+        android:text="Delivery Fee"
+        android:layout_below="@id/tvSub"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+    <TextView
+
+        android:id="@+id/tvDeliveryFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:layout_below="@id/tvSubAmount"
+        android:text="@string/_18_500"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/tvDev"
+        android:id="@+id/drawer2"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="#c0c0c0"/>
+
+    <TextView
+
+        android:id="@+id/tvTot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:layout_alignLeft="@id/tvSub"
+        android:text="Total (MMK)"
+        android:layout_below="@id/drawer2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+    <TextView
+
+        android:id="@+id/tvTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:layout_below="@id/drawer2"
+        android:text="@string/_18_500"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+
+
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>

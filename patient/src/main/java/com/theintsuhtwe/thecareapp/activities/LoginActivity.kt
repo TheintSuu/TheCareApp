@@ -2,7 +2,6 @@ package com.theintsuhtwe.thecareapp.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -60,6 +59,10 @@ import com.theintsuhtwe.thecareapp.mvp.views.LoginView
     override fun navigateToRegisterScreen() {
         startActivity(RegisterActivity.newIntent(this))
     }
+
+     override fun showErrorMessage(error: String) {
+
+     }
 
      private fun getToken(){
          FirebaseInstanceId.getInstance().instanceId

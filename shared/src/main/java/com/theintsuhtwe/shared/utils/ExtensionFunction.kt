@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.theintsuhtwe.shared.R
 import com.theintsuhtwe.shared.data.vos.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -20,8 +21,10 @@ fun createNotiRequsetBody(to : String, body : String, title : String) : JSONObje
 {
 
         val data = JSONObject()
-        data.put("body", "Body of FCM Notification")
-        data.put("title", "Body of FCM Notification")
+        data.put("name", "Professor U Aung Win")
+        data.put("specialities", "Dental")
+        data.put("biography", "Body of FCM Notification")
+
 
         val jsonObj_ = JSONObject()
         jsonObj_.put("to", "eXtOYb6USvWuty6lDtynZ-:APA91bHry8SrjUJSkD2XyV-xX0zJFlgbysrUaSwingfiKEi6K5mBRtwW8PIFT0MED_4m_R6tSxRdFleiHAuIPbkVlRUoTDxh2nrJ5JygvIG5o9asyTcd85Sg29BHmkDI37iiuaihhsU_")
@@ -61,12 +64,11 @@ fun String.convertToBitMap(): Bitmap?{
     }
 }
 
-fun ImageView.load(uri: Uri, photo: Drawable){
+fun ImageView.loadImage(uri: Uri){
     Glide.with(context)
             .asBitmap()
             .load(uri)
             .centerCrop()
-            .placeholder(photo)
             .into(this)
 }
 
@@ -90,13 +92,13 @@ fun MutableMap<String, Any>?.convertToDoctorVO() : DoctorVO{
     val doctor = DoctorVO()
     doctor.id = this?.get("id") as String
     doctor.name = this?.get("name") as String
-    doctor.biography = this?.get("biography") as String
-    doctor.specialities = this?.get("specialities") as CategoryVO
-    doctor.phone= this?.get("phone") as String
-    doctor.degrees = this?.get("degrees") as List<String>
-    doctor.device_token = this?.get("device_token") as String
-    doctor.email  =  this?.get("email") as String
-    doctor.image = this?.get("image") as String
+   doctor.biography = this?.get("biography") as String
+    doctor.specialities = this?.get("specialities") as String
+//    doctor.phone= this?.get("phone") as String
+//    doctor.degrees = this?.get("degrees") as List<String>
+//    doctor.device_token = this?.get("device_token") as String
+//    doctor.email  =  this?.get("email") as String
+     doctor.image = this?.get("image") as String
 
     return doctor
 }

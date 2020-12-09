@@ -1,0 +1,60 @@
+package com.theintsuhtwe.thecareapp.fragments
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProviders
+import com.theintsuhtwe.thecareapp.R
+import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenter
+import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenterImpl
+import kotlinx.android.synthetic.main.dialog_speciality.view.*
+
+class ConfirmDialogFragment : DialogFragment() {
+
+    companion object {
+        const val TAG_ADD_GROCERY_DIALOG = "TAG_ADD_GROCERY_DIALOG"
+        const val BUNDLE_PATIENT_ID = "BUNDLE_PATIENT_ID"
+        const val BUNDLE_CATEGORY_ID = " BUNDLE_CATEGORY_ID"
+
+
+        fun newFragment(): ConfirmDialogFragment {
+            return ConfirmDialogFragment()
+        }
+    }
+
+    private lateinit var mPresenter: HomePresenter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.dialog_speciality, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpPresenter()
+
+
+
+        view.btnConfirm.setOnClickListener {
+           // mPresenter.onTapConfirm()
+            dismiss()
+        }
+
+        view.btnNo.setOnClickListener {
+
+            dismiss()
+        }
+    }
+
+    private fun setUpPresenter() {
+        activity?.let {
+            mPresenter = ViewModelProviders.of(it).get(HomePresenterImpl::class.java)
+        }
+    }
+}

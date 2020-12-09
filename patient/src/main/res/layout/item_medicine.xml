@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_medium_2"
+    android:layout_height="80dp">
+
+    <TextView
+        android:id="@+id/tvMedicineName"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:paddingRight="@dimen/margin_medium_2"
+        android:text="Acetaminophen (Tylenol)"
+        />
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="20 Tablet"
+        />
+    <TextView
+        android:id="@+id/tvSubTotal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="15, 000"
+        />
+</LinearLayout>

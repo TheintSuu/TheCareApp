@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvMedName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:padding="@dimen/margin_medium_2"
+        android:text="Acetaminophen(Tylenol)"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+    <TableRow
+        android:id="@+id/tb1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMedName"
+        android:weightSum="2" >
+    <TextView
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingVertical="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/margin_medium_2"
+        android:text="@string/amount"
+        android:textColor="@color/black"
+       
+        android:textSize="@dimen/text_regular" />
+    <TextView
+
+        android:id="@+id/tvAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingVertical="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/margin_medium_2"
+        android:text="700 mg"
+        android:textColor="@color/black"
+       
+        android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tb2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb1"
+        android:weightSum="2" >
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="@string/quantity"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+        <TextView
+
+            android:id="@+id/tvQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="1 Tablet"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tb3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb2"
+        android:weightSum="2" >
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="Duration"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+        <TextView
+
+            android:id="@+id/tvDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text=" 3 Days"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tb4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb3"
+        android:weightSum="2" >
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="Total Days"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+        <TextView
+
+            android:id="@+id/tvDayRoutine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="@string/morning_noon_evening"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tb5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb4"
+        android:weightSum="2" >
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="@string/repea_t"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+        <TextView
+
+            android:id="@+id/tvRepeat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="every day"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tb6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb5"
+        android:weightSum="2" >
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="Note"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+        <TextView
+
+            android:id="@+id/tvNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:text="Take it after meal"
+            android:textColor="@color/black"
+           
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+
+
+</RelativeLayout>

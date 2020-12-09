@@ -6,10 +6,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.theintsuhtwe.shared.data.vos.*
-import com.theintsuhtwe.shared.utils.convertToConsultationVO
-import com.theintsuhtwe.shared.utils.convertToDoctorVO
-import com.theintsuhtwe.shared.utils.convertToMedicineVO
-import com.theintsuhtwe.shared.utils.convertToQuestionVO
+import com.theintsuhtwe.shared.utils.*
 
 //import com.theintsuhtwe.shared.persistence.db.TheCareDB
 
@@ -66,10 +63,9 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
                         val result = value?.documents ?: arrayListOf()
 
                         for (document in result) {
-                            val data = document.data
-                            val category = CategoryVO()
-                            category.name = data?.get("name") as String
-                            categoryList.add(category)
+                            val category = document.data?.convertToSpecialities()
+
+                            category?.let { categoryList.add(it) }
                         }
                         onSuccess(categoryList)
                     }
@@ -104,7 +100,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
             onSuccess: (List<DoctorVO>) -> Unit,
             onFailure: (String) -> Unit
     ) {
-        db.collection("patients").whereEqualTo("id", id)
+        db.collection("patients/${id}/recent_doctors")
                 .addSnapshotListener { value, error ->
                     error?.let {
 
