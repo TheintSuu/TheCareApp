@@ -4,7 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".DetailPrescriptionActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:text="Prescription"
+        android:background="@drawable/btn_background"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPrescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvName"
+            android:backgroundTint="@color/homeBackgroundColor"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClose"
+            style="@style/btnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rvPrescription"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_white"
+            android:gravity="center"
+            android:text="Close"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_baseline_sticky_note_2_24"
+            app:iconGravity="textStart" />
+    </RelativeLayout>
 
 </androidx.core.widget.NestedScrollView>

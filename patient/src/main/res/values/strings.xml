@@ -14,4 +14,6 @@
     <string name="amount">Amount</string>
     <string name="morning_noon_evening">Morning/ Noon/ Evening</string>
     <string name="repea_t">Repeat</string>
+    <string name="default_specail_descriiption">Do you frequently check about dental symptons?</string>
+    <string name="default_ques">Name</string>
 </resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_medium"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:text="1 )."
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <TextView
+
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_medium"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/tvNumber"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:text="@string/default_specail_descriiption"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <EditText
+        android:id="@+id/etAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/round_text_background"
+        android:elevation="@dimen/margin_small"
+        android:layout_below="@id/tvDescription"
+        android:padding="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        />
+</RelativeLayout>
