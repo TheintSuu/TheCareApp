@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/margin_medium_2"
+    app:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.theintsuhtwe.doctor.views.components.RoundedCornerImageView
+            android:id="@+id/ivConfirmDoctorImage"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:src="@mipmap/ic_launcher"
+            app:cornerRadius="36dp"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_alignBottom="@id/tvBDDate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/margin_medium_3"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:text="Aung Aung "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+
+            android:id="@+id/tvBDDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:layout_alignStart="@id/tvName"
+            android:text="Dental"
+            android:layout_below="@id/tvName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+        <TextView
+
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_alignTop="@id/tvName"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:layout_alignParentRight="true"
+            android:paddingVertical="@dimen/margin_medium"
+            android:text=" Send Message"
+            android:background="@drawable/btn_background"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_small" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/tvBDDate"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:id="@+id/drawer1"
+            android:background="#c0c0c0"/>
+        <TableRow
+            android:id="@+id/tb1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:background="@color/white"
+            android:layout_below="@id/ivConfirmDoctorImage"
+            android:weightSum="3" >
+
+
+            <TextView
+                android:id="@+id/btnSendChat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_white"
+                android:gravity="center"
+                android:text="Send Message"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:iconGravity="textStart" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#c0c0c0"/>
+
+            <TextView
+                android:id="@+id/btnPrescription"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_white"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/margin_medium_2"
+                android:paddingVertical="@dimen/margin_medium"
+                android:text="Prescription"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:iconGravity="textStart" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#c0c0c0"/>
+
+            <TextView
+                android:id="@+id/btnNote"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_white"
+                android:gravity="center"
+                android:text="Note"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                app:iconGravity="textStart" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#c0c0c0"/>
+        </TableRow>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

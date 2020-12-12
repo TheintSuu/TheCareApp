@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheCareApp">
-        <activity android:name=".activities.CaseSummaryActivity"></activity>
+        <activity android:name=".activities.SpecialQuestionActivity"></activity>
+        <activity android:name=".activities.CaseSummaryActivity" />
         <activity android:name=".activities.QuestionActivity" />
         <activity android:name=".activities.DetailCheckoutActivity" />
         <activity android:name=".DetailPrescriptionActivity" />

@@ -6,7 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="biography">Dr.Aaron Glassman have started his carrier since 1998 and then he is working at Bumrungrad International Hospital</string>
-    <string name="message_receive">\"You received a consultation confirm message from \"</string>
+    <string name="message_receive">ဆွေးနွေးမှု ပြုလုပ်ရန်   </string>
+    <string name="message_received">  မှ လက်ခံထားပါသည် </string>
     <string name="subtotal">Subtotal</string>
     <string name="_18_500">18, 500</string>
     <string name="default_address">No.(117-118(, Room(4D), Goldern Gate Tower, Upper Pazundaung Road, Yangon Myanmar.</string>
@@ -16,4 +17,105 @@
     <string name="repea_t">Repeat</string>
     <string name="default_specail_descriiption">Do you frequently check about dental symptons?</string>
     <string name="default_ques">Name</string>
+    <string name="wei">ပေါင်ချိန်</string>
+    <string name="blood_pres">သွေးပေါင်ချိန်</string>
+    <string name="once">once</string>
+    <string name="allegric_comment">မတည့်သော ဆေးအမျိုးအစား</string>
+    <string name="height">အရပ်</string>
+    <string name="Birth">မွေးနေ့</string>
+    <string name="bl_type">သွေးအမျိုးအစား</string>
+
+    <string-array name="Month">
+        <item>Janauary</item>
+        <item>February</item>
+        <item>March</item>
+        <item>Apirl</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="bloodtype">
+        <item>A သွေး</item>
+        <item>B သွေး</item>
+        <item>O သွေး</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+
+
+    <string-array name="years">
+        <item>1990</item>
+        <item>1991</item>
+        <item>1992</item>
+        <item>1993</item>
+        <item>1994</item>
+        <item>1995</item>
+        <item>1996</item>
+        <item>1997</item>
+        <item>1998</item>
+        <item>1999</item>
+        <item>2000</item>
+        <item>2001</item>
+        <item>2002</item>
+        <item>2003</item>
+        <item>2004</item>
+        <item>2005</item>
+        <item>2006</item>
+        <item>2007</item>
+        <item>2008</item>
+        <item>2009</item>
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
+    <string-array name="day_routine">
+        <item>December</item>
+    </string-array>
 </resources>

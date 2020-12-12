@@ -8,12 +8,14 @@ import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.shared.activities.BaseActivity
+import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.thecareapp.R
 import com.theintsuhtwe.thecareapp.mvp.presenters.LoginPresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.LoginPresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.LoginView
+import com.theintsuhtwe.thecareapp.utils.SessionManager
 
- class LoginActivity : BaseActivity(), LoginView {
+class LoginActivity : BaseActivity(), LoginView {
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -52,8 +54,9 @@ import com.theintsuhtwe.thecareapp.mvp.views.LoginView
         mPresenter = getPresenter<LoginPresenterImpl, LoginView>()
     }
 
-    override fun navigateToHomeScreen() {
+    override fun navigateToHomeScreen(patientVO: Patient) {
         startActivity(MainActivity.newIntent(this))
+        savePatientInfo(patientVO)
     }
 
     override fun navigateToRegisterScreen() {
@@ -82,5 +85,41 @@ import com.theintsuhtwe.thecareapp.mvp.views.LoginView
 
 
              })
+     }
+
+     private fun savePatientInfo(patientVO: Patient){
+         SessionManager.login_status =true
+         SessionManager.patient_name = patientVO.name
+         SessionManager.patient_id = patientVO.id
+         SessionManager.patient_device_token = patientVO.device_token
+         SessionManager.patient_email = patientVO.email
+         SessionManager.patient_photo = patientVO.image.toString()
+         patientVO.question?.forEach {
+             when(it.description){
+                 "မွေးနေ့" -> {
+                     SessionManager.patient_dateOfBirth = it.answer
+                 }
+                 "အရပ်" -> {
+                     SessionManager.patient_height = it.answer
+                 }
+                 "မတည့်သော ဆေးအမျိုးအစား" -> {
+                     SessionManager.patient_comment = it.answer
+                 }
+                 "ပေါင်ချိန်" -> {
+                 SessionManager.patient_weight = it.answer
+                }
+                 "သွေးပေါင်ချိန်" -> {
+                     SessionManager.patient_bloodPressure = it.answer
+                 }
+                   "သွေးအမျိုးအစား"  -> {
+                     SessionManager.patient_bloodType = it.answer
+                 }
+
+
+
+
+             }
+         }
+
      }
 }

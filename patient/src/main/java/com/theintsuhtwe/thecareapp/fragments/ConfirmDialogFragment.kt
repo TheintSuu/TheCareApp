@@ -43,7 +43,8 @@ class ConfirmDialogFragment : DialogFragment() {
 
         view.btnConfirm.setOnClickListener {
            // mPresenter.onTapConfirm()
-            dismiss()
+            mPresenter.onTapConfirm("patient000", "Dental")
+
         }
 
         view.btnNo.setOnClickListener {

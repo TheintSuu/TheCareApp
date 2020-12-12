@@ -16,13 +16,13 @@
 //
 //    @Delete
 //    fun deleteCategory(note: CategoryVO)
-//
+
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    fun insertCategory(noteVO: CategoryVO)
 //
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    fun insertAllCategory(category: List<CategoryVO>)
-//
+
 //}
 //
 //

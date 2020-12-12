@@ -53,4 +53,8 @@ class LoginActivity : BaseActivity(), LoginView {
     override fun navigateToRegisterScreen() {
         startActivity(RegisterActivity.newIntent(this))
     }
+
+    override fun showErrorMessage(error: String) {
+
+    }
 }

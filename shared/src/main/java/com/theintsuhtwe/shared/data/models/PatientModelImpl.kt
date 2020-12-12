@@ -1,7 +1,9 @@
 package com.theintsuhtwe.shared.data.models
 
+import com.theintsuhtwe.shared.data.vos.CaseSummaryVO
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
+import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
 
 object PatientModelImpl: PatientModel{
@@ -11,6 +13,14 @@ object PatientModelImpl: PatientModel{
 
     override fun addPatient(patient: Patient, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
        mFirebase.addPatient(patient, onSuccess, onFailure)
+    }
+
+    override fun getPatient(
+        id: String,
+        onSuccess: (patient: Patient) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+       return mFirebase.getPatient(id, onSuccess, onFailure)
     }
 
     override fun getRecentDoctors(id: String, onSuccess: (List<DoctorVO>) -> Unit, onFaiure: (String) -> Unit) {
@@ -25,6 +35,17 @@ object PatientModelImpl: PatientModel{
        return mFirebase.getDeviceToken()
     }
 
+    override fun sendQuestion(id: String, ques: List<QuestionVO>, onSuccess: () -> Unit, onFaiure: (String) -> Unit) {
+        mFirebase.sendQuestion(id, ques, onSuccess , onFaiure)
+    }
+
+    override fun getQuestionByPatient(id: String,  onSuccess: (ques: List<QuestionVO>) -> Unit, onFaiure: (String) -> Unit) {
+        return mFirebase.getQuestionsByPateint(id,  onSuccess , onFaiure)
+    }
+
+    override fun getCaseSummaryByPatient(id: String, onSuccess: (ques: CaseSummaryVO) -> Unit, onFaiure: (String) -> Unit) {
+        TODO("Not yet implemented")
+    }
 
 
 }

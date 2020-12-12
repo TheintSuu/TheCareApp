@@ -15,3 +15,20 @@ val Collapse_Key = "type_a"
 const val msgType = 0
 
 const val  FirebaseURL = "https://fcm.googleapis.com"
+
+
+//Share Perfrenence for patient
+const val sharePreferencePatient  = "patient"
+const val sharePreferenceLoginStatus  = "login"
+const val sharePreferencePatientName  = "name"
+const val sharePreferencePatientEmail  = "email"
+const val sharePreferencePatientID  = "id"
+const val sharePreferencePatientDeviceID  = "device_token"
+const val sharePreferencePatientDateOfBirth  = "dateofBirth"
+const val sharePreferencePatientHeight  = "height"
+const val sharePreferencePatientBloodType = "bloodType"
+const val sharePreferencePatientComment  = "comment"
+const val sharePreferencePatientBodyWeight  = "weight"
+const val sharePreferencePatientBloodPressure  = "blod_pressure"
+const val sharePreferencePatientPhoto  = "photo"
+const val sharePreferenceGeneralQuestion  = "question"

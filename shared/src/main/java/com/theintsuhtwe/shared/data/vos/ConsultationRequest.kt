@@ -11,5 +11,6 @@ data class ConsultationRequest(
         @SerializedName("case_summary") var caseSummary : CaseSummaryVO ?= null,
         @SerializedName("patient") var patient: Patient ?= null,
         @SerializedName("doctor") var doctor: DoctorVO ?= null,
-        @SerializedName("specialities")  var specialities  : CategoryVO ?= null
+        @SerializedName("specialities")  var specialities  : String ?= null,
+        @SerializedName("status")  var status  : String ?= null
 )

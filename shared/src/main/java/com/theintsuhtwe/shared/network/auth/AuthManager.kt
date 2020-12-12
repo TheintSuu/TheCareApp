@@ -7,7 +7,7 @@ import com.theintsuhtwe.shared.data.vos.Patient
 
 
 interface AuthManager {
-    fun login(email: String, password: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
+    fun login(email: String, password: String, onSuccess: (patient : Patient) -> Unit, onFailure: (String) -> Unit)
     fun loginWithFacebook(email: String, publicProfile: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
     fun register(email: String, password: String, userName: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
     fun registerDoctor(email: String, password: String, userName: String, category: CategoryVO,onSuccess: () -> Unit, onFailure: (String) -> Unit)

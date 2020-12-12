@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium_2"
             android:layout_marginTop="@dimen/margin_medium"
+           android:layout_alignTop="@id/tvTitle"
             android:src="@drawable/ic_baseline_priority_high_24"
             />
         <TextView
@@ -27,8 +28,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_medium"
             android:layout_toRightOf="@id/imageView"
-            android:layout_alignTop="@id/imageView"
-            android:text="Confirm Consultation"
+            android:text="ဆွေးနွေးမှု ပြုလုပ်နိုင်ပါသည်"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_regular_2x" />
 
@@ -37,26 +37,26 @@
             android:id="@+id/tvConfirmMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_medium"
             android:layout_below="@id/tvTitle"
-            android:text="You received a consultation confirm message from Processor Doctor U Aung Win"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:paddingLeft="@dimen/margin_medium_3"
+            android:paddingRight="@dimen/margin_medium"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="@dimen/text_regular_2x" />
+            android:textSize="@dimen/text_regular" />
 
         <com.theintsuhtwe.thecareapp.views.components.RoundedCornerImageView
             android:id="@+id/ivConfirmDoctorImage"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_gravity="center"
             android:layout_below="@id/tvConfirmMessage"
+            android:layout_alignBottom="@id/tvDoctorSpeciality"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_medium"
-            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginBottom="5dp"
             android:src="@mipmap/ic_launcher"
             app:cornerRadius="28dp"
-            android:layout_alignBottom="@id/tvDoctorSpeciality"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+           />
 
         <TextView
 
@@ -66,35 +66,40 @@
             android:padding="@dimen/margin_medium"
             android:layout_below="@id/tvConfirmMessage"
             android:textStyle="bold"
+            android:layout_marginLeft="@dimen/margin_medium_2"
             android:layout_toRightOf="@id/ivConfirmDoctorImage"
             android:text="Professor Doctor U Aung Win "
             android:textColor="@color/black"
-            android:textSize="@dimen/text_regular_2x" />
+            android:textSize="@dimen/text_regular" />
 
         <TextView
 
             android:id="@+id/tvDoctorSpeciality"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
             android:layout_toRightOf="@id/ivConfirmDoctorImage"
             android:layout_alignStart="@id/tvDoctorName"
             android:text="Dental"
             android:layout_below="@id/tvDoctorName"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_regular_2x" />
+            android:textSize="@dimen/text_small" />
 
         <TextView
 
             android:id="@+id/tvDoctorSpecialityBiography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_medium"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:lineSpacingExtra="@dimen/margin_small"
+            android:paddingHorizontal="@dimen/margin_medium_3"
             android:layout_alignStart="@id/ivConfirmDoctorImage"
             android:text="@string/biography"
             android:layout_below="@id/ivConfirmDoctorImage"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_regular_2x" />
+            android:textSize="@dimen/text_regular" />
 
 
         <TextView
@@ -104,13 +109,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvDoctorSpecialityBiography"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="@dimen/margin_medium_2"
             android:layout_marginEnd="@dimen/margin_medium"
             android:layout_marginRight="7dp"
-           android:background="@drawable/text_underline"
             android:padding="@dimen/margin_medium"
-            android:text="Start Consultation"
-
+            android:text="စတင် ဆွေးနွေးမည်"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_regular_2x" />

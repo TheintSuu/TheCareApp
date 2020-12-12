@@ -8,29 +8,39 @@ import com.google.firebase.storage.FirebaseStorage
 import com.theintsuhtwe.shared.data.vos.CategoryVO
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
+import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
+import okhttp3.internal.applyConnectionSpec
 import java.io.ByteArrayOutputStream
 import java.util.*
 
 object AuthenticationManagerImpl : AuthManager {
 
     private val mFirebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val mFirebase = CloudFirestoreFirebaseApiImpl
     private val storage = FirebaseStorage.getInstance()
     private val storageReference = storage.reference
 
     override fun login(
         email: String,
         password: String,
-        onSuccess: () -> Unit,
+        onSuccess: (patient : Patient) -> Unit,
         onFailure: (String) -> Unit
     ) {
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful && it.isComplete) {
-                onSuccess()
+                 mFirebase.getPatient(email,
+                        onSuccess= {
+                            onSuccess(it)
+                }, onFailure ={
+
+                })
             } else {
                 onFailure(it.exception?.message ?: "please check internet connection")
             }
         }
     }
+
+
 
     override fun loginWithFacebook(
         email: String,
@@ -193,8 +203,5 @@ object AuthenticationManagerImpl : AuthManager {
     ) {
 
     }
-
-
-
 
 }

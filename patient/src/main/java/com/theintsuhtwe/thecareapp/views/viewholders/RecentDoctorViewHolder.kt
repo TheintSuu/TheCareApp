@@ -28,4 +28,8 @@ class RecentDoctorViewHolder(private val mDelegate: SpecialitiesItemDelegate, it
 
 //        data.image.let { itemView.ivrecentDoctorImage.loadImage(it.toUri())}
     }
+
+    override fun position(id: Long) {
+
+    }
 }

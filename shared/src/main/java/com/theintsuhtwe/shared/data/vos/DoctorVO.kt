@@ -19,3 +19,40 @@ data class DoctorVO(
         @SerializedName("image") var image: String = "",
         @SerializedName("specialities")  var specialities  : String = ""
     )
+{
+    override fun toString(): String {
+        return "DoctorVO(id='$id', name='$name', phone='$phone', email='$email', biography='$biography', degrees=$degrees, device_token='$device_token', image='$image', specialities='$specialities')"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as DoctorVO
+
+        if (id != other.id) return false
+        if (name != other.name) return false
+        if (phone != other.phone) return false
+        if (email != other.email) return false
+        if (biography != other.biography) return false
+        if (degrees != other.degrees) return false
+        if (device_token != other.device_token) return false
+        if (image != other.image) return false
+        if (specialities != other.specialities) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + name.hashCode()
+        result = 31 * result + phone.hashCode()
+        result = 31 * result + email.hashCode()
+        result = 31 * result + biography.hashCode()
+        result = 31 * result + (degrees?.hashCode() ?: 0)
+        result = 31 * result + device_token.hashCode()
+        result = 31 * result + image.hashCode()
+        result = 31 * result + specialities.hashCode()
+        return result
+    }
+}

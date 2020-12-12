@@ -43,9 +43,9 @@
             android:layout_below="@id/tvConfirm"
             android:paddingHorizontal="@dimen/margin_medium_3"
             android:paddingVertical="@dimen/margin_medium"
-            android:text="Patient Info"
-            android:background="@drawable/btn_background"
-            android:textColor="@color/black"
+            android:text="လူနာအချက်အလက်များ"
+            android:background="@drawable/btn_blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_regular" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPatientInfo"
@@ -64,9 +64,9 @@
             android:layout_below="@id/rvPatientInfo"
             android:paddingHorizontal="@dimen/margin_medium_3"
             android:paddingVertical="@dimen/margin_medium"
-            android:text="Detail Question with Diseases"
-            android:background="@drawable/btn_background"
-            android:textColor="@color/black"
+            android:text="ရောဂါဆိုင်ရာ မေးခွန်းများ"
+            android:background="@drawable/btn_blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_regular" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSpecialQuestionList"
@@ -75,6 +75,20 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/homeBackgroundColor"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="@dimen/margin_medium_2"
+            android:layout_below="@id/rvSpecialQuestionList"
+            android:layout_marginRight="@dimen/margin_medium_3"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_regular"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_height="45dp"
+            android:background="@drawable/btn_blue"
+            android:id="@+id/btn_confirm"
+            android:text="ချိန်းဆိုမှု ပြုလုပ်မည်"/>
     </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

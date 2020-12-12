@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/margin_medium_2"
+    app:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textAlignment="center"
+            android:paddingTop="@dimen/margin_medium_2"
+            android:paddingLeft="@dimen/margin_medium"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingRight="@dimen/margin_medium_2"
+            android:text="Request for Consultation " />
+
+        <TextView
+            android:id="@+id/tvConsultDate"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingLeft="@dimen/margin_medium"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:textColor="@color/white"
+            android:layout_marginVertical="@dimen/margin_medium"
+            android:paddingRight="@dimen/margin_medium_2"
+            android:text="New Patient" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/tvTitle"
+            android:id="@+id/drawer1"
+            android:background="#c0c0c0"/>
+
+
+
+        <com.theintsuhtwe.doctor.views.components.RoundedCornerImageView
+            android:id="@+id/ivConfirmDoctorImage"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:layout_below="@id/tvConsultDate"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:src="@mipmap/ic_launcher"
+            app:cornerRadius="36dp"
+            android:layout_marginLeft="@dimen/margin_card_medium_2"
+            android:layout_alignBottom="@id/tvBDDate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+
+            android:id="@+id/tvPatientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_below="@id/tvConsultDate"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/margin_medium_3"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:text="Aung Aung "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <TextView
+
+            android:id="@+id/tvBDDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:layout_alignStart="@id/tvPatientName"
+            android:text="Birthday : 23 Nov 1997"
+            android:layout_below="@id/tvPatientName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+        <TableRow
+            android:id="@+id/tb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+
+            android:paddingHorizontal="@dimen/margin_medium_3"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_below="@id/ivConfirmDoctorImage"
+            android:weightSum="2" >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendChat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:gravity="center"
+                android:text="Skip"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_message_24"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPrescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:background="@drawable/btn_white"
+                android:gravity="center"
+                android:text="Accept"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_baseline_sticky_note_2_24"
+                app:iconGravity="textStart" />
+        </TableRow>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

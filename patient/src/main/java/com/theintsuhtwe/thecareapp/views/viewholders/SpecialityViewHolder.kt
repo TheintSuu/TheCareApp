@@ -37,4 +37,8 @@ class SpecialityViewHolder(private val mDelegate: SpecialitiesItemDelegate, item
 
         //data.image.let { itemView.ivSpecialityImage.loadImage(it.toUri())}
     }
+
+    override fun position(id: Long) {
+
+    }
 }

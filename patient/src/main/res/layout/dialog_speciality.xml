@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    android:layout_width="450dp"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="380dp"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/margin_medium_2">
+    app:cardCornerRadius="@dimen/margin_medium_2"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,40 +32,50 @@
         android:textSize="@dimen/text_regular_3x"
         android:gravity="center"
         android:padding="@dimen/margin_medium"
-        android:text="Confirm Consultation" />
+        android:text="ဆွေးနွေးမှု အတည်ပြုချက်" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="357dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_margin="@dimen/margin_medium_2"
         android:lineSpacingExtra="@dimen/margin_small"
-        android:text="Are you sure tomake a Consultation Request  to consult with dental doctor ?"
-      />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="right"
-    android:layout_marginEnd="@dimen/margin_medium"
-    android:padding="@dimen/margin_medium_2"
-    android:orientation="horizontal">
-    <Button
-        android:id="@+id/btnNo"
-        android:layout_width="wrap_content"
+        android:text="သွားဘက်ဆိုင်ရာ ဆရာဝန်နှင့် ဆွေးနွေးမှု ပြုလုပ်မှာ သေချာပါသည်"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/margin_medium"
-        android:background="@color/colorPrimary"
-        android:text="No"
-       />
+        android:gravity="right"
+        android:layout_marginVertical="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Confirm"
-       />
+        <TextView
+            android:id="@+id/btnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_medium_3"
+            android:paddingVertical="@dimen/margin_medium"
+            android:text="မလုပ်တော့ပါ"
+            android:textSize="@dimen/text_small"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
 
+        <TextView
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_medium_3"
+            android:background="@drawable/btn_blue"
+            android:paddingVertical="@dimen/margin_medium"
+            android:text="သေချာပါသည်"
+            android:textSize="@dimen/text_small"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
 
 </LinearLayout>
-</LinearLayout>
+    </androidx.cardview.widget.CardView>

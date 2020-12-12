@@ -9,6 +9,8 @@ abstract class BaseViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemV
 
     abstract fun bindData(data:T)
 
+    abstract fun position(id : Long)
+
 
 
 }

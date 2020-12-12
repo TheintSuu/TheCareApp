@@ -16,6 +16,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.fragments.BaseFragment
 import com.theintsuhtwe.thecareapp.R
+import com.theintsuhtwe.thecareapp.activities.QuestionActivity
 import com.theintsuhtwe.thecareapp.adapters.RecentDoctorItemDoctorAdapter
 import com.theintsuhtwe.thecareapp.adapters.SpecialityItemAdapter
 import com.theintsuhtwe.thecareapp.fragments.ConfirmDialogFragment.Companion.BUNDLE_CATEGORY_ID
@@ -44,7 +45,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private lateinit var mRecentDoctorAdapter : RecentDoctorItemDoctorAdapter
 
-    private var mConfirmDialogFragment: ConfirmDialogFragment? = null
+    private var mDialog: ConfirmDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,15 +104,15 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun displayConsultationConfirm(doctor: DoctorVO) {
-
+        showConsultationReceived(doctor)
     }
 
-    override fun displayQuestions(qustions: List<QuestionVO>) {
-
+    override fun displayQuestions() {
+        startActivity( activity?.applicationContext?.let{QuestionActivity.newIntent(it)})
     }
 
     override fun navigateToQuestion(id: String, category: String) {
-
+        startActivity(activity?.applicationContext?.let { QuestionActivity.newIntent(it) })
     }
 
     override fun showConfirmDialog(id: String) {
@@ -129,9 +130,10 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
-    override fun showConsultationRecevied(doctor: DoctorVO) {
-      showConsultationReceived(doctor)
+    override fun showConsultationRecevied(consulation: ConsultationRequest) {
+        consulation?.doctor?.let { showConsultationReceived(it) }
     }
+
 
     override fun displayRecentDoctorList(doctors: List<DoctorVO>) {
 
@@ -200,13 +202,14 @@ class HomeFragment : BaseFragment(), HomeView {
     private fun showConsultationReceived(doctor: DoctorVO){
         tvDoctorName.text = doctor.name
         tvDoctorSpecialityBiography.text = doctor.biography
+
         activity?.let {
             Glide.with(it)
                 .load(doctor.image)
-                .optionalFitCenter()
                 .into(ivConfirmDoctorImage)
         }
-        tvConfirmMessage.text = getString(R.string.message_receive) + doctor.name
+
+        tvConfirmMessage.text = getString(R.string.message_receive) + " " + doctor.name + getString(R.string.message_received)
         tvDoctorSpeciality.text = doctor.specialities
         layout_confirm_receive.visibility = View.VISIBLE
     }

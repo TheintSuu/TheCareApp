@@ -113,4 +113,6 @@ dependencies {
 
     //swiperefresh
     implementation rootProject.ext.libraries.swipeRefresh
+
+    implementation 'com.github.badoualy:stepper-indicator:1.0.7'
 }

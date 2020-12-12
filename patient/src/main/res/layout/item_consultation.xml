@@ -59,6 +59,7 @@
             android:layout_below="@id/tvDoctorName"
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular_2x" />
+
         <TableRow
             android:id="@+id/tb1"
             android:layout_width="match_parent"

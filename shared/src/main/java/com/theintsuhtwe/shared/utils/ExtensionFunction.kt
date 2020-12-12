@@ -2,17 +2,16 @@ package com.theintsuhtwe.shared.utils
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Base64
 import android.widget.ImageView
+import androidx.room.TypeConverter
 import com.bumptech.glide.Glide
+import com.google.common.reflect.TypeToken
 import com.google.firebase.Timestamp
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.theintsuhtwe.shared.R
+import com.google.firebase.firestore.auth.User
+import com.google.gson.Gson
 import com.theintsuhtwe.shared.data.vos.*
-import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
 
@@ -38,9 +37,21 @@ fun createNotiRequsetBody(to : String, body : String, title : String) : JSONObje
 
 fun MutableMap<String,Any>?.convertToQuestionVO(): QuestionVO {
     val question = QuestionVO()
-    question.id = this?.get("id") as String
-    question.description = this["description"] as String
-    question.answer = this["answer"] as String
+    question.description = this?.get("description") as String
+    question.answer = this?.get("answer") as String
+
+
+
+    return question
+}
+
+fun MutableMap<String,Any>?.convertToQuestion(): QuestionVO {
+    val question = QuestionVO()
+    question.description = this?.get("description") as String
+
+
+
+
     return question
 }
 
@@ -72,6 +83,26 @@ fun ImageView.loadImage(uri: Uri){
             .into(this)
 }
 
+
+fun toPatient(commentListJsonStr: HashMap<String, String>): Patient {
+   val patient = Patient()
+    patient.image = commentListJsonStr.get("image").toString()
+    patient.id = commentListJsonStr.get("id").toString()
+    patient.name = commentListJsonStr.get("name").toString()
+    patient.email = commentListJsonStr.get("email").toString()
+
+    return patient
+}
+
+fun toDoctor(data : HashMap<String, String>) : DoctorVO{
+    val doctor = DoctorVO()
+    doctor.name = data.get("name").toString()
+    doctor.id = data.get("id").toString()
+    doctor.image = data.get("image").toString()
+    doctor.biography = data.get("biography").toString()
+    doctor.specialities = data.get("specialities").toString()
+    return doctor
+}
 
 fun MutableMap<String,Any>?.convertToPatientVO(): Patient {
     val patient= Patient()
@@ -127,10 +158,15 @@ fun MutableMap<String, Any>?.convertToCaseSummary() : CaseSummaryVO{
 
 fun MutableMap<String, Any>?.convertToConsultationRequest() : ConsultationRequest{
     val consultationRequest = ConsultationRequest()
+
     consultationRequest.id = this?.get("id") as String
-    consultationRequest.patient = this?.get("patient") as  Patient
-    consultationRequest.doctor = this?.get("doctor") as DoctorVO
-    consultationRequest.caseSummary = this?.get("case_summary") as CaseSummaryVO
+    consultationRequest.patient = toPatient((this?.get("patient")  as  HashMap<String, String>))
+   consultationRequest.doctor = toDoctor(this?.get("doctor") as  HashMap<String, String> )
+   consultationRequest.specialities = this?.get("specialities") as String
+    consultationRequest.status = this?.get("status") as String
+    //consultationRequest.caseSummary = this?.get("case_summary") as HashMap<String, String> as  CaseSummaryVO
+
+
     return consultationRequest
 }
 
@@ -176,11 +212,11 @@ fun MutableMap<String, Any>?.convertToSpecialities() : CategoryVO{
 fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     val consultation = ConsultationVO()
     consultation.id = this?.get("id") as String
-    consultation.caseSummary = this?.get("id") as CaseSummaryVO
-    consultation.doctor = this?.get("doctor") as DoctorVO
-    consultation.patient =     this?.get("patient") as Patient
-    consultation.medicine = this?.get("prescriptions") as List<MedicineVO>
-    consultation.message = this?.get("chats") as List<MessageVO>
+//    consultation.caseSummary = this?.get("id") as CaseSummaryVO
+    consultation.doctor = toDoctor(this?.get("doctors") as HashMap<String, String>)
+   consultation.patient =     toPatient(this?.get("patient") as HashMap<String, String>)
+//    consultation.medicine = this?.get("prescriptions") as List<MedicineVO>
+//    consultation.message = this?.get("chats") as List<MessageVO>
 
     return consultation
 }

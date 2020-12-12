@@ -14,6 +14,22 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
         return mFirebase.getConsultationByPatient(id, onSuccess, onFaiure)
     }
 
+    override fun getConsultationRequestByDoctor(
+        special: String,
+        onSuccess: (List<ConsultationRequest>) -> Unit,
+        onFaiure: (String) -> Unit
+    ) {
+       mFirebase.getConsultationRequestByDoctor(special, onSuccess , onFaiure)
+    }
+
+    override fun getConsultationConfirmByPatient(
+        id: String,
+        onSuccess: (ConsultationRequest) -> Unit,
+        onFaiure: (String) -> Unit
+    ) {
+        mFirebase.getConfirmConsultation(id, onSuccess, onFaiure)
+    }
+
     override fun getConsultationByDoctor(id: String, onSuccess: (List<ConsultationVO>) -> Unit, onFaiure: (String) -> Unit) {
         return mFirebase.getConsultationByDoctor(id, onSuccess, onFaiure)
     }
@@ -34,21 +50,14 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
        mFirebase.deletePrescriptions(id, medicines, onSuccess, onFailure)
     }
 
-    override fun createCaseSummary(case: CaseSummaryVO, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        mFirebase.createCaseSummary(case, onSuccess, onFailure)
+    override fun createCaseSummary(patient: Patient, special: String,list : List<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
+        mFirebase.createCaseSummary(patient, special, list,
+        onSuccess ,
+        onFailure)
     }
 
     @SuppressLint("CheckResult")
-    override fun sendConsultationRequest(case: ConsultationRequest, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        mFirebase.sendConsultationRequest(case, onSuccess, onFailure)
-
-          mNotiApi.sendBroadCastRequestToDoctor(createNotiRequsetBody("to", "body", "title"))
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-               Log.d("Broadcast Success", "Broadcast Success")
-            }, {
-
-            })
+    override fun sendConsultationRequest(patient: Patient, special: String, id : String, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
+        mFirebase.sendConsultationRequest(patient, special,  id, onSuccess, onFailure)
     }
 }

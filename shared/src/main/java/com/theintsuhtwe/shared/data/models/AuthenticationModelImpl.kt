@@ -10,7 +10,7 @@ import com.theintsuhtwe.shared.network.auth.AuthenticationManagerImpl
 object AuthenticationModelImpl : AuthenticationModel {
     override var mAuthManager: AuthManager = AuthenticationManagerImpl
 
-    override fun login(email: String, password: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+    override fun login(email: String, password: String, onSuccess: (patient : Patient) -> Unit, onFailure: (String) -> Unit) {
         mAuthManager.login(email,password,onSuccess = onSuccess,onFailure = onFailure)
     }
 

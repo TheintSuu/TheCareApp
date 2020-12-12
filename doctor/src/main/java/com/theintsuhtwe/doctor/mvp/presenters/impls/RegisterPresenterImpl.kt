@@ -32,8 +32,8 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
         mAuthenticationModel.registerDoctor(email,password,userName, categoryVO, onSuccess = {
             Log.d("Register Doctor", "Success")
             mDoctorModel.addDoctor(DoctorVO(id = "",
-                    cateogryId = categoryVO.id,
-                    name = userName, specialities = categoryVO
+                    specialities = categoryVO.id,
+                    name = userName
             ),
                     onSuccess = {
                         Log.d("Add Doctor", "Success")
