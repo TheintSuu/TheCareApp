@@ -24,13 +24,23 @@ class RequestViewHolder(private val mDelegate: ConsultationItemDelegate, itemVie
 
         //itemView.tvPatientName.text = data.patient?.name
 
-        itemView.tvBDDate.text= data.patient?.email
+         data.patient?.question?.forEach {
+            if(it.description == "မွေးနေ့"){
+                itemView.tvBDDate.text= it.answer
+                    }
+        }
 
         Glide.with(itemView)
             .load(data.patient?.image)
             .optionalFitCenter()
             .into(itemView.ivConfirmDoctorImage)
 
+
+
         //data.image.let { itemView.ivSpecialityImage.loadImage(it.toUri())}
+    }
+
+    override fun position(id: Long) {
+
     }
 }

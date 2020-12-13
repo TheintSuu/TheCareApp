@@ -20,8 +20,11 @@ import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSumaryQuestionView
 import com.theintsuhtwe.thecareapp.mvp.views.HomeView
+import com.theintsuhtwe.thecareapp.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
 
@@ -31,12 +34,15 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
 
     private var type = "once"
 
-    private var queList : MutableList<QuestionVO> = arrayListOf()
+    private var queList : ArrayList<QuestionVO> = arrayListOf()
 
     companion object {
+        const val PARM_DOCUMENTID = "Document ID"
 
-        fun newIntent(context: Context): Intent {
-            return Intent(context, QuestionActivity::class.java)
+        fun newIntent(context: Context, id : String): Intent {
+            val intent =  Intent(context, QuestionActivity::class.java)
+            intent.putExtra(QuestionActivity.PARM_DOCUMENTID, id)
+            return intent
         }
     }
 
@@ -81,13 +87,13 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
         when(type){
             getString(R.string.once) -> {
 
-                    val ques : MutableList<QuestionVO> = arrayListOf()
-                    val data = QuestionVO(description = getString(R.string.wei), answer = ed_weight.text.toString())
-                    val data2 = QuestionVO(description = getString(R.string.blood_pres), answer = ed_bloodpressure.text.toString())
-                    val data3 = QuestionVO(description = getString(R.string.height) , answer = ed_height.text.toString())
-                    val data4 = QuestionVO(description = getString(R.string.allegric_comment), answer = ed_comment.text.toString())
-                    val data5 = QuestionVO(description = getString(R.string.bl_type), answer = bloodtype_spinner.selectedItem.toString())
-                    val data6 = QuestionVO(description = getString(R.string.Birth), answer = day_spinner.selectedItem.toString()+"/"+ month_spinner.selectedItem.toString()+"/"+year_spinner.selectedItem.toString())
+                    val ques : ArrayList<QuestionVO> = arrayListOf()
+                    val data = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.wei), answer = ed_weight.text.toString())
+                    val data2 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.blood_pres), answer = ed_bloodpressure.text.toString())
+                    val data3 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.height) , answer = ed_height.text.toString())
+                    val data4 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.allegric_comment), answer = ed_comment.text.toString())
+                    val data5 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.bl_type), answer = bloodtype_spinner.selectedItem.toString())
+                    val data6 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.Birth), answer = day_spinner.selectedItem.toString()+"/"+ month_spinner.selectedItem.toString()+"/"+year_spinner.selectedItem.toString())
                     ques.add(data)
                     ques.add(data2)
                     ques.add(data3)
@@ -95,18 +101,18 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
                     ques.add(data5)
                     ques.add(data6)
                     queList.addAll(ques)
-                    mPresenter.onTapNext("patient000", type, "Dental", ques)
+                    mPresenter.onTapNext(SessionManager.patient_id.toString(), type, intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString(), ques)
 
             }
             else -> {
                     queList.clear()
-                    val ques : MutableList<QuestionVO> = arrayListOf()
-                    val data = QuestionVO(description = getString(R.string.wei), answer = ed_always_weight.text.toString())
-                    val data2 = QuestionVO(description = getString(R.string.blood_pres), answer = ed_alwyas_bloodpressure.text.toString())
+                    val ques : ArrayList<QuestionVO> = arrayListOf()
+                    val data = QuestionVO(id = UUID.randomUUID().toString(), description = getString(R.string.wei), answer = ed_always_weight.text.toString())
+                    val data2 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.blood_pres), answer = ed_alwyas_bloodpressure.text.toString())
                     ques.add(data)
                     ques.add(data2)
                     queList.addAll(ques)
-                    mPresenter.onTapNext("patient000", type, "Dental", ques)
+                    mPresenter.onTapNext(SessionManager.patient_id.toString(), type, intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString(), ques)
                 }
             }
         }

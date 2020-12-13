@@ -107,13 +107,14 @@ fun toDoctor(data : HashMap<String, String>) : DoctorVO{
 fun MutableMap<String,Any>?.convertToPatientVO(): Patient {
     val patient= Patient()
     patient.id = this?.get("id") as String
-    patient.address = (this?.get("address") as Address)
+//    patient.address = (this?.get("address") as Address)
     patient.device_token =  this?.get("device_token") as String
     patient.email =  this?.get("email") as String
     patient.phone =  this?.get("phone") as String
     patient.image=  this?.get("image") as String
-    patient.question=  this?.get("question") as List<QuestionVO>
-    patient.recent_doctors=  this?.get("recent_doctors") as List<DoctorVO>
+    patient.name =   this?.get("name") as String
+  //patient.question=  this?.get("question") as List<QuestionVO>
+//    patient.recent_doctors=  this?.get("recent_doctors") as List<DoctorVO>
     patient.phone=  this?.get("phone") as String
 
     return patient
@@ -151,7 +152,7 @@ fun MutableMap<String, Any>?.convertToMedicineVO() : MedicineVO{
 fun MutableMap<String, Any>?.convertToCaseSummary() : CaseSummaryVO{
     val casesummary =  CaseSummaryVO()
     casesummary.id = this?.get("id") as String
-    casesummary.questionList = this?.get("questions") as List<QuestionVO>
+    casesummary.questionList = this?.get("questions") as ArrayList<QuestionVO>
     return casesummary
 }
 
@@ -161,10 +162,9 @@ fun MutableMap<String, Any>?.convertToConsultationRequest() : ConsultationReques
 
     consultationRequest.id = this?.get("id") as String
     consultationRequest.patient = toPatient((this?.get("patient")  as  HashMap<String, String>))
-   consultationRequest.doctor = toDoctor(this?.get("doctor") as  HashMap<String, String> )
    consultationRequest.specialities = this?.get("specialities") as String
     consultationRequest.status = this?.get("status") as String
-    //consultationRequest.caseSummary = this?.get("case_summary") as HashMap<String, String> as  CaseSummaryVO
+
 
 
     return consultationRequest

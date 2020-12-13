@@ -10,5 +10,5 @@ import com.theintsuhtwe.thecareapp.mvp.views.CaseSumaryQuestionView
 interface CaseSummaryQuestionPresenter :  BasePresenter<CaseSumaryQuestionView>,
     SpecialitiesItemDelegate {
     fun onUiReady(id : String, life : LifecycleOwner)
-    fun onTapNext(id : String, type : String, special : String, list : List<QuestionVO>)
+    fun onTapNext(id : String, type : String, special : String, list : ArrayList<QuestionVO>)
 }

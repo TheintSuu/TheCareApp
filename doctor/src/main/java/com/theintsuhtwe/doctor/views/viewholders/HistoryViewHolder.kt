@@ -6,6 +6,9 @@ import com.theintsuhtwe.doctor.delegates.ConsultationItemDelegate
 import com.theintsuhtwe.shared.data.vos.ConsultationVO
 import com.theintsuhtwe.shared.viewholders.BaseViewHolder
 import kotlinx.android.synthetic.main.item_history.view.*
+import kotlinx.android.synthetic.main.item_history.view.ivConfirmDoctorImage
+import kotlinx.android.synthetic.main.item_history.view.tvBDDate
+import kotlinx.android.synthetic.main.item_request.view.*
 
 
 class HistoryViewHolder (private val mDelegate: ConsultationItemDelegate, itemView: View) : BaseViewHolder<ConsultationVO>(itemView) {
@@ -25,13 +28,21 @@ class HistoryViewHolder (private val mDelegate: ConsultationItemDelegate, itemVi
 
         itemView.tvName.text = data.patient?.name
 
-        itemView.tvBDDate.text= data.patient?.email
+        data.patient?.question?.forEach {
+            if(it.description == "မွေးနေ့"){
+                itemView.tvBDDate.text= it.answer
+            }
+        }
 
         Glide.with(itemView)
             .load(data.patient?.image)
-            .optionalFitCenter()
+            .centerCrop()
             .into(itemView.ivConfirmDoctorImage)
 
         //data.image.let { itemView.ivSpecialityImage.loadImage(it.toUri())}
+    }
+
+    override fun position(id: Long) {
+
     }
 }

@@ -25,7 +25,10 @@ import com.theintsuhtwe.thecareapp.fragments.ConfirmDialogFragment.Companion.TAG
 import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.HomeView
+import com.theintsuhtwe.thecareapp.utils.SessionManager
+import kotlinx.android.synthetic.main.activity_special_question.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.rvSpecial
 import kotlinx.android.synthetic.main.item_speciality.view.*
 import kotlinx.android.synthetic.main.layout_consultion_received.*
 
@@ -76,6 +79,8 @@ class HomeFragment : BaseFragment(), HomeView {
 
         hideConsultationReceived()
 
+//        SessionManager.request_id = param1
+
         mPresenter.onUiReady(this)
     }
 
@@ -108,23 +113,22 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun displayQuestions() {
-        startActivity( activity?.applicationContext?.let{QuestionActivity.newIntent(it)})
+      //  startActivity( activity?.applicationContext?.let{QuestionActivity.newIntent(it)})
     }
 
-    override fun navigateToQuestion(id: String, category: String) {
-        startActivity(activity?.applicationContext?.let { QuestionActivity.newIntent(it) })
+    override fun navigateToQuestion(id: String, special : String) {
+        startActivity(activity?.applicationContext?.let { QuestionActivity.newIntent(it, special) })
     }
 
-    override fun showConfirmDialog(id: String) {
+    override fun showConfirmDialog(spcial : String) {
         activity?.supportFragmentManager?.let {
             val mDialog  =   ConfirmDialogFragment.newFragment()
             val bundle = Bundle()
-            bundle.putString(BUNDLE_PATIENT_ID, "patient000")
-            bundle.putString(BUNDLE_CATEGORY_ID, id)
+            bundle.putString(BUNDLE_CATEGORY_ID, spcial)
 
             mDialog?.arguments = bundle
             mDialog?.show(
-                it,  TAG_ADD_GROCERY_DIALOG
+                it,  BUNDLE_CATEGORY_ID
             )
 
         }
@@ -165,7 +169,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     private fun setUpListener(){
-        mPresenter.onTapCategory("category001")
+
 
     }
 

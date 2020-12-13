@@ -17,6 +17,19 @@ class QuestionViewHolder (private val mDelegate: SpecialitiesItemDelegate, itemV
 
     var position : Long = 0
     init {
+
+
+
+
+    }
+
+    override fun bindData(data: QuestionVO) {
+        mData = data
+
+        itemView.tvDescription.text = data.description
+
+        itemView.tvNumber.text = ( position + "1".toLong()  ).toString() +")."
+
         itemView.etAnswer.addTextChangedListener(object: TextWatcher {override fun afterTextChanged(s: Editable?) {
 
         }
@@ -31,16 +44,6 @@ class QuestionViewHolder (private val mDelegate: SpecialitiesItemDelegate, itemV
             }
 
         })
-
-    }
-
-    override fun bindData(data: QuestionVO) {
-        mData = data
-
-        itemView.tvDescription.text = data.description
-
-        itemView.tvNumber.text = ( position + "1".toLong()  ).toString() +")."
-
     }
 
     override fun position(id: Long)  {

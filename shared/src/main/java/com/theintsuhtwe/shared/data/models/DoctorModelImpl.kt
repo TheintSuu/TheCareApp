@@ -3,7 +3,7 @@ package com.theintsuhtwe.shared.data.models
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
 
-object DoctorModelImpl : DoctorModel{
+object DoctorModelImpl : DoctorModel, BaseModel(){
 
     private val mFirebase  = CloudFirestoreFirebaseApiImpl
 

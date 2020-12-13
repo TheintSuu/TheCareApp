@@ -23,7 +23,7 @@ class SpecialQuestionActivity :  BaseActivity() , SpecialQuestionView{
 
     private lateinit var mAdapter : QuestionItemAdapter
 
-    private var mQueList : MutableList<QuestionVO> = arrayListOf()
+    private var mQueList : ArrayList<QuestionVO> = arrayListOf()
 
 
     companion object{
@@ -59,6 +59,13 @@ class SpecialQuestionActivity :  BaseActivity() , SpecialQuestionView{
         }
     }
 
+    private fun setUpActionVar(){
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+        }
+    }
+
     private fun setUpPresenter(){
         mPresenter = getPresenter<SpecialQuestionPresenterImpl, SpecialQuestionView>()
     }
@@ -78,7 +85,7 @@ class SpecialQuestionActivity :  BaseActivity() , SpecialQuestionView{
     }
 
     override fun navigateToCaseSummary(summaryId: String) {
-
+        startActivity(CaseSummaryActivity.newIntent(this, summaryId, intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString()))
     }
 
     override fun addQuestionToCaseSummary(ques: QuestionVO) {

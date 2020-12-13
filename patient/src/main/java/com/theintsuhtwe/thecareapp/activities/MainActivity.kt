@@ -39,6 +39,8 @@ class MainActivity :  BaseActivity() {
         fun newIntent(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
         }
+
+
     }
 
 

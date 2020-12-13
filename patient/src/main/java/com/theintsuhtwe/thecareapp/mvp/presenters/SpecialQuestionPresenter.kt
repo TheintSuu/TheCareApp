@@ -13,6 +13,6 @@ interface SpecialQuestionPresenter :   BasePresenter<SpecialQuestionView>,
 
     fun onUiReady(id : String, lifecycleOwner: LifecycleOwner)
 
-    fun onTapContinue(list : List<QuestionVO>)
+    fun onTapContinue(list : ArrayList<QuestionVO>)
 
 }

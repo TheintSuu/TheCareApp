@@ -9,48 +9,55 @@
     app:cardUseCompatPadding="true">
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_height="match_parent">
 
         <com.theintsuhtwe.doctor.views.components.RoundedCornerImageView
             android:id="@+id/ivConfirmDoctorImage"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginBottom="@dimen/margin_medium"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/ic_baseline_image_24"
             app:cornerRadius="36dp"
             android:layout_marginLeft="@dimen/margin_medium_2"
-            android:layout_alignBottom="@id/tvBDDate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+
+            />
 
         <TextView
 
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/margin_medium_3"
-            android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_toRightOf="@id/ivConfirmDoctorImage"
             android:text="Aung Aung "
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular_2x" />
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/tvName"
+            android:src="@drawable/ic_baseline_calendar_today_24"
+            android:layout_gravity="center"
+            android:layout_below="@id/tvName"
+            android:layout_toRightOf="@id/ivConfirmDoctorImage"
+            android:layout_marginRight="@dimen/margin_medium"
+            />
 
         <TextView
 
             android:id="@+id/tvBDDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ivConfirmDoctorImage"
-            android:layout_alignStart="@id/tvName"
             android:text="Dental"
+            android:textStyle="bold"
             android:layout_below="@id/tvName"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_regular_2x" />
+            android:layout_toRightOf="@id/ivImage"
+            android:textColor="@color/textColorGray"
+            android:textSize="@dimen/text_regular" />
         <TextView
 
             android:id="@+id/btnSend"
@@ -62,15 +69,15 @@
             android:paddingHorizontal="@dimen/margin_medium"
             android:layout_alignParentRight="true"
             android:paddingVertical="@dimen/margin_medium"
-            android:text=" Send Message"
-            android:background="@drawable/btn_background"
-            android:textColor="@color/black"
+            android:text="စာပို့မည်"
+            android:background="@drawable/btn_blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_small" />
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/tvBDDate"
-            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_below="@id/ivConfirmDoctorImage"
+            android:layout_marginTop="@dimen/margin_medium_2"
             android:id="@+id/drawer1"
             android:background="#c0c0c0"/>
         <TableRow
@@ -90,7 +97,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_white"
                 android:gravity="center"
-                android:text="Send Message"
+                android:text="ဆေှတ်တမ်"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 app:iconGravity="textStart" />
@@ -108,14 +115,14 @@
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium_2"
                 android:paddingVertical="@dimen/margin_medium"
-                android:text="Prescription"
+                android:text="ဆေးညွှန်း"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 app:iconGravity="textStart" />
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#c0c0c0"/>
+                android:background="#DDD6D6"/>
 
             <TextView
                 android:id="@+id/btnNote"
@@ -124,7 +131,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_white"
                 android:gravity="center"
-                android:text="Note"
+                android:text="မှတ်ချက်"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 app:iconGravity="textStart" />

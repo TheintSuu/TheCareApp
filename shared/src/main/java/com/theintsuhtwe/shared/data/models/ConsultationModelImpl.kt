@@ -1,6 +1,7 @@
 package com.theintsuhtwe.shared.data.models
 
 import android.annotation.SuppressLint
+import android.text.style.QuoteSpan
 import android.util.Log
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
@@ -57,7 +58,7 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     }
 
     @SuppressLint("CheckResult")
-    override fun sendConsultationRequest(patient: Patient, special: String, id : String, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
+    override fun sendConsultationRequest(patient: Patient, special: String, id : ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
         mFirebase.sendConsultationRequest(patient, special,  id, onSuccess, onFailure)
     }
 }

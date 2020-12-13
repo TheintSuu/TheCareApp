@@ -1,5 +1,6 @@
 package com.theintsuhtwe.thecareapp.mvp.presenters
 
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
@@ -7,6 +8,7 @@ import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.HomeView
+import com.theintsuhtwe.thecareapp.utils.SessionManager
 
 class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
     var mTheCareModel = SpecialitiesModelImpl
@@ -22,44 +24,25 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
         mTheCareModel.getDeviceToken()
     }
 
-    override fun onTapCategory(id: String) {
-      mTheCareModel.getDoctorBySpecialities(
-          id,
-          onSuccess = {
+    override fun onTapCategory(special: String) {
 
-          },
-          onFaiure = {
-
-          }
-
-      )
-    }
-
-    override fun onTapConsultationRequest(case: CaseSummaryVO, patient: Patient, specail: CategoryVO) {
-//        mConsultationModel.sendConsultationRequest(ConsultationRequest(),
-//        onSuccess = {
-//
-//        },
-//            onFailure = {
-//
-//            }
-//        )
     }
 
 
 
-    override fun onTapConfirm(id : String, category : String) {
-        mView?.displayQuestions()
-        mView?.navigateToQuestion(id, category)
+
+    override fun onTapConfirm(id : String, special: String) {
+        mView?.navigateToQuestion(id, special)
     }
 
     override fun onTapCancel() {
-        mView?.navigateToQuestion("", "")
+
     }
 
     override fun onTapSpecialities(name: String) {
-        //mView?.showConfirmDialog(name)
-        mView?.navigateToQuestion("",  "")
+        mView?.showConfirmDialog(name)
+        //mView?.navigateToQuestion(SessionManager.patient_id.toString(), name)
+
     }
 
     private fun getAllData(lifecycleOwner: LifecycleOwner){
@@ -73,16 +56,17 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
         )
 
         mPatientModel.getRecentDoctors(
-            "patient000",
+                SessionManager.patient_id.toString(),
         onSuccess = {
-            mView?.displayRecentDoctorList(it)
+                mView?.displayRecentDoctorList(it)
         },
         onFaiure = {
 
         })
 
+
         mConsultationModel.getConsultationConfirmByPatient(
-            "request000",
+                SessionManager.request_id.toString(),
             onSuccess = {
                 it.doctor?.let { it1 -> mView?.displayConsultationConfirm(it1) }
             },
@@ -93,21 +77,7 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
     }
 
 
-    private fun sendBroadCastRequest(){
-//        mConsultationModel.sendConsultationRequest(
-//                ConsultationRequest(),
-//                onSuccess = {
-//
-//                },
-//                onFailure = {
-//
-//                }
-//        )
-    }
 
-    private fun sendDirectRequsest(lifecycleOwner: LifecycleOwner){
-
-    }
 
     override fun onTapQuestion(descption : String, answer: String) {
 

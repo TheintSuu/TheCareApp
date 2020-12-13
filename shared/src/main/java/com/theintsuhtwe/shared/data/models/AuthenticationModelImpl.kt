@@ -1,17 +1,21 @@
 package com.theintsuhtwe.shared.data.models
 
 import android.graphics.Bitmap
+import android.util.Log
 import com.theintsuhtwe.shared.data.vos.CategoryVO
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.network.auth.AuthManager
 import com.theintsuhtwe.shared.network.auth.AuthenticationManagerImpl
+import java.util.*
 
 object AuthenticationModelImpl : AuthenticationModel {
     override var mAuthManager: AuthManager = AuthenticationManagerImpl
 
-    override fun login(email: String, password: String, onSuccess: (patient : Patient) -> Unit, onFailure: (String) -> Unit) {
-        mAuthManager.login(email,password,onSuccess = onSuccess,onFailure = onFailure)
+    private var mPatientModel = PatientModelImpl
+
+    override fun login(email: String, password: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+        mAuthManager.login(email,password,onSuccess, onFailure)
     }
 
     override fun loginWithFacebook(
@@ -24,7 +28,16 @@ object AuthenticationModelImpl : AuthenticationModel {
     }
 
     override fun register(email: String, password: String, userName: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        mAuthManager.register(email,password,userName,onSuccess =onSuccess,onFailure= onFailure)
+        mAuthManager.register(email,password,userName,onSuccess ={
+            val patientVO = Patient(
+                    id = UUID.randomUUID().toString(),
+                    name = userName,
+                    email = email,
+                    device_token = ""
+            )
+            mPatientModel.addPatient(patientVO, onSuccess, onFailure)
+
+        },onFailure= onFailure)
     }
 
     override fun registerDoctor(

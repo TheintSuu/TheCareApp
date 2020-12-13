@@ -10,6 +10,9 @@ interface FirebaseApi {
     fun getPatient(id : String, onSuccess: (patient : Patient) -> Unit,
                         onFailure: (String) -> Unit)
 
+    fun getPatientByEmail(email : String, onSuccess: (patient : Patient) -> Unit,
+                   onFailure: (String) -> Unit)
+
     fun getMedicinesBySpecialities(id : String, onSuccess: (List<MedicineVO>) -> Unit, onFailure: (String) -> Unit)
 
     fun getDoctorBySpecialities(id : String, onSuccess: (List<DoctorVO>) -> Unit,
@@ -25,10 +28,10 @@ interface FirebaseApi {
     fun getQuestionsByType(type : String, onSuccess: (List<QuestionVO>) -> Unit,
                            onFailure: (String) -> Unit)
 
-    fun getQuestionsByPateint(id : String, onSuccess: (List<QuestionVO>) -> Unit,
+    fun getQuestionsByPateint(id : String, onSuccess: (ArrayList<QuestionVO>) -> Unit,
                            onFailure: (String) -> Unit)
 
-    fun getQuestionsBySpecaility(id : String, onSuccess: (List<QuestionVO>) -> Unit,
+    fun getQuestionsBySpecaility(id : String, onSuccess: (ArrayList<QuestionVO>) -> Unit,
                                  onFailure: (String) -> Unit)
 
     fun getConsultationByDoctor(id : String, onSuccess: (List<ConsultationVO>) -> Unit,
@@ -58,7 +61,7 @@ interface FirebaseApi {
 
     fun sendConsultationRequest( patient : Patient,
                                  special: String,
-                                caseSummaryId : String , onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit)
+                                caseSummaryId : ArrayList<QuestionVO> , onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit)
 
     fun addRecentDoctorByPatient(id : String,  doctorVO: DoctorVO, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
@@ -83,6 +86,9 @@ interface FirebaseApi {
                                onFailure: (String) -> Unit)
 
     fun getConsultationRequestByDoctor(specail : String,onSuccess: (List<ConsultationRequest>) -> Unit,
+                                       onFailure: (String) -> Unit)
+
+    fun updateConsultationRequestByDoctor(id: String ,onSuccess: () -> Unit,
                                        onFailure: (String) -> Unit)
 
 

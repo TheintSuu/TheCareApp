@@ -22,6 +22,6 @@ interface ConsultationModel {
 
     fun createCaseSummary(patient: Patient, special: String,list : List<QuestionVO>,  onSuccess:(id : String)->Unit, onFailure:(String)->Unit )
 
-    fun sendConsultationRequest(patient :  Patient, special: String, caseSummaryVO: String, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit)
+    fun sendConsultationRequest(patient :  Patient, special: String, caseSummaryVO: ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit)
 
 }

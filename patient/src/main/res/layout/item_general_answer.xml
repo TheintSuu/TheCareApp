@@ -7,36 +7,26 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="7" >
+        android:weightSum="2" >
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:gravity="center"
-            android:paddingVertical="@dimen/margin_medium"
-            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
             android:text="@string/default_ques"
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular" />
-        <TextView
 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingVertical="@dimen/margin_medium"
-            android:paddingHorizontal="@dimen/margin_medium_2"
-            android:text=":"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_regular" />
         <TextView
             android:id="@+id/tvAnswer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:paddingVertical="@dimen/margin_medium"
-            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
             android:text="Aung Aung"
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular" />

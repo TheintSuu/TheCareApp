@@ -28,37 +28,32 @@ class CaseSummaryQuestionPresenterImpl : CaseSummaryQuestionPresenter, AbstractB
         })
     }
 
-    override fun onTapNext(id : String, type: String,  special : String, list : List<QuestionVO>) {
-        when(type){
-            "once" -> {
-                mPatientModel.sendQuestion(id, list,
-                    onSuccess = {
-                        mView?.showAlwaysQuestion(id, id)
-                    },
-                    onFaiure = {
+    override fun onTapNext(id : String, type: String,  special : String, list : ArrayList<QuestionVO>) =
+            when(type){
+                "once" -> {
+                    mPatientModel.sendQuestion(id, list,
+                        onSuccess = {
+                            //mTheCareModel.GeneralQuestionDeletAndInsertToDB(list)
+                            mView?.showAlwaysQuestion(id, id)
 
-                    }
-                )
+                        },
+                        onFaiure = {
+
+                        }
+                    )
+                }
+                else -> {
+                    mPatientModel.sendQuestion(id, list,
+                        onSuccess = {
+                          //  mTheCareModel.addGeneralQuestionToDB(list)
+                            mView?.navigaeToSpecialQuestion(id, special)
+                        },
+                        onFaiure = {
+
+                        }
+                    )
+                }
             }
-            else -> {
-
-//                mConsultationModel.sendConsultationRequest(
-//
-//                )
-                mPatientModel.sendQuestion(id, list,
-                    onSuccess = {
-                        mView?.navigaeToSpecialQuestion(id, id)
-                    },
-                    onFaiure = {
-
-                    }
-                )
-            }
-        }
-
-
-
-    }
 
     override fun onTapSpecialities(name: String) {
 

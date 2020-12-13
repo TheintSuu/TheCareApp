@@ -25,7 +25,7 @@ class AnswerViewHolder(private val mDelegate: SpecialitiesItemDelegate, itemView
 
 
         itemView.tvDescription.text = data.description
-        itemView.tvAnswer.text = data.answer
+        itemView.tvAnswer.text = ":\t\t\t\t\t\t\t"+data.answer
 
 
 

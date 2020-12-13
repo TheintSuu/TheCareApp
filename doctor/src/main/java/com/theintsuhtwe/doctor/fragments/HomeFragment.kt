@@ -26,6 +26,7 @@ import com.theintsuhtwe.doctor.mvp.views.HomeView
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_request.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,6 +77,8 @@ class HomeFragment : BaseFragment(), HomeView {
         setUpRecyclerView()
 
         setUpListener()
+
+        bindData()
         
 
         mPresenter.onUiReady("", this)
@@ -183,6 +186,18 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private fun hideConsultationRequest(){
         rvRequest.visibility = View.GONE
+    }
+
+
+    private fun bindData(){
+        Glide.with(this)
+                .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNUOgjEhHpfUqnVk-Tp2uN1AhrrzXhwdX9A&usqp=CAU")
+                .optionalFitCenter()
+                .into(ivConfirmDoctorImage)
+
+        tvRecentDoctor.text = "Professor U Aung Win"
+
+
     }
 
 

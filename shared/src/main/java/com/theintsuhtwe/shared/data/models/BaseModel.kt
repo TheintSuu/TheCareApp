@@ -3,6 +3,7 @@ package com.theintsuhtwe.shared.data.models
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.theintsuhtwe.shared.network.NotificationApi
+import com.theintsuhtwe.shared.persistence.db.TheCareDB
 import com.theintsuhtwe.shared.utils.FirebaseURL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -14,7 +15,7 @@ abstract  class BaseModel {
 
     protected var mNotiApi: NotificationApi
 
-  //  protected lateinit var mDB: TheCareDB
+    lateinit var mTheCareDB: TheCareDB
     init {
         val client =  OkHttpClient.Builder()
           .connectTimeout(15, TimeUnit.SECONDS)
@@ -34,6 +35,6 @@ abstract  class BaseModel {
     }
 
     fun initDatabase(context: Context) {
-      //  mTheCareDB = TheCareDB.getDBInstance(context)
+        mTheCareDB = TheCareDB.getDBInstance(context)
     }
 }

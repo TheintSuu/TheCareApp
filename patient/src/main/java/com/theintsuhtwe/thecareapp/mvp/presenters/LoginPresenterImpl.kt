@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.AuthenticationModel
 import com.theintsuhtwe.shared.data.models.AuthenticationModelImpl
+import com.theintsuhtwe.shared.data.models.PatientModel
+import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.LoginView
@@ -11,6 +13,9 @@ import com.theintsuhtwe.thecareapp.mvp.views.LoginView
 class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
 
     private val mAuthenticatioModel: AuthenticationModel = AuthenticationModelImpl
+
+
+    private val mPatientModel : PatientModel = PatientModelImpl
 
     override fun onUiReady(token : String, lifecycleOwner: LifecycleOwner) {
 
@@ -21,10 +26,16 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
 
         } else {
             mAuthenticatioModel.login(email, password, onSuccess = {
-                mView?.navigateToHomeScreen(patient = it)
+                mPatientModel.getPatientByEmail(email, onSuccess = {
+                    mView?.navigateToHomeScreen(patient = it)
+                }, onFailure = {
+
+                })
             }, onFailure = {
 
             })
+
+
         }
     }
 

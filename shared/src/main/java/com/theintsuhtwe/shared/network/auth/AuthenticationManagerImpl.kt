@@ -5,6 +5,9 @@ import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
+import com.theintsuhtwe.shared.data.models.BaseModel
+import com.theintsuhtwe.shared.data.models.PatientModel
+import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.vos.CategoryVO
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
@@ -20,20 +23,16 @@ object AuthenticationManagerImpl : AuthManager {
     private val storage = FirebaseStorage.getInstance()
     private val storageReference = storage.reference
 
+
     override fun login(
         email: String,
         password: String,
-        onSuccess: (patient : Patient) -> Unit,
+        onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful && it.isComplete) {
-                 mFirebase.getPatient(email,
-                        onSuccess= {
-                            onSuccess(it)
-                }, onFailure ={
-
-                })
+            onSuccess()
             } else {
                 onFailure(it.exception?.message ?: "please check internet connection")
             }

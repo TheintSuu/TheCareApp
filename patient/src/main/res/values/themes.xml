@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TheCareApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.TheCareApp.doctor" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -12,5 +12,10 @@
     </style>
     <style name="btnStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="pgbar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="backgroundColor">@color/colorPrimary</item>
+
     </style>
 </resources>

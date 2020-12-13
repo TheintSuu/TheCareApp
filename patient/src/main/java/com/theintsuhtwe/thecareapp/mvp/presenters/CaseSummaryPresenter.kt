@@ -1,7 +1,6 @@
 package com.theintsuhtwe.thecareapp.mvp.presenters
 
 import androidx.lifecycle.LifecycleOwner
-import com.theintsuhtwe.shared.data.vos.CaseSummaryVO
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.mvp.presenters.BasePresenter
@@ -12,5 +11,5 @@ interface CaseSummaryPresenter :   BasePresenter<CaseSummaryView>,
         SpecialitiesItemDelegate {
     fun onUiReady(id : String, lifecycleOwner: LifecycleOwner)
 
-    fun onTapSendConsultationRequest(special : String, patient : Patient, list : List<QuestionVO>)
+    fun onTapSendConsultationRequest(special: String, list: ArrayList<QuestionVO>, lifecycleOwner: LifecycleOwner)
 }

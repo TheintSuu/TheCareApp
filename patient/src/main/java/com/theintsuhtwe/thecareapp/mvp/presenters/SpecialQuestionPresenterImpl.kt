@@ -10,6 +10,8 @@ import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSummaryView
 import com.theintsuhtwe.thecareapp.mvp.views.SpecialQuestionView
 import com.theintsuhtwe.thecareapp.utils.getCurrentPatientInfo
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SpecialQuestionPresenterImpl : SpecialQuestionPresenter, AbstractBasePresenter<SpecialQuestionView>(){
 
@@ -21,9 +23,9 @@ class SpecialQuestionPresenterImpl : SpecialQuestionPresenter, AbstractBasePrese
 
 
 
-    override fun onUiReady(id : String, lifecycleOwner: LifecycleOwner) {
+    override fun onUiReady(special : String, lifecycleOwner: LifecycleOwner) {
         mTheCareModel.getSpecialQuestionsBySpecailities(
-                "Dental",
+                special,
                 onSuccess = {
                     mView?.displayQuestionBySpeciality(it)
                 },
@@ -33,16 +35,8 @@ class SpecialQuestionPresenterImpl : SpecialQuestionPresenter, AbstractBasePrese
         )
     }
 
-    override fun onTapContinue(list: List<QuestionVO>) {
-        mConsultationModel.createCaseSummary(getCurrentPatientInfo( ), special = "Dental",
-        list = list,
-        onSuccess = {
-            mView?.navigateToCaseSummary(it)
-        },
-                onFailure = {
-
-                }
-        )
+    override fun onTapContinue(list: ArrayList<QuestionVO>) {
+        mView?.navigateToCaseSummary(mTheCareModel.addCaseSummaryToDB(list))
     }
 
 
@@ -52,10 +46,13 @@ class SpecialQuestionPresenterImpl : SpecialQuestionPresenter, AbstractBasePrese
     }
 
     override fun onTapQuestion(descption : String, answer: String) {
-       mView?.addQuestionToCaseSummary(QuestionVO(
+       mView?.addQuestionToCaseSummary(
+               QuestionVO(
+               id = UUID.randomUUID().toString(),
                description =  descption,
                answer = answer
-       ))
+       )
+       )
     }
 
 }

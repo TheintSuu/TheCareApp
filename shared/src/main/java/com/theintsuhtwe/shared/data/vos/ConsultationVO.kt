@@ -11,8 +11,8 @@ data class ConsultationVO(
         @SerializedName("id") var id: String = "",
         @SerializedName("patient") var patient: Patient ?= null,
         @SerializedName("doctor") var doctor: DoctorVO ?= null,
-        @SerializedName("chats") var message : List<MessageVO> ?= null,
-        @SerializedName("prescription") var medicine : List<MedicineVO> ?= null,
-        @SerializedName("case_summary") var caseSummary : CaseSummaryVO ?= null
+        @SerializedName("chats") var message : List<MessageVO>  = arrayListOf(),
+        @SerializedName("prescription") var medicine : List<MedicineVO> = arrayListOf(),
+        @SerializedName("case_summary") var caseSummary : ArrayList<QuestionVO> = arrayListOf()
 
 )

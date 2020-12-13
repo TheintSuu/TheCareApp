@@ -1,18 +1,15 @@
 package com.theintsuhtwe.thecareapp.mvp.presenters
 
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
-import com.theintsuhtwe.shared.data.vos.CaseSummaryVO
-import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
-import com.theintsuhtwe.shared.mvp.presenters.BasePresenter
-import com.theintsuhtwe.thecareapp.delegates.SpecialitiesItemDelegate
-import com.theintsuhtwe.thecareapp.mvp.views.CaseSumaryQuestionView
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSummaryView
 import com.theintsuhtwe.thecareapp.utils.SessionManager
+import com.theintsuhtwe.thecareapp.utils.getCurrentPatientInfo
 
 class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<CaseSummaryView>() {
 
@@ -23,17 +20,46 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
     var mPatientModel = PatientModelImpl
 
 
-    override fun onUiReady(id : String, lifecycleOwner: LifecycleOwner) {
-        mPatientModel.getQuestionByPatient(SessionManager.patient_id.toString(), onSuccess = {
-            mView?.displayGeneralQuestion(it)
-        },
+    override fun onUiReady(caseId : String, lifecycleOwner: LifecycleOwner) {
+
+
+        mPatientModel.getQuestionByPatient(
+                SessionManager.patient_id.toString(),
+                onSuccess = {
+                    mView?.displayGeneralQuestion(it)
+                },
                 onFaiure = {
 
-                }
-        )
-        mPatientModel.getCaseSummaryByPatient(id ,
+                })
+
+
+        mTheCareModel.getCaseSummaryToDB(caseId).
+        observe(lifecycleOwner, Observer {
+
+            it.questionList?.let { it1 -> mView?.displayCaseSummary(it1) }
+
+
+
+        })
+
+
+    }
+
+    override fun onTapSendConsultationRequest(special: String, list: ArrayList<QuestionVO>, lifecycleOwner: LifecycleOwner) {
+
+
+        mPatientModel.getQuestionByPatient(
+                SessionManager.patient_id.toString(),
                 onSuccess = {
-                    it.questionList?.let { it1 -> mView?.displaySpecialQuestion(it1) }
+                    val patient = getCurrentPatientInfo()
+                    patient.question = it
+                    mConsultationModel.sendConsultationRequest(patient, special, list, onSuccess = {
+                        mView?.navigateToHome(it)
+                    },
+                            onFailure = {
+
+                            }
+                    )
                 },
                 onFaiure = {
 
@@ -41,10 +67,8 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
         )
 
 
-    }
 
-    override fun onTapSendConsultationRequest(special: String, patient: Patient, list: List<QuestionVO>) {
-        
+
     }
 
     override fun onTapSpecialities(name: String) {

@@ -2,16 +2,18 @@ package com.theintsuhtwe.shared.data.vos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
+import com.theintsuhtwe.shared.persistence.typeconverter.QuestionsConverter
 
-//@Entity(tableName = "question")
+@Entity(tableName = "questions")
 @IgnoreExtraProperties
 data class QuestionVO(
-//    @PrimaryKey(autoGenerate = true)
+        @PrimaryKey
     @SerializedName("id") var id: String = "",
     @SerializedName("description") var description: String = "",
     @SerializedName("type") var type: String = "",
-    @SerializedName("answer") var answer: String ?= null
+    @SerializedName("answer") var answer: String =  ""
 
 )

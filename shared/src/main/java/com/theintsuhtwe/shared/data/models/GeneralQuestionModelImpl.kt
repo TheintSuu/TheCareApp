@@ -3,7 +3,7 @@ package com.theintsuhtwe.shared.data.models
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
 
-object GeneralQuestionModelImpl : GeneralQuestionModel {
+object GeneralQuestionModelImpl : GeneralQuestionModel, BaseModel() {
 
     private val mFirestore = CloudFirestoreFirebaseApiImpl
 

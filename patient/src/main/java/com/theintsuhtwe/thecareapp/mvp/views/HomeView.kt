@@ -22,7 +22,6 @@ interface HomeView : BaseView {
 
     fun showConsultationRecevied(consulation: ConsultationRequest)
 
-
     fun displayRecentDoctorList(doctors : List<DoctorVO>)
 
 

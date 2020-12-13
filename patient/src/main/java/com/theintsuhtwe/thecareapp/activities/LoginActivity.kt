@@ -25,19 +25,23 @@ class LoginActivity : BaseActivity(), LoginView {
 
     private lateinit var mPresenter: LoginPresenter
 
-     private lateinit var  token : String
+     //private lateinit var  token : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        getToken()
+
         setUpPresenter()
 
         setUpActionListeners()
 
-        getToken()
 
-        mPresenter.onUiReady( token, this)
+        SessionManager.init(applicationContext)
+
+
+        mPresenter.onUiReady( "token", this)
     }
 
     private fun setUpActionListeners() {
@@ -55,8 +59,9 @@ class LoginActivity : BaseActivity(), LoginView {
     }
 
     override fun navigateToHomeScreen(patientVO: Patient) {
-        startActivity(MainActivity.newIntent(this))
         savePatientInfo(patientVO)
+        startActivity(MainActivity.newIntent(this))
+
     }
 
     override fun navigateToRegisterScreen() {
@@ -76,50 +81,49 @@ class LoginActivity : BaseActivity(), LoginView {
                  }
 
 
-                  token = task.result.token
+                 // token = task.result.token
 
 
-                 val msg ="token :  $token"
-                 Log.i("Token ", msg)
-                 Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                 //val msg ="token :  $token"
+                 //Log.i("Token ", msg)
+                 //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
 
 
              })
      }
 
      private fun savePatientInfo(patientVO: Patient){
-         SessionManager.login_status =true
-         SessionManager.patient_name = patientVO.name
-         SessionManager.patient_id = patientVO.id
-         SessionManager.patient_device_token = patientVO.device_token
-         SessionManager.patient_email = patientVO.email
-         SessionManager.patient_photo = patientVO.image.toString()
-         patientVO.question?.forEach {
-             when(it.description){
-                 "မွေးနေ့" -> {
-                     SessionManager.patient_dateOfBirth = it.answer
-                 }
-                 "အရပ်" -> {
-                     SessionManager.patient_height = it.answer
-                 }
-                 "မတည့်သော ဆေးအမျိုးအစား" -> {
-                     SessionManager.patient_comment = it.answer
-                 }
-                 "ပေါင်ချိန်" -> {
-                 SessionManager.patient_weight = it.answer
-                }
-                 "သွေးပေါင်ချိန်" -> {
-                     SessionManager.patient_bloodPressure = it.answer
-                 }
-                   "သွေးအမျိုးအစား"  -> {
-                     SessionManager.patient_bloodType = it.answer
-                 }
+         patientVO.id?.let {
+             SessionManager.patient_name = patientVO.name
+             SessionManager.patient_id = patientVO.id
+             SessionManager.patient_device_token = patientVO.device_token
+             SessionManager.patient_email = patientVO.email
+             SessionManager.patient_photo = patientVO.image.toString()
+             patientVO.question?.forEach {
+                 when(it.description){
+                     "မွေးနေ့" -> {
+                         SessionManager.patient_dateOfBirth = it.answer
+                     }
+                     "အရပ်" -> {
+                         SessionManager.patient_height = it.answer
+                     }
+                     "မတည့်သော ဆေးအမျိုးအစား" -> {
+                         SessionManager.patient_comment = it.answer
+                     }
+                     "ပေါင်ချိန်" -> {
+                         SessionManager.patient_weight = it.answer
+                     }
+                     "သွေးပေါင်ချိန်" -> {
+                         SessionManager.patient_bloodPressure = it.answer
+                     }
+                     "သွေးအမျိုးအစား"  -> {
+                         SessionManager.patient_bloodType = it.answer
+                     }
 
-
-
-
+                 }
              }
          }
+
 
      }
 }

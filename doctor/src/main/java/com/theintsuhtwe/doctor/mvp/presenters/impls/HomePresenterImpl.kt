@@ -26,6 +26,10 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
         mView?.showDialog()
     }
 
+    override fun onTapAccept(id: String) {
+
+    }
+
     override fun onTapConsultationHistory(name: String) {
 
     }

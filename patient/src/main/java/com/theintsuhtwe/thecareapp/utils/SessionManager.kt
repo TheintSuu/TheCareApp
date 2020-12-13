@@ -21,13 +21,13 @@ object SessionManager {
         editor.apply()
     }
 
-    var login_status: Boolean
-
-        get() = preferences.getBoolean(sharePreferenceLoginStatus, false)
-
-        set(value) = preferences.edit {
-            it.putBoolean(sharePreferenceLoginStatus, value)
-        }
+//    var login_status: Boolean
+//
+//        get() = preferences.getBoolean(sharePreferenceLoginStatus, false)
+//
+//        set(value) = preferences.edit {
+//            it.putBoolean(sharePreferenceLoginStatus, value)
+//        }
 
     var patient_name: String?
 
@@ -51,6 +51,14 @@ object SessionManager {
 
         set(value) = preferences.edit {
             it.putString(sharePreferencePatientID, value)
+        }
+
+    var request_id: String?
+
+        get() = preferences.getString(sharePreferenceRequestID, "request000")
+
+        set(value) = preferences.edit {
+            it.putString(sharePreferenceRequestID, value)
         }
 
     var patient_device_token: String?

@@ -10,7 +10,7 @@ interface AuthenticationModel {
 
     var mAuthManager : AuthManager
 
-    fun login(email: String, password: String, onSuccess: (patient : Patient) -> Unit, onFailure: (String) -> Unit)
+    fun login(email: String, password: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
     fun loginWithFacebook(email: String, public_profile: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
