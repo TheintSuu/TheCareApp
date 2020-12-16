@@ -58,7 +58,7 @@ class ConfirmDialogFragment :  DialogFragment(){
     }
 
     private fun setUpPresenter() {
-        activity?.let {
+       parentFragment?.let {
           // mPresenter = getPresenter<HomePresenterImpl, HomeView>()
            mPresenter = ViewModelProviders.of(it).get(HomePresenterImpl::class.java)
         }

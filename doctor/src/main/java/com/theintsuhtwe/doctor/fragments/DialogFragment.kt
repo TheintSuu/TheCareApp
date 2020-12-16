@@ -11,6 +11,7 @@ import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.activities.TimePickerHelper
 import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenter
 import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenterImpl
+import kotlinx.android.synthetic.main.fragment_dialog.*
 import kotlinx.android.synthetic.main.fragment_dialog.view.*
 import java.util.*
 
@@ -28,8 +29,8 @@ class DialogFragment : DialogFragment() {
 
     companion object {
         const val TAG_ADD_GROCERY_DIALOG = "TAG_ADD_GROCERY_DIALOG"
-        const val BUNDLE_PATIENT_ID = "BUNDLE_PATIENT_ID"
-        const val BUNDLE_CATEGORY_ID = " BUNDLE_CATEGORY_ID"
+        const val BUNDLE_DOCTOR_ID = "BUNDLE_DOCTOR_ID"
+
 
 
         fun newFragment(): DialogFragment {
@@ -78,12 +79,25 @@ class DialogFragment : DialogFragment() {
         val cal = Calendar.getInstance()
         val h = cal.get(Calendar.HOUR_OF_DAY)
         val m = cal.get(Calendar.MINUTE)
-//        timePicker.showDialog(h, m, object : TimePickerHelper.Callback {
-//            override fun onTimeSelected(hourOfDay: Int, minute: Int) {
-//                val hourStr = if (hourOfDay < 10) "0${hourOfDay}" else "${hourOfDay}"
-//                val minuteStr = if (minute < 10) "0${minute}" else "${minute}"
-//
-//            }
-//        })
+        var msg : String =""
+        timePicker?.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+            var am_pm = ""
+            // AM_PM decider logic
+            when {hour == 0 -> { hour += 12
+                am_pm = "AM"
+            }
+                hour == 12 -> am_pm = "PM"
+                hour > 12 -> { hour -= 12
+                    am_pm = "PM"
+                }
+                else -> am_pm = "AM"
+            }
+
+            val h = if (hour < 10) "0" + hour else hour
+            val min = if (minute < 10) "0" + minute else minute
+            // display format of time
+            msg = " $h : $min $am_pm"
+
+        }
     }
 }

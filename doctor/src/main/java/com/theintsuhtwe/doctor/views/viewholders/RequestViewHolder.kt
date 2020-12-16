@@ -11,18 +11,25 @@ class RequestViewHolder(private val mDelegate: ConsultationItemDelegate, itemVie
 
 
     init {
-        itemView.setOnClickListener {
+        itemView.btnAccept.setOnClickListener {
             mData?.let {
-                mDelegate.onTapRequest(it.id)
+                mDelegate.onTapAccept(it.id)
             }
 
+        }
+
+        itemView.setOnClickListener {
+            mData?.let{
+              //  mDelegate.onTapAccept(it.id)
+                mDelegate.onTapRequest(it.id)
+            }
         }
     }
 
     override fun bindData(data: ConsultationRequest) {
         mData = data
 
-        //itemView.tvPatientName.text = data.patient?.name
+        itemView.tvPatientName.text = data.patient?.name
 
          data.patient?.question?.forEach {
             if(it.description == "မွေးနေ့"){
@@ -35,9 +42,6 @@ class RequestViewHolder(private val mDelegate: ConsultationItemDelegate, itemVie
             .optionalFitCenter()
             .into(itemView.ivConfirmDoctorImage)
 
-
-
-        //data.image.let { itemView.ivSpecialityImage.loadImage(it.toUri())}
     }
 
     override fun position(id: Long) {

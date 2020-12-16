@@ -16,7 +16,6 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/homeBackgroundColor"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
@@ -53,7 +52,6 @@
                     android:id="@+id/rvRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ECE9E9"
                     android:paddingTop="@dimen/margin_medium"
                     android:layout_below="@id/ivConfirmDoctorImage"
                     android:layout_marginTop="@dimen/margin_medium_2" />
@@ -63,7 +61,6 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:background="#ECE9E9"
             android:layout_height="?attr/actionBarSize">
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +81,6 @@
             android:id="@+id/rvHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/homeBackgroundColor"
             />
     </androidx.core.widget.NestedScrollView>
 

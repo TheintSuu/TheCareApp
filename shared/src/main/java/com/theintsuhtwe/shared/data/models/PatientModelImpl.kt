@@ -40,9 +40,33 @@ object PatientModelImpl: PatientModel,  BaseModel() {
 
     }
 
-    override fun getRecentDoctors(id: String, onSuccess: (List<DoctorVO>) -> Unit, onFaiure: (String) -> Unit) {
-       return mFirebase.getRecentlyDoctorByUser(id, onSuccess, onFaiure)
+    override fun getRecentDoctors(id: String, onSuccess: () -> Unit, onFaiure: (String) -> Unit) {
+       return mFirebase.getRecentlyDoctorByUser(id, onSuccess={
+           mTheCareDB.patientDao.deleteAll()
+           insertRecentDoctorsFromDB(it)
+           onSuccess()
+       }, onFailure = {
+           onFaiure(it)
+       })
     }
+
+    override fun getAllRecentDoctorsFromDB(): LiveData<List<DoctorVO>> {
+      return mTheCareDB.doctorDao().getAllDoctor()
+    }
+
+    override fun getRecentDoctorsFromDB(id: String): LiveData<DoctorVO> {
+        return mTheCareDB.doctorDao().getDoctorByemail(id)
+    }
+
+    override fun insertRecentDoctorsFromDB(doctors: List<DoctorVO>) {
+       mTheCareDB.doctorDao().deleteAll()
+        mTheCareDB.doctorDao().insertAllDoctor(doctors)
+    }
+
+    override fun insertRecenFromDB(doctors: DoctorVO) {
+        mTheCareDB.doctorDao().insertDoctor(doctors)
+    }
+
 
     override fun getDeviceTokenByType(type: String, onSuccess: (List<String>) -> Unit, onFaiure: (String) -> Unit) {
         return mFirebase.getDeviceTokenByType(type, onSuccess, onFaiure)

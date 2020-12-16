@@ -63,7 +63,7 @@ class RegisterActivity : BaseActivity(), RegisterView {
 //        )
 
         mPresenter.onTapRegister(
-
+                    this,
                 "theintsuhtwe1998@gmail.com",
                 "hazel$1998",
                 "hazel",""
@@ -81,10 +81,6 @@ class RegisterActivity : BaseActivity(), RegisterView {
 
                // token = task.result.token
 
-
-//                val msg ="token :  $token"
-//                Log.i("Token ", msg)
-//                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
 
 
             })

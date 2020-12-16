@@ -1,7 +1,7 @@
 package com.theintsuhtwe.thecareapp.mvp.presenters
 
-import android.view.View
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
@@ -29,8 +29,6 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
     }
 
 
-
-
     override fun onTapConfirm(id : String, special: String) {
         mView?.navigateToQuestion(id, special)
     }
@@ -41,42 +39,44 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
     override fun onTapSpecialities(name: String) {
         mView?.showConfirmDialog(name)
-        //mView?.navigateToQuestion(SessionManager.patient_id.toString(), name)
-
     }
 
     private fun getAllData(lifecycleOwner: LifecycleOwner){
-        mTheCareModel.getSpecailities(
-            onSuccess = {
-                mView?.displaySpecialities(it)
-            },
-            onFaiure = {
+        mTheCareModel.getSpecailities(onSuccess ={
 
-            }
-        )
+        }, onFaiure ={
 
-        mPatientModel.getRecentDoctors(
-                SessionManager.patient_id.toString(),
-        onSuccess = {
-                mView?.displayRecentDoctorList(it)
-        },
-        onFaiure = {
+        })
+
+        mTheCareModel.getAllSpecialityFromDB().observe(
+                lifecycleOwner,  Observer {
+            mView?.displaySpecialities(it)
 
         })
 
 
+        mPatientModel.getRecentDoctors(
+                SessionManager.patient_id.toString(),
+        onSuccess={
+
+        }, onFaiure = {})
+
+        mPatientModel.getAllRecentDoctorsFromDB()
+                .observe(lifecycleOwner, Observer {
+            mView?.displayRecentDoctorList(it)
+        }
+        )
+
         mConsultationModel.getConsultationConfirmByPatient(
                 SessionManager.request_id.toString(),
             onSuccess = {
-                it.doctor?.let { it1 -> mView?.displayConsultationConfirm(it1) }
+                it.doctor?.let { it1 -> mView?.showConsultationRecevied(it) }
             },
             onFaiure = {
 
             }
         )
     }
-
-
 
 
     override fun onTapQuestion(descption : String, answer: String) {

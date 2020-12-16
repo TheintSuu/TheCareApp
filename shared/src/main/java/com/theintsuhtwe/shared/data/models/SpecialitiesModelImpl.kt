@@ -16,23 +16,24 @@ object SpecialitiesModelImpl : SpecialitiesModel, BaseModel() {
         return id
     }
 
+    override fun addSpecialityToDB(case: List<CategoryVO>){
+       mTheCareDB.categoryDao().insertAllCategory(case)
+    }
+
+    override fun getSpecialityFromDB(id: String): LiveData<CategoryVO> {
+     return mTheCareDB.categoryDao().getCategoryById(id)
+    }
+
+    override fun getAllSpecialityFromDB(): LiveData<List<CategoryVO>> {
+        return mTheCareDB.categoryDao().getAllCategory()
+    }
+
     override fun getCaseSummaryToDB(id: String): LiveData<CaseSummaryVO> {
       return  mTheCareDB.caseSummaryDao().getcase_summaryById(id)
 
     }
 
-//    override fun GeneralQuestionDeletAndInsertToDB(case: ArrayList<QuestionVO>) {
-//        mTheCareDB.genearlQuestionDao().deleteAll()
-//        mTheCareDB.genearlQuestionDao().insertAllQuestion(case)
-//    }
 
-//    override fun addGeneralQuestionToDB(case: ArrayList<QuestionVO>) {
-//        mTheCareDB.genearlQuestionDao().insertAllQuestion(case)
-//    }
-
-//    override fun getGeneralQuestionToDB(): ArrayList<QuestionVO> {
-//       return mTheCareDB.genearlQuestionDao().getAllQuestion()
-//    }
 
     override fun getDeviceToken(): String {
         return mFirebaseApi.getDeviceToken()
@@ -40,10 +41,15 @@ object SpecialitiesModelImpl : SpecialitiesModel, BaseModel() {
 
 
     override fun getSpecailities(
-        onSuccess: (List<CategoryVO>) -> Unit,
+        onSuccess: () -> Unit,
         onFaiure: (String) -> Unit
     ) {
-       mFirebaseApi.getSpecialities(onSuccess, onFaiure)
+       mFirebaseApi.getSpecialities(onSuccess={
+           addSpecialityToDB(it)
+           onSuccess()
+       }, onFailure = {
+           onFaiure(it)
+       } )
     }
 
 

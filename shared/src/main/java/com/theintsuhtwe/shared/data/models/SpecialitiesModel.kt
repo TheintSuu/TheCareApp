@@ -10,12 +10,23 @@ interface SpecialitiesModel {
     var mFirebaseApi : FirebaseApi
 
     fun addCaseSummaryToDB (case : ArrayList<QuestionVO>) : String
+
+    fun addSpecialityToDB (case : List<CategoryVO>)
+
+    fun getSpecialityFromDB(id : String) : LiveData<CategoryVO>
+
+    fun getAllSpecialityFromDB() : LiveData<List<CategoryVO>>
+
+
+
     fun getCaseSummaryToDB(id : String) : LiveData<CaseSummaryVO>
+
+
   // fun GeneralQuestionDeletAndInsertToDB (case : ArrayList<QuestionVO>)
    // fun addGeneralQuestionToDB(case: ArrayList<QuestionVO>)
 //    fun getGeneralQuestionToDB() : ArrayList<QuestionVO>
     fun getDeviceToken() : String
-    fun getSpecailities(onSuccess: (List<CategoryVO>) -> Unit, onFaiure: (String) -> Unit)
+    fun getSpecailities(onSuccess: () -> Unit, onFaiure: (String) -> Unit)
     fun getMedicinesBySpecailities(id: String, onSuccess: (List<MedicineVO>) -> Unit, onFaiure: (String) -> Unit)
     fun getSpecialQuestionsBySpecailities(id : String, onSuccess: (ArrayList<QuestionVO>) -> Unit, onFaiure: (String) -> Unit)
     fun getGeneralQuestionsBySpecailities(id : String, onSuccess: (List<QuestionVO>) -> Unit, onFaiure: (String) -> Unit)

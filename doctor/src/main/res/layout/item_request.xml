@@ -34,7 +34,7 @@
             android:paddingLeft="@dimen/margin_medium"
             android:background="@drawable/btn_background"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium_2"
             android:textColor="@color/white"
             android:layout_marginVertical="@dimen/margin_medium"
             android:paddingRight="@dimen/margin_medium_2"
@@ -99,8 +99,8 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:paddingHorizontal="@dimen/margin_medium_3"
-            android:layout_marginTop="@dimen/margin_xlarge"
-            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_marginBottom="@dimen/margin_medium_3"
             android:layout_below="@id/ivConfirmDoctorImage"
             android:weightSum="2" >
 
@@ -118,7 +118,7 @@
                 />
 
             <TextView
-                android:id="@+id/btnPrescription"
+                android:id="@+id/btnAccept"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"

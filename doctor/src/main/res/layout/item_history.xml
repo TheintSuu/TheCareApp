@@ -43,6 +43,7 @@
             android:src="@drawable/ic_baseline_calendar_today_24"
             android:layout_gravity="center"
             android:layout_below="@id/tvName"
+            android:paddingTop="@dimen/margin_medium_2"
             android:layout_toRightOf="@id/ivConfirmDoctorImage"
             android:layout_marginRight="@dimen/margin_medium"
             />
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="Dental"
             android:textStyle="bold"
+            android:paddingTop="@dimen/margin_medium_2"
             android:layout_below="@id/tvName"
             android:layout_toRightOf="@id/ivImage"
             android:textColor="@color/textColorGray"
@@ -64,12 +66,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium_2"
             android:layout_alignTop="@id/tvName"
             android:paddingHorizontal="@dimen/margin_medium"
             android:layout_alignParentRight="true"
             android:paddingVertical="@dimen/margin_medium"
             android:text="စာပို့မည်"
+
             android:background="@drawable/btn_blue"
             android:textColor="@color/white"
             android:textSize="@dimen/text_small" />
@@ -83,7 +86,7 @@
         <TableRow
             android:id="@+id/tb1"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginTop="@dimen/margin_medium_3"
             android:background="@color/white"
             android:layout_below="@id/ivConfirmDoctorImage"

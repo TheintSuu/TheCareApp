@@ -16,7 +16,7 @@
         android:label="@string/app_name_patient"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TheCareApp">
+        android:theme="@style/Theme.TheCareAppPatient">
         <activity android:name=".activities.SpecialQuestionActivity"></activity>
         <activity android:name=".activities.CaseSummaryActivity" />
         <activity android:name=".activities.QuestionActivity" />

@@ -7,6 +7,6 @@ import com.theintsuhtwe.shared.mvp.presenters.BasePresenter
 
 interface LoginPresenter : BasePresenter<LoginView> {
     fun onUiReady(lifecycleOwner: LifecycleOwner)
-    fun onTapLogin(context : Context, email: String, password: String)
+    fun onTapLogin(lifecycleOwner: LifecycleOwner, email: String, password: String)
     fun onTapRegister()
 }

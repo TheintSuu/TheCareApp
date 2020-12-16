@@ -1,4 +1,4 @@
-package com.theintsuhtwe.shared.utils
+ package com.theintsuhtwe.shared.utils
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -35,6 +35,8 @@ fun createNotiRequsetBody(to : String, body : String, title : String) : JSONObje
 
 }
 
+
+
 fun MutableMap<String,Any>?.convertToQuestionVO(): QuestionVO {
     val question = QuestionVO()
     question.description = this?.get("description") as String
@@ -48,10 +50,6 @@ fun MutableMap<String,Any>?.convertToQuestionVO(): QuestionVO {
 fun MutableMap<String,Any>?.convertToQuestion(): QuestionVO {
     val question = QuestionVO()
     question.description = this?.get("description") as String
-
-
-
-
     return question
 }
 
@@ -84,24 +82,34 @@ fun ImageView.loadImage(uri: Uri){
 }
 
 
-fun toPatient(commentListJsonStr: HashMap<String, String>): Patient {
-   val patient = Patient()
-    patient.image = commentListJsonStr.get("image").toString()
-    patient.id = commentListJsonStr.get("id").toString()
-    patient.name = commentListJsonStr.get("name").toString()
-    patient.email = commentListJsonStr.get("email").toString()
+fun toPatient(data: HashMap<String, String>?): Patient? {
+    data?.let{
+        val patient = Patient()
+        patient.image = data.get("image").toString()
+        patient.id = data.get("id").toString()
+        patient.name = data.get("name").toString()
+        patient.email = data.get("email").toString()
+        return patient
+    }
+    return null
 
-    return patient
+
+
 }
 
-fun toDoctor(data : HashMap<String, String>) : DoctorVO{
-    val doctor = DoctorVO()
-    doctor.name = data.get("name").toString()
-    doctor.id = data.get("id").toString()
-    doctor.image = data.get("image").toString()
-    doctor.biography = data.get("biography").toString()
-    doctor.specialities = data.get("specialities").toString()
-    return doctor
+fun toDoctor(data : HashMap<String, String>?) : DoctorVO?{
+
+    data?.let{
+        val doctor = DoctorVO()
+        doctor.name = data.get("name").toString()
+        doctor.id = data.get("id").toString()
+        doctor.image = data.get("image").toString()
+        doctor.biography = data.get("biography").toString()
+        doctor.specialities = data.get("specialities").toString()
+        return doctor
+    }
+    return null
+
 }
 
 fun MutableMap<String,Any>?.convertToPatientVO(): Patient {
@@ -124,13 +132,14 @@ fun MutableMap<String, Any>?.convertToDoctorVO() : DoctorVO{
     val doctor = DoctorVO()
     doctor.id = this?.get("id") as String
     doctor.name = this?.get("name") as String
+    doctor.image = this?.get("image") as String
    doctor.biography = this?.get("biography") as String
     doctor.specialities = this?.get("specialities") as String
 //    doctor.phone= this?.get("phone") as String
 //    doctor.degrees = this?.get("degrees") as List<String>
 //    doctor.device_token = this?.get("device_token") as String
 //    doctor.email  =  this?.get("email") as String
-     doctor.image = this?.get("image") as String
+     doctor.email = this?.get("email") as String
 
     return doctor
 }
@@ -159,10 +168,11 @@ fun MutableMap<String, Any>?.convertToCaseSummary() : CaseSummaryVO{
 
 fun MutableMap<String, Any>?.convertToConsultationRequest() : ConsultationRequest{
     val consultationRequest = ConsultationRequest()
-
     consultationRequest.id = this?.get("id") as String
     consultationRequest.patient = toPatient((this?.get("patient")  as  HashMap<String, String>))
+    consultationRequest.doctor = toDoctor((this?.get("doctor")  as  HashMap<String, String>? ))
    consultationRequest.specialities = this?.get("specialities") as String
+   consultationRequest.caseSummary = this?.get("case_summary") as ArrayList<QuestionVO>
     consultationRequest.status = this?.get("status") as String
 
 
@@ -183,9 +193,11 @@ fun MutableMap<String, Any>?.convertToMessageVO() : MessageVO{
     val message = MessageVO()
     message.id = this?.get("id") as String
     message.image =  this?.get("image") as String
-    message.sendTime  = this?.get("sendAt") as String
+    message.sendTime  = this?.get("send_time") as String
+    message.senderImage  = this?.get("send_image") as String
+    message.senderId  = this?.get("send_id") as String
     message.text = this?.get("text") as String
-    message.senderType = this?.get("senderType") as SenderType
+
     return message
 }
 
@@ -213,8 +225,8 @@ fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     val consultation = ConsultationVO()
     consultation.id = this?.get("id") as String
 //    consultation.caseSummary = this?.get("id") as CaseSummaryVO
-    consultation.doctor = toDoctor(this?.get("doctors") as HashMap<String, String>)
-   consultation.patient =     toPatient(this?.get("patient") as HashMap<String, String>)
+    consultation.doctor = toDoctor(this?.get("doctors") as HashMap<String, String>?)
+   consultation.patient =     toPatient(this?.get("patient") as HashMap<String, String>?)
 //    consultation.medicine = this?.get("prescriptions") as List<MedicineVO>
 //    consultation.message = this?.get("chats") as List<MessageVO>
 

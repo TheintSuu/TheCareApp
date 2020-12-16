@@ -9,11 +9,14 @@ import com.theintsuhtwe.shared.mvp.views.BaseView
 
 interface HomeView : BaseView {
 
-    fun displaySpecialQuestionByCateogry(category: List<QuestionVO>)
-    fun displayGeneralQuestionByCateogry(category: List<QuestionVO>)
-    fun displayMedicineQuestionByCateogry(category: List<MedicineVO>)
+//    fun displaySpecialQuestionByCateogry(category: List<QuestionVO>)
+//    fun displayGeneralQuestionByCateogry(category: List<QuestionVO>)
+//    fun displayMedicineQuestionByCateogry(category: List<MedicineVO>)
     fun displayConsultationHistory(history : List<ConsultationVO>)
     fun displayConsultationConfirm(history : ConsultationRequest)
     fun displayConsultationRequest(request : List<ConsultationRequest>)
     fun showDialog()
+    fun  navigateToChatActivity(id : String)
+
+
 }

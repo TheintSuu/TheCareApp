@@ -1,13 +1,12 @@
 package com.theintsuhtwe.shared.data.models
 
 import android.annotation.SuppressLint
-import android.text.style.QuoteSpan
-import android.util.Log
+import android.media.session.MediaSessionManager
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
-import com.theintsuhtwe.shared.utils.createNotiRequsetBody
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 object ConsultationModelImpl : ConsultationModel, BaseModel(){
     private val mFirebase  = CloudFirestoreFirebaseApiImpl
@@ -35,12 +34,61 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
         return mFirebase.getConsultationByDoctor(id, onSuccess, onFaiure)
     }
 
-    override fun addConsultation(consultation: ConsultationVO, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-       mFirebase.addConsultations(consultation, onSuccess, onFailure)
+    override fun getConsultationRequestById(id: String, doctorId : DoctorVO, onSuccess: (String) -> Unit, onFaiure: (String) -> Unit) {
+
+
+        return mFirebase.getConsultationRequestById(id, onSuccess= {
+            val con = it
+           val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+           val currentDateAndTime: String = simpleDateFormat.format(Date())
+           it.patient?.let { it1 ->
+                   it.caseSummary?.toList()?.let { it3 ->
+                           mFirebase.startConsultation(id,
+                               currentDateAndTime,
+                               it3,
+                               it1,
+                               doctorId,
+                               onSuccess = {
+                                   onSuccess(it)
+                               },
+                               onFailure = {
+                                   onFaiure(it)
+                               }
+
+
+                           )
+
+                   }
+
+           }
+
+       }, onFailure ={
+           onFaiure(it)
+       })
+    }
+
+    override fun getConsultationById(
+        id: String,
+        onSuccess: (ConsultationVO) -> Unit,
+        onFaiure: (String) -> Unit
+    ) {
+       return mFirebase.getConsultationById(id, onSuccess, onFaiure)
+    }
+
+    override fun addConsultation(consulationId: String, dateTime: String, questionAnswerList: List<QuestionVO>, patientVO: Patient, doctorVO: DoctorVO,  onSuccess: (String) -> Unit, onFailure: (String) -> Unit) {
+       mFirebase.startConsultation(consulationId, dateTime, questionAnswerList, patientVO, doctorVO,  onSuccess, onFailure)
     }
 
     override fun sendMessageBySenderType(id: String, message: MessageVO, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
        mFirebase.sendMessage(id, message, onSuccess, onFailure)
+    }
+
+    override fun getAllChatMessages(
+        id: String,
+        onSuccess: (List<MessageVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebase.getAllMessagesById(id, onSuccess, onFailure)
     }
 
     override fun addPrescriptionByDoctor(id: String, medicines: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {

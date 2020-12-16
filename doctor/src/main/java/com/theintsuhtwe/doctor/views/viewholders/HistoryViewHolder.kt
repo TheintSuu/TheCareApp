@@ -17,7 +17,7 @@ class HistoryViewHolder (private val mDelegate: ConsultationItemDelegate, itemVi
     init {
         itemView.setOnClickListener {
             mData?.let {
-                mDelegate.onTapRequest(it.id)
+
             }
 
         }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:paddingHorizontal="@dimen/margin_medium_3"
+    >
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2" >
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="Hello"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:id="@+id/tvAnswer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="Aung Aung"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+</LinearLayout>

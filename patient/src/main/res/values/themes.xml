@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TheCareApp.doctor" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.TheCareApp.doctor" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -18,4 +18,12 @@
         <item name="backgroundColor">@color/colorPrimary</item>
 
     </style>
+
+    <style name="Theme.TheCareAppPatient" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
 </resources>

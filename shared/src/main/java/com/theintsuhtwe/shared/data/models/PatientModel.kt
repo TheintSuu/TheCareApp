@@ -10,7 +10,17 @@ interface PatientModel {
 
     fun  getPatientByEmail(email  : String, onSuccess:(patient: Patient)->Unit, onFailure:(String)->Unit)
 
-    fun getRecentDoctors(id : String, onSuccess: (List<DoctorVO>) -> Unit, onFaiure: (String) -> Unit)
+    fun getRecentDoctors(id : String, onSuccess: () -> Unit, onFaiure: (String) -> Unit)
+
+    fun getAllRecentDoctorsFromDB( ) : LiveData<List<DoctorVO>>
+
+    fun getRecentDoctorsFromDB(id : String) : LiveData<DoctorVO>
+
+    fun insertRecentDoctorsFromDB(doctors : List<DoctorVO>)
+
+    fun insertRecenFromDB(doctors : DoctorVO)
+
+
 
     fun getDeviceTokenByType(type : String,onSuccess: (List<String>) -> Unit, onFaiure: (String) -> Unit)
 
@@ -23,6 +33,8 @@ interface PatientModel {
     fun getCaseSummaryByPatient(id : String,  onSuccess: (ques : CaseSummaryVO) -> Unit, onFaiure: (String) -> Unit)
 
     fun getPatientByEmailFromDB(email: String)  : LiveData<Patient>
+
+
 
 
 }

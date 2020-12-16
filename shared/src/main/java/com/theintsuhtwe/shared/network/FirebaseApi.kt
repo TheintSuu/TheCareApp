@@ -13,6 +13,9 @@ interface FirebaseApi {
     fun getPatientByEmail(email : String, onSuccess: (patient : Patient) -> Unit,
                    onFailure: (String) -> Unit)
 
+    fun getDoctorByEmail(email : String, onSuccess: (doctor : DoctorVO) -> Unit,
+                          onFailure: (String) -> Unit)
+
     fun getMedicinesBySpecialities(id : String, onSuccess: (List<MedicineVO>) -> Unit, onFailure: (String) -> Unit)
 
     fun getDoctorBySpecialities(id : String, onSuccess: (List<DoctorVO>) -> Unit,
@@ -46,12 +49,14 @@ interface FirebaseApi {
     fun  addPatient(patient: Patient, onSuccess: () -> Unit,
                     onFailure: (String) -> Unit)
 
-    fun  addConsultations(con: ConsultationVO, onSuccess: () -> Unit,
-                    onFailure: (String) -> Unit)
+    fun  startConsultation(consulationId: String, dateTime: String, questionAnswerList: List<QuestionVO>, patientVO: Patient, doctorVO: DoctorVO, onSuccess: (String) -> Unit,
+                           onFailure: (String) -> Unit)
 
     fun sendDirectConsultationRequest(request: ConsultationRequest,  onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
     fun sendMessage(id : String, message: MessageVO, onSuccess: () -> Unit, onFailure: (String) -> Unit)
+
+    fun getAllMessagesById(id : String,  onSuccess: (List<MessageVO>) -> Unit, onFailure: (String) -> Unit)
 
     fun sendQuestion(id : String, message: List<QuestionVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
@@ -87,6 +92,15 @@ interface FirebaseApi {
 
     fun getConsultationRequestByDoctor(specail : String,onSuccess: (List<ConsultationRequest>) -> Unit,
                                        onFailure: (String) -> Unit)
+
+
+    fun getConsultationById(id : String,onSuccess: (ConsultationVO) -> Unit,
+                                       onFailure: (String) -> Unit)
+
+
+
+    fun getConsultationRequestById(id : String,onSuccess: (ConsultationRequest) -> Unit,
+    onFailure: (String) -> Unit)
 
     fun updateConsultationRequestByDoctor(id: String ,onSuccess: () -> Unit,
                                        onFailure: (String) -> Unit)

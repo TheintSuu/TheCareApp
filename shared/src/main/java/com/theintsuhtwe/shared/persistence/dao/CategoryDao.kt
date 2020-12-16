@@ -9,8 +9,8 @@ interface CategoryDao {
     @Query("SELECT * FROM category")
     fun getAllCategory(): LiveData<List<CategoryVO>>
 
-    @Query("SELECT * FROM category WHERE id = :noteId")
-    fun getCategoryById(noteId: Int): LiveData<CategoryVO>
+    @Query("SELECT * FROM category WHERE name = :noteId")
+    fun getCategoryById(noteId: String): LiveData<CategoryVO>
 
     @Query("DELETE FROM category")
     fun deleteAll()

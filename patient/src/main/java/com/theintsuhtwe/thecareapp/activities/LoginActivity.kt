@@ -38,8 +38,6 @@ class LoginActivity : BaseActivity(), LoginView {
         setUpActionListeners()
 
 
-        SessionManager.init(applicationContext)
-
 
         mPresenter.onUiReady( "token", this)
     }

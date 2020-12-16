@@ -121,7 +121,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun showConfirmDialog(spcial : String) {
-        activity?.supportFragmentManager?.let {
+        childFragmentManager?.let {
             val mDialog  =   ConfirmDialogFragment.newFragment()
             val bundle = Bundle()
             bundle.putString(BUNDLE_CATEGORY_ID, spcial)
@@ -135,7 +135,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun showConsultationRecevied(consulation: ConsultationRequest) {
-        consulation?.doctor?.let { showConsultationReceived(it) }
+        consulation?.doctor?.let { showConsultationReceived(doctor = it) }
     }
 
 
@@ -150,7 +150,6 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private fun setUpPresenter(){
         mPresenter = getPresenter<HomePresenterImpl, HomeView>()
-
 
     }
 
@@ -212,7 +211,6 @@ class HomeFragment : BaseFragment(), HomeView {
                 .load(doctor.image)
                 .into(ivConfirmDoctorImage)
         }
-
         tvConfirmMessage.text = getString(R.string.message_receive) + " " + doctor.name + getString(R.string.message_received)
         tvDoctorSpeciality.text = doctor.specialities
         layout_confirm_receive.visibility = View.VISIBLE

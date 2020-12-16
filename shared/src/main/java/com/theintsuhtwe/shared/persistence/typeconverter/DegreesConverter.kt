@@ -6,13 +6,13 @@ import com.google.gson.reflect.TypeToken
 
 class DegreesConverter {
     @TypeConverter
-    fun toString(dataList: ArrayList<String>): String {
+    fun toString(dataList: List<String>): String {
         return Gson().toJson(dataList)
     }
 
     @TypeConverter
-    fun toList(ListJsonStr: String): ArrayList<String> {
-        val dataListType = object : TypeToken<ArrayList<String>>() {}.type
+    fun toList(ListJsonStr: String): List<String> {
+        val dataListType = object : TypeToken<List<String>>() {}.type
         return Gson().fromJson(ListJsonStr, dataListType)
     }
 

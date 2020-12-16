@@ -1,6 +1,5 @@
 package com.theintsuhtwe.doctor.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,25 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.doctor.R
+import com.theintsuhtwe.doctor.activities.ChatActivity
 import com.theintsuhtwe.doctor.adapters.ConsultationHistoryAdapter
 import com.theintsuhtwe.doctor.adapters.ConsultationRequestAdapter
-import com.theintsuhtwe.doctor.delegates.ConsultationItemDelegate
-import com.theintsuhtwe.doctor.fragments.DialogFragment.Companion.BUNDLE_CATEGORY_ID
-import com.theintsuhtwe.doctor.fragments.DialogFragment.Companion.BUNDLE_PATIENT_ID
-import com.theintsuhtwe.doctor.fragments.DialogFragment.Companion.TAG_ADD_GROCERY_DIALOG
+import com.theintsuhtwe.doctor.fragments.DialogFragment.Companion.BUNDLE_DOCTOR_ID
 import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenter
 import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenterImpl
 import com.theintsuhtwe.doctor.mvp.views.HomeView
+import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.fragments.BaseFragment
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_request.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +43,7 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var mPresenter: HomePresenter
 
     private lateinit var mAdapter : ConsultationRequestAdapter
+
     private lateinit var mHistoryAdapter : ConsultationHistoryAdapter
 
 
@@ -110,7 +108,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     private fun setUpListener(){
-       // mPresenter.onTapCategory("category001")
+
 
     }
     
@@ -137,17 +135,7 @@ class HomeFragment : BaseFragment(), HomeView {
             })
     }
 
-    override fun displaySpecialQuestionByCateogry(category: List<QuestionVO>) {
 
-    }
-
-    override fun displayGeneralQuestionByCateogry(category: List<QuestionVO>) {
-
-    }
-
-    override fun displayMedicineQuestionByCateogry(category: List<MedicineVO>) {
-
-    }
 
     override fun displayConsultationHistory(history: List<ConsultationVO>) {
        mHistoryAdapter.setData(history)
@@ -166,18 +154,22 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun showDialog() {
-        activity?.supportFragmentManager?.let {
+        childFragmentManager?.let {
             val mDialog  =   DialogFragment.newFragment()
             val bundle = Bundle()
-            bundle.putString(BUNDLE_PATIENT_ID, "patient000")
+            bundle.putString(BUNDLE_DOCTOR_ID, SessionManager.doctor_id)
 
 
             mDialog?.arguments = bundle
             mDialog?.show(
-                it,  TAG_ADD_GROCERY_DIALOG
+                    it,  BUNDLE_DOCTOR_ID
             )
 
         }
+    }
+
+    override fun navigateToChatActivity(id: String) {
+        startActivity(activity?.let { ChatActivity.newIntentWithId(it, id) })
     }
 
     private  fun showConsultationRequestList(request : List<ConsultationRequest>){
@@ -191,11 +183,11 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private fun bindData(){
         Glide.with(this)
-                .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNUOgjEhHpfUqnVk-Tp2uN1AhrrzXhwdX9A&usqp=CAU")
+                .load(SessionManager.doctor_image.toString())
                 .optionalFitCenter()
                 .into(ivConfirmDoctorImage)
 
-        tvRecentDoctor.text = "Professor U Aung Win"
+        tvRecentDoctor.text = SessionManager.doctor_name.toString()
 
 
     }

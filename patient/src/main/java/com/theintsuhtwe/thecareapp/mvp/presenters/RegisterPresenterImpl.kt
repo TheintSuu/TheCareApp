@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.*
+import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.RegisterView
@@ -15,14 +16,17 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
 
     private val mPatientModel : PatientModel = PatientModelImpl
 
+    private val mDoctor = DoctorModelImpl
+
 
     override fun onUiReady(token : String, lifecycleOwner: LifecycleOwner) {
 
     }
 
     @SuppressLint("LongLogTag")
-    override fun onTapRegister(email: String, password: String, userName: String, token: String) {
+    override fun onTapRegister(lifecycleOwner: LifecycleOwner, email: String, password: String, userName: String, token: String) {
         mAuthenticationModel.register(email,password,userName,  onSuccess = {
+
             mView?.navigateToToLoginScreen()
         },
             onFailure = {
