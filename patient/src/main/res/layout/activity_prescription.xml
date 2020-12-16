@@ -1,170 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.PrescriptionActivity">
-    <androidx.cardview.widget.CardView
+    tools:context=".activities.CaseSummaryActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:cardCornerRadius="@dimen/margin_medium_2"
-        app:cardUseCompatPadding="true"
-        >
-    <RelativeLayout
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/homeBackgroundColor"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    app:titleTextColor="@color/black"
+                    app:title="လူနာအချက်အလက်များ စစ်ဆေးပါ"
+                    android:elevation="4dp"
+                    app:layout_collapseMode="pin"
+                    app:titleTextAppearance="@style/Toolbar.TitleText"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:theme ="?attr/actionBarTheme"
+                    android:layout_height="?actionBarSize"
+                    android:id="@+id/toolbar"/>
+
+              </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/scrollview"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_marginBottom="@dimen/margin_xxlarge"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+         >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/white"
+                android:id="@+id/layoutPrescriptioin"
+                app:cardElevation="5dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="@dimen/margin_xxlarge"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
 
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/ed_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_text_background"
+                        android:drawableEnd="@drawable/ic_baseline_search_24"
+                        android:hint="ရှာမည်"
+                        android:layout_marginHorizontal="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:padding="@dimen/margin_medium"
+                        android:layout_centerInParent="true"
+                        />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMedicine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:backgroundTint="@color/homeBackgroundColor" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
     <TextView
-        android:id="@+id/tvPres"
-        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        android:id="@+id/btnFinishConsultation"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_medium_2"
-        android:background="@color/colorPrimary"
-        android:text="Prescription"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="@dimen/margin_medium_3"
+        android:paddingHorizontal="@dimen/margin_medium_3"
+        android:paddingVertical="@dimen/margin_medium"
+        android:text="ဆေးညွှန်းပီး တွေးနွေးမှု ပီးဆုံးမည်"
+        android:background="@drawable/btn_blue"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_regular_3x"
-        android:textStyle="bold" />
+        android:textSize="@dimen/text_regular" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMedicineList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_medium_2"
-        android:layout_below="@id/tvPres"
-        android:layout_marginTop="@dimen/margin_medium" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@id/rvMedicineList"
-            android:id="@+id/drawer1"
-            android:layout_margin="@dimen/margin_medium"
-            android:background="#c0c0c0"/>
-
-        <TextView
-            android:id="@+id/tvSub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/margin_medium_3"
-            android:paddingVertical="@dimen/margin_medium"
-            android:text="Total (MMK)"
-            android:textStyle="bold"
-            android:layout_below="@id/drawer1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_regular" />
-
-        <TextView
-
-            android:id="@+id/tvSubAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/margin_medium_3"
-            android:paddingVertical="@dimen/margin_medium"
-            android:layout_below="@id/drawer1"
-            android:text="@string/_18_500"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_regular" />
-
-        <TextView
-
-            android:id="@+id/tvDev"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/margin_medium_3"
-            android:paddingVertical="@dimen/margin_medium"
-            android:layout_alignLeft="@id/tvSub"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:text="Delivery Fee"
-            android:layout_below="@id/tvSub"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_regular" />
-    </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:cardCornerRadius="@dimen/margin_medium_2"
-        app:cardUseCompatPadding="true"
-        >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    <TextView
-        android:id="@+id/tvAddressTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_medium_2"
-        android:background="@color/colorPrimary"
-        android:text="Address"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_regular_3x"
-        android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvSelectAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/margin_medium_3"
-            android:paddingVertical="@dimen/margin_medium"
-            android:layout_below="@id/tvAddressTitle"
-            android:text="please select address"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_regular_3x"
-             />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/margin_medium_3"
-            android:paddingVertical="@dimen/margin_medium"
-            android:layout_below="@id/tvSelectAddress"
-            android:layout_marginTop="@dimen/margin_medium" />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="new address"
-            android:id="@+id/btnNewAddress"
-            android:layout_below="@id/rvAddress"
-            android:padding="@dimen/margin_medium"
-            android:textStyle="bold"
-            android:background="@drawable/btn_white"
-            android:gravity="center"
-            app:iconGravity="textStart"
-            app:icon="@drawable/ic_baseline_add_circle_outline_24"
-            android:layout_marginBottom="@dimen/margin_medium_3"
-            android:layout_marginHorizontal="@dimen/margin_medium_2"/>
-
-    </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirm Order"
-        android:id="@+id/btnOrder"
-        android:padding="@dimen/margin_medium"
-        android:textStyle="bold"
-        android:background="@drawable/btn_white"
-        android:gravity="center"
-        android:layout_marginHorizontal="@dimen/margin_xxlarge"/>
-
-</LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

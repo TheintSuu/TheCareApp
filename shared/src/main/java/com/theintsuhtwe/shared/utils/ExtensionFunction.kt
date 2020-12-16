@@ -89,6 +89,9 @@ fun toPatient(data: HashMap<String, String>?): Patient? {
         patient.id = data.get("id").toString()
         patient.name = data.get("name").toString()
         patient.email = data.get("email").toString()
+//        val value = data.get("question").toString()
+//        val gson  = Gson()
+//        val ques : MutableList<QuestionVO> =   gson.fromJson(value, Array<QuestionVO>::class.java).toMutableList()
         return patient
     }
     return null
@@ -139,7 +142,7 @@ fun MutableMap<String, Any>?.convertToDoctorVO() : DoctorVO{
 //    doctor.degrees = this?.get("degrees") as List<String>
 //    doctor.device_token = this?.get("device_token") as String
 //    doctor.email  =  this?.get("email") as String
-     doctor.email = this?.get("email") as String
+     doctor.email = this?.get("email") as String?
 
     return doctor
 }
@@ -149,12 +152,13 @@ fun MutableMap<String, Any>?.convertToMedicineVO() : MedicineVO{
     val medicine = MedicineVO()
     medicine.id =  this?.get("id") as String
     medicine.name =  this?.get("name") as String
-    medicine.note =  this?.get("note") as String
     medicine.price =  this?.get("price") as Long
-    medicine.quantity =  this?.get("quantity") as Long
-    medicine.sub_total =  this?.get("sub_total") as Long
-    medicine.repeat =  this?.get("repeat") as String
-    medicine.routine =  this?.get("routines") as RoutineVO
+//    medicine.note =  this?.get("note") as String?
+  //  medicine.price =  this?.get("price") as Long
+   // medicine.quantity =  this?.get("quantity") as Long
+   // medicine.sub_total =  this?.get("sub_total") as Long
+   // medicine.repeat =  this?.get("repeat") as String
+   // medicine.routine =  this?.get("routines") as RoutineVO
     return medicine
 }
 
@@ -169,6 +173,7 @@ fun MutableMap<String, Any>?.convertToCaseSummary() : CaseSummaryVO{
 fun MutableMap<String, Any>?.convertToConsultationRequest() : ConsultationRequest{
     val consultationRequest = ConsultationRequest()
     consultationRequest.id = this?.get("id") as String
+    consultationRequest.consultationId = this?.get("consultation_chat_id") as String?
     consultationRequest.patient = toPatient((this?.get("patient")  as  HashMap<String, String>))
     consultationRequest.doctor = toDoctor((this?.get("doctor")  as  HashMap<String, String>? ))
    consultationRequest.specialities = this?.get("specialities") as String
@@ -193,10 +198,10 @@ fun MutableMap<String, Any>?.convertToMessageVO() : MessageVO{
     val message = MessageVO()
     message.id = this?.get("id") as String
     message.image =  this?.get("image") as String
-    message.sendTime  = this?.get("send_time") as String
-    message.senderImage  = this?.get("send_image") as String
-    message.senderId  = this?.get("send_id") as String
-    message.text = this?.get("text") as String
+    message.sendTime  = this?.get("sender_at") as String ?
+    message.senderImage  = this?.get("sender_image") as String
+    message.senderId  = this?.get("sender_id") as String
+    message.text = this?.get("text") as String?
 
     return message
 }
@@ -224,8 +229,14 @@ fun MutableMap<String, Any>?.convertToSpecialities() : CategoryVO{
 fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     val consultation = ConsultationVO()
     consultation.id = this?.get("id") as String
-//    consultation.caseSummary = this?.get("id") as CaseSummaryVO
-    consultation.doctor = toDoctor(this?.get("doctors") as HashMap<String, String>?)
+    consultation.special = this?.get("speciality") as String
+    val ques  : ArrayList<QuestionVO> = arrayListOf()
+    val value = this?.get("case_summary") as ArrayList<HashMap<String, Any>>?
+    value?.forEach {
+        ques.add ( it.convertToQuestionVO())
+    }
+    consultation.caseSummary = ques
+    consultation.doctor = toDoctor(this?.get("doctor") as HashMap<String, String>?)
    consultation.patient =     toPatient(this?.get("patient") as HashMap<String, String>?)
 //    consultation.medicine = this?.get("prescriptions") as List<MedicineVO>
 //    consultation.message = this?.get("chats") as List<MessageVO>

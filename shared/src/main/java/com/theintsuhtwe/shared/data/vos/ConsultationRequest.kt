@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
 @IgnoreExtraProperties
 data class ConsultationRequest(
         @SerializedName("id") var id: String = "",
+        @SerializedName("consultation_chat_id") var consultationId: String ?= null,
         @SerializedName("case_summary") var caseSummary : ArrayList<QuestionVO> ?= arrayListOf(),
         @SerializedName("patient") var patient: Patient ?= null,
         @SerializedName("doctor") var doctor: DoctorVO ?= null,

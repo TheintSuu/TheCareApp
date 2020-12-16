@@ -62,6 +62,8 @@ interface FirebaseApi {
 
     fun addPrescriptions(id : String, medicineVO: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
+    fun addPrescription(id : String, medicineVO: MedicineVO, onSuccess: () -> Unit, onFailure: (String) -> Unit)
+
     fun deletePrescriptions(id : String, medicineVO: List<MedicineVO> , onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
     fun sendConsultationRequest( patient : Patient,
@@ -104,6 +106,9 @@ interface FirebaseApi {
 
     fun updateConsultationRequestByDoctor(id: String ,onSuccess: () -> Unit,
                                        onFailure: (String) -> Unit)
+
+
+    fun addConsultationNote(id : String, note: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
 
 }

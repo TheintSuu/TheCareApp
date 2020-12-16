@@ -66,14 +66,16 @@ class ChatActivity : BaseActivity(), ChatView {
     private  fun setUpRecyclerView(){
 
         val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val linearLayoutManager2 = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val linearLayoutManager3 = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         rvChatHistory.layoutManager = linearLayoutManager
         rvChatHistory.adapter = mChatAdapter
 
-       rvPatientInfo.layoutManager = linearLayoutManager
+       rvPatientInfo.layoutManager = linearLayoutManager2
         rvPatientInfo.adapter = mAnswerAdapter
 
-        rvSpecialQuestion.layoutManager = linearLayoutManager
+        rvSpecialQuestion.layoutManager = linearLayoutManager3
         rvSpecialQuestion.adapter =  mSpecialAdapter
     }
 

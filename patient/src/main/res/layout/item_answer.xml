@@ -29,7 +29,7 @@
 
     <ImageView
         android:id="@+id/ivSpecialityImage"
-        android:layout_width="40dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvDescription"
         android:layout_alignStart="@id/tvNumber"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvDescription"
         android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="@dimen/margin_medium"
         android:layout_marginEnd="@dimen/margin_medium_2"
         android:layout_toRightOf="@id/ivSpecialityImage"
         android:elevation="@dimen/margin_small"

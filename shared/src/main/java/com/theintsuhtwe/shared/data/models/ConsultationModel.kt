@@ -32,5 +32,7 @@ interface ConsultationModel {
     fun sendConsultationRequest(patient :  Patient, special: String, caseSummaryVO: ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit)
 
 
+    fun addConsultationNote(id: String, note : String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
+
 
 }

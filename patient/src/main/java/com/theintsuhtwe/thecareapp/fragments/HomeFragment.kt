@@ -16,6 +16,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.fragments.BaseFragment
 import com.theintsuhtwe.thecareapp.R
+import com.theintsuhtwe.thecareapp.activities.ChatActivity
 import com.theintsuhtwe.thecareapp.activities.QuestionActivity
 import com.theintsuhtwe.thecareapp.adapters.RecentDoctorItemDoctorAdapter
 import com.theintsuhtwe.thecareapp.adapters.SpecialityItemAdapter
@@ -49,6 +50,8 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var mRecentDoctorAdapter : RecentDoctorItemDoctorAdapter
 
     private var mDialog: ConfirmDialogFragment? = null
+
+    private var mConsultationId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,7 +112,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun displayConsultationConfirm(doctor: DoctorVO) {
-        showConsultationReceived(doctor)
+
     }
 
     override fun displayQuestions() {
@@ -118,6 +121,10 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun navigateToQuestion(id: String, special : String) {
         startActivity(activity?.applicationContext?.let { QuestionActivity.newIntent(it, special) })
+    }
+
+    override fun navigateToChat(id: String) {
+        startActivity(activity?.let { ChatActivity.newIntentWithId(it, id) })
     }
 
     override fun showConfirmDialog(spcial : String) {
@@ -135,7 +142,7 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun showConsultationRecevied(consulation: ConsultationRequest) {
-        consulation?.doctor?.let { showConsultationReceived(doctor = it) }
+        showConsultationReceived(consulation)
     }
 
 
@@ -168,7 +175,9 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     private fun setUpListener(){
-
+    btnStartConsultation.setOnClickListener {
+        startActivity(activity?.let { it1 -> ChatActivity.newIntentWithId(it1, mConsultationId) })
+    }
 
     }
 
@@ -202,17 +211,18 @@ class HomeFragment : BaseFragment(), HomeView {
         rvRecentDoctor.visibility = View.GONE
     }
 
-    private fun showConsultationReceived(doctor: DoctorVO){
-        tvDoctorName.text = doctor.name
-        tvDoctorSpecialityBiography.text = doctor.biography
+    private fun showConsultationReceived(consulation: ConsultationRequest){
+        tvDoctorName.text = consulation.doctor?.name
+        tvDoctorSpecialityBiography.text =  consulation.doctor?.biography
 
         activity?.let {
             Glide.with(it)
-                .load(doctor.image)
+                .load( consulation.doctor?.image)
                 .into(ivConfirmDoctorImage)
         }
-        tvConfirmMessage.text = getString(R.string.message_receive) + " " + doctor.name + getString(R.string.message_received)
-        tvDoctorSpeciality.text = doctor.specialities
+        mConsultationId = consulation.consultationId.toString()
+        tvConfirmMessage.text = getString(R.string.message_receive) + " " +  consulation.doctor?.name + getString(R.string.message_received)
+        tvDoctorSpeciality.text =  consulation.doctor?.specialities
         layout_confirm_receive.visibility = View.VISIBLE
     }
 

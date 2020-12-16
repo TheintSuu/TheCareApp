@@ -19,11 +19,28 @@
 
     </style>
 
-    <style name="Theme.TheCareAppPatient" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.TheCareAppPatient" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="ChipTextSmall">
+        <item name="android:textSize">@dimen/text_regular</item>
+
+    </style>
+
+    <style name="Widget.MaterialComponents.Chip.Filter.Custom" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="android:checkable">true</item>
+        <item name="chipIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="chipCornerRadius">@dimen/margin_small</item>
+        <item name="chipBackgroundColor">@drawable/chip_state_list</item>
+        <item name="android:textColor">@drawable/text_color_state_list</item>
+        <item name="android:titleTextAppearance">@style/ChipTextSmall</item>
+        <item name="android:textSize">@dimen/text_regular_2x</item>
+        <item name="chipIcon">@drawable/ic_baseline_check_white_24</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>

@@ -147,7 +147,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
             onSuccess: (List<MedicineVO>) -> Unit,
             onFailure: (String) -> Unit
     ) {
-        db.collection("specialities/${id}/medicine")
+        db.collection("specialities/${id}/medicines")
                 .addSnapshotListener { value, error ->
                     error?.let {
                         onFailure(it.message ?: "Please check internet connection")
@@ -466,7 +466,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
     ) {
 
         val messageMap = hashMapOf(
-                "text " to message.text,
+                "text" to message.text,
                 "image" to message.image,
                 "sender_id" to message.senderId,
                 "sender_image" to message.senderImage,
@@ -496,7 +496,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
         onSuccess: (List<MessageVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        db.collection("consultation/${id}/chats")
+        db.collection("consultation/${id}/messages")
             .addSnapshotListener { value, error ->
                 error?.let {
 
@@ -552,9 +552,16 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
 
     }
 
-    override fun addPrescriptions(id: String, medicineVO: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+    override fun addPrescription(id: String, medicineVO: MedicineVO, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
         val prescriptions = arrayOf(
-                medicineVO
+               "id" to medicineVO.id,
+                "name" to medicineVO.name,
+                "price" to medicineVO.price,
+                "quantity" to medicineVO.quantity,
+                "sub_total" to medicineVO.sub_total,
+            "total_day" to medicineVO.total_day,
+                "note" to medicineVO.note,
+                "repeat" to medicineVO.repeat
         )
         id.let {
             db.collection("consultation/${id}/prescriptions")
@@ -569,6 +576,15 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
                         onFailure("Failed to add messages")
                     }
         }
+    }
+
+    override fun addPrescriptions(id: String, medicines: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+
+        medicines.forEach {medicineVO ->
+            addPrescription(id, medicineVO, onSuccess, onFailure)
+
+        }
+
     }
 
     override fun deletePrescriptions(id: String, medicineVO: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
@@ -816,12 +832,10 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
 
                     val result = value?.documents ?: arrayListOf()
 
-
-                        val consultation = result.first().data?.convertToConsultationVO()
-
-
-
-                    consultation?.let { onSuccess(it) }
+                            if(result.size>0){
+                                val consultation = result.first().data?.convertToConsultationVO()
+                                consultation?.let { onSuccess(it) }
+                            }
                 }
             }
     }
@@ -875,7 +889,27 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
                     }
                 }
 
+    override fun addConsultationNote(
+        id: String,
+        note: String,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val sfDocRef = db.collection("consultation").document("${id}")
 
+        db.runTransaction { transaction ->
+            val snapshot = transaction.get(sfDocRef)
+
+            transaction.update(sfDocRef, "consultation_note", note)
+
+
+
+        }.addOnSuccessListener { result ->
+            Log.d("Status Update", "Transaction success: $result")
+        }.addOnFailureListener { e ->
+            Log.w("Status Update", "Transaction failure.", e)
+        }
+    }
 
 
 }

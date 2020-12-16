@@ -17,26 +17,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheCareAppPatient">
-        <activity android:name=".activities.SpecialQuestionActivity"></activity>
+        <activity android:name=".activities.NoteActivity"></activity>
+        <activity android:name=".activities.DetailPrescriptionActivity" />
+        <activity android:name=".activities.ChatActivity" />
+        <activity android:name=".activities.SpecialQuestionActivity" />
         <activity android:name=".activities.CaseSummaryActivity" />
         <activity android:name=".activities.QuestionActivity" />
         <activity android:name=".activities.DetailCheckoutActivity" />
         <activity android:name=".DetailPrescriptionActivity" />
         <activity android:name=".activities.CheckoutActivity" />
         <activity android:name=".activities.PrescriptionActivity" />
-        <activity android:name=".activities.LoginActivity" >
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RegisterActivity" >
-
-        </activity>
-        <activity android:name=".activities.MainActivity">
-
-        </activity>
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.MainActivity" />
 
         <service
             android:name=".fcm.FirebaseCloudMessagingService"

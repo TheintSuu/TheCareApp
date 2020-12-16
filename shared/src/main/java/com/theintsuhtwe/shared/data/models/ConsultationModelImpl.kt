@@ -109,4 +109,13 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     override fun sendConsultationRequest(patient: Patient, special: String, id : ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
         mFirebase.sendConsultationRequest(patient, special,  id, onSuccess, onFailure)
     }
+
+    override fun addConsultationNote(
+        id: String,
+        note: String,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebase.addConsultationNote(id, note, onSuccess, onFailure)
+    }
 }

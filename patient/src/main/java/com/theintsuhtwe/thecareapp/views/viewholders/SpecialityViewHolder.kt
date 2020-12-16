@@ -17,6 +17,7 @@ class SpecialityViewHolder(private val mDelegate: SpecialitiesItemDelegate, item
 
 
     init {
+
         itemView.setOnClickListener {
             mData?.let {
                 mDelegate.onTapSpecialities(it.name)
@@ -27,6 +28,8 @@ class SpecialityViewHolder(private val mDelegate: SpecialitiesItemDelegate, item
 
     override fun bindData(data: CategoryVO) {
         mData = data
+
+
 
         itemView.tvSpecialityName.text = data.name
 

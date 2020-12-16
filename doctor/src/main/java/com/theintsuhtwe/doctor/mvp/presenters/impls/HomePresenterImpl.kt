@@ -34,31 +34,25 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
 
     override fun onTapRequest(name: String) {
-        mDoctorModel.getDoctorByEmail(SessionManager.doctor_email.toString(), onSuccess = {
-            mModel.getConsultationRequestById(name,
-                doctorId = it,
-                onSuccess = {
-                    mView?.navigateToChatActivity(name)
-                },
-                onFaiure = {
 
-                })
-        }, onFailure = {
-
-        })
 
         //mView?.showDialog()
     }
 
     override fun onTapAccept(id: String) {
 
-//        mModel.getConsultationRequestById(id,
-//        onSuccess = {
-//            mView?.navigateToChatActivity(id)
-//        },
-//        onFaiure = {
-//
-//        })
+        mDoctorModel.getDoctorByEmail(SessionManager.doctor_email.toString(), onSuccess = {
+            mModel.getConsultationRequestById(id,
+                    doctorId = it,
+                    onSuccess = {
+                        mView?.navigateToChatActivity(id)
+                    },
+                    onFaiure = {
+
+                    })
+        }, onFailure = {
+
+        })
 
     }
 
@@ -72,8 +66,13 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
         mModel.getConsultationRequestByDoctor(
            SessionManager.doctor_speciality.toString(),
-            onSuccess = {
-                mView?.displayConsultationRequest(it)
+            onSuccess = {list->
+                list.isNotEmpty()?.let{
+                    mView?.displayConsultationRequest(list)
+
+            }
+
+
             },
             onFaiure = {
 
@@ -82,8 +81,16 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
         mModel.getConsultationByDoctor(
             SessionManager.doctor_id.toString(),
-            onSuccess = {
-                mView?.displayConsultationHistory(it)
+            onSuccess = {list->
+                when(list.size){
+                    0 -> {
+
+                    }
+                    else -> {
+                    mView?.displayConsultationHistory(list)
+                }
+                }
+
             },
             onFaiure = {
 

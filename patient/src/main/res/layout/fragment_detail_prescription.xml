@@ -1,14 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="390dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    >
+<com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DetailPrescriptionFragment">
+    android:orientation="vertical"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="15dp"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:id="@+id/tvPrescriptionName"
+            android:layout_marginRight="@dimen/margin_xxlarge"
+            android:textSize="@dimen/text_regular_3x"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"/>
+
+
+        <LinearLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_medicineName">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="အရေအတွက်"
+                    android:layout_marginRight="@dimen/margin_xxlarge"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="သောက်ရမည့်ရက်"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etQuantity"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_white"
+                        android:hint="1"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="5dp"
+                        android:text="tab"
+                        android:gravity="center"
+                        android:textColor="@color/textColorGray"
+                        android:textSize="@dimen/text_small"
+                        android:textStyle="bold"/>
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etDays"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_white"
+                    android:hint="1"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp"
+                    app:strokeColor="@color/grey_800"
+                    app:strokeWidth="0.1dp">
+
+                    <Spinner
+                        android:id="@+id/spRountines"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:entries="@array/routines"
+                        android:spinnerMode="dialog" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/middleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="အကြိမ်အရေအတွက်"
+                android:layout_marginRight="@dimen/margin_xxlarge"
+                android:textSize="@dimen/text_regular"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="false"
+                    app:selectionRequired="true"
+                    android:layout_gravity="center"
+                    android:id="@+id/cgCategory"
+                    >
+                    <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Filter.Custom"
+                    android:layout_width="@dimen/chip_width"
+                    android:layout_height="@dimen/margin_xxlarge"
+                    android:background="@color/white"
+                    app:chipBackgroundColor="@drawable/chip_selector"
+                    app:chipStrokeColor="@color/grey_400"
+                    app:chipStrokeWidth="1dp"
+                        app:checkedIconEnabled="true"
+                    android:text="မနက်" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="@dimen/chip_width"
+                        android:layout_height="@dimen/margin_xxlarge"
+                        android:background="@color/white"
+                        app:chipBackgroundColor="@drawable/chip_selector"
+                        app:chipStrokeColor="@color/grey_400"
+                        app:chipStrokeWidth="1dp"
+                        app:checkedIconEnabled="true"
+                        android:text="နေ့" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter.Custom"
+                        android:layout_width="@dimen/chip_width"
+                        android:layout_height="@dimen/margin_xxlarge"
+                        android:background="@color/white"
+                        app:checkedIconEnabled="true"
+                        app:chipBackgroundColor="@drawable/chip_selector"
+                        app:chipStrokeColor="@color/grey_400"
+                        app:chipStrokeWidth="1dp"
+                        android:text="ည" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+           >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:layout_height="wrap_content"
+                android:text="ဆေးကို"
+                android:layout_marginRight="@dimen/margin_xxlarge"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    android:layout_gravity="center"
+                    android:id="@+id/cgRoutine"
+                    >
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter.Custom"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        app:chipBackgroundColor="@drawable/chip_selector"
+                        app:chipStrokeColor="@color/grey_400"
+                        app:chipStrokeWidth="1dp"
+                        android:layout_height="@dimen/margin_xxlarge"
+                        android:background="@color/white"
+                        android:text="အစာမစားမှီသောက်ရန်" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Filter.Custom"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/margin_xxlarge"
+                        android:background="@color/white"
+                        app:chipBackgroundColor="@drawable/chip_selector"
+                        app:chipStrokeColor="@color/grey_400"
+                        app:chipStrokeWidth="1dp"
+                        android:text="အစာမစားမှီသောက်ရန်" />
+
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="မှတ်ချက်"
+                android:layout_marginRight="@dimen/margin_xxlarge"
+                android:textSize="@dimen/text_regular"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_white"
+                android:gravity="left"
+                android:lines="5"
+                android:maxLength="2000"
+                android:maxLines="4"
+                android:padding="5dp"
+                android:scrollbars="none"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddPrescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="ထည့်မည်"
+                app:backgroundTint="@color/blue_800"
+                app:cornerRadius="15dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
+
+

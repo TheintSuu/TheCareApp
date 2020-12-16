@@ -33,6 +33,10 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
         mView?.navigateToQuestion(id, special)
     }
 
+    override fun onTapStartChat(id: String) {
+      mView?.navigateToChat(id)
+    }
+
     override fun onTapCancel() {
 
     }
@@ -82,4 +86,6 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
     override fun onTapQuestion(descption : String, answer: String) {
 
     }
+
+
 }

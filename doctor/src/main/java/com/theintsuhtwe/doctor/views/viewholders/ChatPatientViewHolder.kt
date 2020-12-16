@@ -31,7 +31,7 @@ class ChatPatientViewHolder (private val mDelegate: ConsultationItemDelegate, it
         Glide.with(itemView)
             .load(data.senderImage)
             .optionalFitCenter()
-            .into(itemView.ivConfirmDoctorImage)
+            .into(itemView.patientImage)
 
     }
 

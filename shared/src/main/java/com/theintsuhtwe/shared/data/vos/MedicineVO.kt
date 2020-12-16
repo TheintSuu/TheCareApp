@@ -9,13 +9,14 @@ import com.google.gson.annotations.SerializedName
 @IgnoreExtraProperties
 data class  MedicineVO(
     @PrimaryKey(autoGenerate = true)
-    @SerializedName("id") var id: String = "",
-    @SerializedName("name") var name: String = "",
-    @SerializedName("price")  var price  : Long = 0,
-    @SerializedName("quantity")  var quantity  :Long = 0,
-    @SerializedName("sub_total")  var sub_total  :Long = 0,
-    @SerializedName("note")  var note  : String = "",
-    @SerializedName("repeat")  var repeat  : String = "",
+    @SerializedName("id") var id: String ?= null,
+    @SerializedName("name") var name: String ?= null,
+    @SerializedName("price")  var price  : Long ?= null,
+    @SerializedName("quantity")  var quantity : Long ?= null,
+    @SerializedName("sub_total")  var sub_total  : Long ?= null,
+    @SerializedName("note")  var note  : String ?= null,
+    @SerializedName("repeat")  var repeat  : String ?= null,
+    @SerializedName("total_day")  var total_day  : String ?= null,
     @SerializedName("routine") var  routine : RoutineVO?= null
 
 

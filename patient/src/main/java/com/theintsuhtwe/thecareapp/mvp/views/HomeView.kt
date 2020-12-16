@@ -18,6 +18,8 @@ interface HomeView : BaseView {
 
     fun navigateToQuestion(id : String, category : String)
 
+    fun navigateToChat(id : String)
+
     fun showConfirmDialog(id : String)
 
     fun showConsultationRecevied(consulation: ConsultationRequest)
