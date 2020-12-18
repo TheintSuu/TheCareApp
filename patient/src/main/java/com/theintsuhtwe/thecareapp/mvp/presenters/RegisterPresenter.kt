@@ -9,6 +9,6 @@ interface RegisterPresenter : BasePresenter<RegisterView> {
 
     fun onUiReady(tooken : String, lifecycleOwner: LifecycleOwner)
 
-    fun onTapRegister(lifecycleOwner: LifecycleOwner, email:String,password:String,userName:String, token : String)
+    fun onTapRegister(lifecycleOwner: LifecycleOwner, email:String,password:String,userName:String)
 
 }

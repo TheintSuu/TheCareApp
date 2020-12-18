@@ -21,7 +21,7 @@ class ConfirmDialogFragment :  DialogFragment(){
 
     companion object {
         const val TAG_ADD_GROCERY_DIALOG = "TAG_ADD_GROCERY_DIALOG"
-        const val BUNDLE_PATIENT_ID = "BUNDLE_PATIENT_ID"
+        const val BUNDLE_ID = "BUNDLE_PATIENT_ID"
         const val BUNDLE_CATEGORY_ID = " BUNDLE_CATEGORY_ID"
 
 

@@ -5,6 +5,8 @@ interface SpecialitiesItemDelegate {
 
     fun onTapQuestion(descption : String, answer : String)
 
+    fun onTapRecentDoctor(id: String, doctorId: String)
+
 //    fun onTapStartConsultation(name: String)
 //
 //    fun onTapAccept(id : String)

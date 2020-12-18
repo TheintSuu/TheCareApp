@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"
+        app:title="ပရိုဖိုင်ပြုပြင်မည်"
+        android:elevation="4dp"
+        app:layout_collapseMode="pin"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+        android:theme ="?attr/actionBarTheme"
+        android:layout_height="?actionBarSize"
+        android:id="@+id/toolbar"/>
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium_3"
+            android:layout_below="@id/toolbar"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ly_onetime_fil"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="အမည်"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_white"
+                    android:paddingHorizontal="@dimen/margin_medium_2"
+                    android:maxLines="1"
+                    android:hint=" "
+                    android:inputType="text"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edName"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="ဖုန်းနံပါတ်"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_white"
+                    android:paddingHorizontal="@dimen/margin_medium_2"
+                    android:maxLines="1"
+                    android:hint=" "
+                    android:inputType="number"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:id="@+id/etPhone"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="အထူးကု"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="3dp"
+
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardBackgroundColor="@color/white">
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:padding="5dp"
+                            android:spinnerMode="dialog"
+                            android:entries="@array/special"
+                            android:id="@+id/etSpinner"/>
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="မွေးနေ့"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_white"
+                            android:padding="10dp"
+                            android:maxLines="1"
+                            android:hint="25 Nov 2000"
+                            android:inputType="text"
+                            android:textSize="13sp"
+                            android:textColor="@color/black"
+                            android:id="@+id/etBD"
+                            android:layout_margin="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="အမ်ျုးသား/အမျိုးသမီး"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:text="အမ်ျုးသား"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:text="အမျိုးသမီး"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="ရရှိထားသော ဘွဲ့များ"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_white"
+                    android:padding="10dp"
+                    android:maxLines="4"
+                    android:lines="5"
+                    android:inputType="textMultiLine"
+                    android:scrollbars="vertical"
+                    android:textSize="13sp"
+                    android:maxLength="2000"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:id="@+id/etDegrees"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="ကိုယ်ရေးအကျဉ်းချုပ်"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_white"
+                    android:padding="10dp"
+                    android:maxLines="4"
+                    android:lines="5"
+                    android:inputType="textMultiLine"
+                    android:scrollbars="vertical"
+                    android:textSize="13sp"
+                    android:maxLength="2000"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:id="@+id/etBiography"
+                    android:layout_margin="5dp"/>
+
+
+
+
+            </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:paddingBottom="5dp"
+            android:textColor="@color/white"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_blue"
+            android:id="@+id/btnSave"
+            android:text="သိမ်းမည်"/>
+
+
+
+
+
+    </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

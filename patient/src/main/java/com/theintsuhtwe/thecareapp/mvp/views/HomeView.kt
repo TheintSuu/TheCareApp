@@ -22,6 +22,8 @@ interface HomeView : BaseView {
 
     fun showConfirmDialog(id : String)
 
+    fun showRecentConfirmDialog(id : String, doctorId : String)
+
     fun showConsultationRecevied(consulation: ConsultationRequest)
 
     fun displayRecentDoctorList(doctors : List<DoctorVO>)

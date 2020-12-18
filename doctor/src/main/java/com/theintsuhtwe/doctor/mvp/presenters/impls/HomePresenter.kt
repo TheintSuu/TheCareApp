@@ -2,14 +2,19 @@ package com.theintsuhtwe.doctor.mvp.presenters.impls
 
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.doctor.delegates.ConsultationItemDelegate
+import com.theintsuhtwe.doctor.delegates.HistoryDelegate
 import com.theintsuhtwe.doctor.mvp.views.HomeView
+import com.theintsuhtwe.doctor.views.viewpods.EmptyViewPod
 import com.theintsuhtwe.shared.data.vos.ConsultationRequest
 import com.theintsuhtwe.shared.mvp.presenters.BasePresenter
 
-interface HomePresenter : BasePresenter<HomeView>, ConsultationItemDelegate  {
-    fun onUiReady(id : String, lifecycleOwner: LifecycleOwner)
+interface HomePresenter : BasePresenter<HomeView>, ConsultationItemDelegate, HistoryDelegate, EmptyViewPod.Delegate  {
+    fun onUiReady( lifecycleOwner: LifecycleOwner)
+    fun onDialogUiReady(id : String)
 
-    fun onTapStartConsultation(consultation: ConsultationRequest)
+    fun onTapSignOut()
+
+//    fun onTapStartConsultation(id : String)
 
     fun onTapPostpone(time : String, consultation : ConsultationRequest)
 }

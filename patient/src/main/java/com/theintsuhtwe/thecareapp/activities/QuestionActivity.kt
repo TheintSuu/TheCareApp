@@ -2,27 +2,18 @@ package com.theintsuhtwe.thecareapp.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.theintsuhtwe.shared.activities.BaseActivity
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.thecareapp.R
 import com.theintsuhtwe.thecareapp.adapters.QuestionAnswerItemAdapter
-import com.theintsuhtwe.thecareapp.adapters.QuestionItemAdapter
-import com.theintsuhtwe.thecareapp.adapters.RecentDoctorItemDoctorAdapter
-import com.theintsuhtwe.thecareapp.adapters.SpecialityItemAdapter
 import com.theintsuhtwe.thecareapp.mvp.presenters.CaseSummaryQuestionPresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.CaseSummaryQuestionPresenterImpl
-import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenter
-import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSumaryQuestionView
-import com.theintsuhtwe.thecareapp.mvp.views.HomeView
 import com.theintsuhtwe.thecareapp.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_question.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -91,7 +82,7 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
                     val data = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.wei), answer = ed_weight.text.toString())
                     val data2 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.blood_pres), answer = ed_bloodpressure.text.toString())
                     val data3 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.height) , answer = ed_height.text.toString())
-                    val data4 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.allegric_comment), answer = ed_comment.text.toString())
+                    val data4 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.allegric_comment), answer = etNote.text.toString())
                     val data5 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.bl_type), answer = bloodtype_spinner.selectedItem.toString())
                     val data6 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.Birth), answer = day_spinner.selectedItem.toString()+"/"+ month_spinner.selectedItem.toString()+"/"+year_spinner.selectedItem.toString())
                     ques.add(data)

@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.theintsuhtwe.doctor.mvp.views.LoginView
+import com.theintsuhtwe.doctor.utils.SIGN_IN
+import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.doctor.utils.saveDoctorToSession
 import com.theintsuhtwe.shared.data.models.AuthenticationModel
 import com.theintsuhtwe.shared.data.models.AuthenticationModelImpl
@@ -21,7 +23,9 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
     private val mDoctor = DoctorModelImpl
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
-
+        if(SessionManager.doctor_login_status.toString()== SIGN_IN){
+           mView?.navigateToHomeScreen()
+        }
     }
 
     override fun onTapLogin(lifecycleOwner: LifecycleOwner, email: String, password: String) {
@@ -32,18 +36,10 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
             mAuthenticatioModel.login(email, password, onSuccess = {
                 mDoctor.getDoctorByEmail(email, onSuccess = {
                     saveDoctorToSession(it)
-                    mView?.navigateToHomeScreen(it)
-//                    mDoctor.getDoctorInfoFromDB(email)
-//                        .observe(
-//                            lifecycleOwner, Observer {
-//                                mView?.navigateToHomeScreen(it)
-//                            }
-//                        )
-//                }, onFailure = {
-//
-//                })
+                    SessionManager.doctor_login_status = SIGN_IN
+                    mView?.navigateToHomeScreen()
                 }, onFailure = {
-
+                    mView?.navigateToRegisterForm(email)
                 })
 
 

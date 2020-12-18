@@ -9,7 +9,7 @@ import com.theintsuhtwe.doctor.mvp.presenters.impls.RegisterPresenter
 import com.theintsuhtwe.doctor.mvp.presenters.impls.RegisterPresenterImpl
 import com.theintsuhtwe.doctor.mvp.views.RegisterView
 import com.theintsuhtwe.shared.activities.BaseActivity
-import com.theintsuhtwe.shared.data.vos.CategoryVO
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity(), RegisterView {
 
@@ -33,7 +33,7 @@ class RegisterActivity : BaseActivity(), RegisterView {
     }
 
     override fun navigateToToLoginScreen() {
-
+            startActivity(LoginActivity.newIntent(this))
     }
 
     override fun showErrorMessage(error: String) {
@@ -45,16 +45,20 @@ class RegisterActivity : BaseActivity(), RegisterView {
     }
 
     private fun setUpListener(){
-        mPresenter.onTapRegister(
-            "theintsuuhtwe@gmail.com",
-            "hazel$1998",
-            "Hazel Kuu Kuu",
-            CategoryVO(
-                id="category001",
-                name = "Dental",
-                image=""
+//        mPresenter.onTapRegister(
+//            "theintsuuhtwe@gmail.com",
+//            "hazel$1998",
+//            "Hazel Kuu Kuu",
+//            CategoryVO(
+//                id="category001",
+//                name = "Dental",
+//                image=""
+//
+//            )
+//        )
 
-            )
-        )
+        btnRegister.setOnClickListener {
+            mPresenter.onTapRegister(etEmail.text.toString(), tvPassword.text.toString())
+        }
     }
 }

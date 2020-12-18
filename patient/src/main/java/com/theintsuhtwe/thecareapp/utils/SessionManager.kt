@@ -45,6 +45,14 @@ object SessionManager {
             it.putString(sharePreferencePatientEmail, value)
         }
 
+    var patient_address: String?
+
+        get() = preferences.getString(sharePreferencePatientAddress, "")
+
+        set(value) = preferences.edit {
+            it.putString(sharePreferencePatientAddress, value)
+        }
+
     var patient_id: String?
 
         get() = preferences.getString(sharePreferencePatientID, "")
@@ -123,6 +131,14 @@ object SessionManager {
 
         set(value) = preferences.edit {
             it.putString(sharePreferencePatientPhoto, value)
+        }
+
+    var patient_recent_doctor_id : String?
+
+        get() = preferences.getString(sharePreferenceDoctor, "")
+
+        set(value) = preferences.edit {
+            it.putString(sharePreferenceDoctor, value)
         }
 
 

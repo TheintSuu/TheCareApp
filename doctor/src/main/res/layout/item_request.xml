@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvConsultDate"
+            android:id="@+id/tvConsultType"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:paddingTop="@dimen/margin_medium"
@@ -36,6 +36,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/margin_medium_2"
             android:textColor="@color/white"
+            android:textSize="10dp"
             android:layout_marginVertical="@dimen/margin_medium"
             android:paddingRight="@dimen/margin_medium_2"
             android:text="စာပို့မည်" />
@@ -54,10 +55,9 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_gravity="center"
-            android:layout_below="@id/tvConsultDate"
+            android:layout_below="@id/tvConsultType"
             android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginBottom="@dimen/margin_medium"
-            android:src="@mipmap/ic_launcher"
             app:cornerRadius="36dp"
             android:layout_marginLeft="@dimen/margin_card_medium_2"
             android:layout_alignBottom="@id/tvBDDate"
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_medium"
-            android:layout_below="@id/tvConsultDate"
+            android:layout_below="@id/tvConsultType"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/margin_medium_3"
             android:layout_marginTop="@dimen/margin_medium_3"
@@ -93,7 +93,7 @@
             android:textColor="@color/textColorGray"
             android:textStyle="bold"
             android:textSize="@dimen/text_regular_2x" />
-        <TableRow
+        <LinearLayout
             android:id="@+id/tb1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,10 +102,10 @@
             android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginBottom="@dimen/margin_medium_3"
             android:layout_below="@id/ivConfirmDoctorImage"
-            android:weightSum="2" >
+            >
 
             <TextView
-                android:id="@+id/btnSendChat"
+                android:id="@+id/btnSkip"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -116,6 +116,18 @@
                 android:text="ကျော်မည်"
                 android:textStyle="bold"
                 />
+            <TextView
+                android:id="@+id/btnPostpone"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:background="@drawable/btn_postpone"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="အချိန်ရွေးမည်"
+                android:textStyle="bold"
+                app:iconGravity="textStart" />
 
             <TextView
                 android:id="@+id/btnAccept"
@@ -129,7 +141,7 @@
                 android:text="Accept"
                 android:textStyle="bold"
                 app:iconGravity="textStart" />
-        </TableRow>
+        </LinearLayout>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

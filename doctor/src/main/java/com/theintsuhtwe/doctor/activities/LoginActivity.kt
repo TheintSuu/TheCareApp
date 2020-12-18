@@ -10,6 +10,7 @@ import com.theintsuhtwe.doctor.mvp.presenters.impls.LoginPresenterImpl
 import com.theintsuhtwe.doctor.mvp.views.LoginView
 import com.theintsuhtwe.shared.activities.BaseActivity
 import com.theintsuhtwe.shared.data.vos.DoctorVO
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity(), LoginView {
 
@@ -34,24 +35,32 @@ class LoginActivity : BaseActivity(), LoginView {
 
     private fun setUpActionListeners() {
 
-            mPresenter.onTapLogin(this,"helentheintsuu@gmail.com","hazel$1998")
+//            mPresenter.onTapLogin(this,"helentheintsuu@gmail.com","hazel$1998")
+        btnRegister.setOnClickListener {
+            mPresenter.onTapRegister()
+        }
+
+        btnLogin.setOnClickListener {
+            mPresenter.onTapLogin(this, etEmail.text.toString(), tvPassword.text.toString())
+        }
 
 
-//        btnRegister.setOnClickListener {
-//            mPresenter.onTapRegister()
-//        }
     }
 
     private fun setUpPresenter() {
         mPresenter = getPresenter<LoginPresenterImpl, LoginView>()
     }
 
-    override fun navigateToHomeScreen(doctorVO: DoctorVO) {
+    override fun navigateToHomeScreen() {
         startActivity(MainActivity.newIntent(this))
     }
 
     override fun navigateToRegisterScreen() {
         startActivity(RegisterActivity.newIntent(this))
+    }
+
+    override fun navigateToRegisterForm(email: String) {
+        startActivity(RegisterFormActivity.newIntentWithId(this, email))
     }
 
     override fun showErrorMessage(error: String) {

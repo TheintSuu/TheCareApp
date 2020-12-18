@@ -6,7 +6,6 @@ import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
 import com.theintsuhtwe.shared.data.vos.MedicineVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
-import com.theintsuhtwe.thecareapp.mvp.views.HomeView
 import com.theintsuhtwe.thecareapp.mvp.views.PrescriptionView
 import java.util.*
 
@@ -22,7 +21,7 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
     var routine : MutableList<String> = arrayListOf()
     var quantityMedicine : String = "1"
     var beforeAter : String = ""
-    var note :String = ""
+    var note : String = ""
 
     var mMedicineVO : MutableList<MedicineVO> = arrayListOf()
 
@@ -36,7 +35,7 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
 
     override fun onTapFinishConsultation(id: String) {
         mConsultationModel.addPrescriptionByDoctor(id, mMedicineVO, onSuccess = {
-
+            mView?.navigateToChat(id)
         }, onFailure = {
 
         })
@@ -96,6 +95,10 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
 
     override fun onTapQuestion(descption: String, answer: String) {
        
+    }
+
+    override fun onTapRecentDoctor(id: String, doctorId: String) {
+        TODO("Not yet implemented")
     }
 
     override fun onTapAddPrescription(id: String, price: Long) {

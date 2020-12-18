@@ -16,6 +16,10 @@ object PatientModelImpl: PatientModel,  BaseModel() {
        mFirebase.addPatient(patient, onSuccess, onFailure)
     }
 
+    override fun addRecentDoctor(id: String, doctors: DoctorVO, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+       return mFirebase.addRecentDoctorByPatient(id, doctors, onSuccess, onFailure)
+    }
+
     override fun getPatient(
         id: String,
         onSuccess: (patient: Patient) -> Unit,
@@ -27,8 +31,8 @@ object PatientModelImpl: PatientModel,  BaseModel() {
     override fun getPatientByEmail(email: String, onSuccess: (patient: Patient) -> Unit, onFailure: (String) -> Unit) {
 
         return mFirebase.getPatientByEmail(email, onSuccess={
-            mTheCareDB.patientDao.deleteAll()
-            mTheCareDB.patientDao.insertpatient(it)
+         //   mTheCareDB.patientDao.deleteAll()
+           // mTheCareDB.patientDao.insertpatient(it)
             onSuccess(it)
         }, onFailure={
 
@@ -69,7 +73,7 @@ object PatientModelImpl: PatientModel,  BaseModel() {
 
 
     override fun getDeviceTokenByType(type: String, onSuccess: (List<String>) -> Unit, onFaiure: (String) -> Unit) {
-        return mFirebase.getDeviceTokenByType(type, onSuccess, onFaiure)
+      //  return mFirebase.getDeviceTokenByType(type, onSuccess, onFaiure)
     }
 
     override fun getDeviceTokenByUser(): String {

@@ -54,6 +54,10 @@ interface FirebaseApi {
 
     fun sendDirectConsultationRequest(request: ConsultationRequest,  onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
+    fun updateConsultationRequestByPatient(id : String,  onSuccess: () -> Unit, onFailure: (String) -> Unit)
+
+    fun updateConsultationById(id : String,  onSuccess: () -> Unit, onFailure: (String) -> Unit)
+
     fun sendMessage(id : String, message: MessageVO, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
     fun getAllMessagesById(id : String,  onSuccess: (List<MessageVO>) -> Unit, onFailure: (String) -> Unit)
@@ -66,7 +70,7 @@ interface FirebaseApi {
 
     fun deletePrescriptions(id : String, medicineVO: List<MedicineVO> , onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
-    fun sendConsultationRequest( patient : Patient,
+    fun sendConsultationRequest( recentId : String, patient : Patient,
                                  special: String,
                                 caseSummaryId : ArrayList<QuestionVO> , onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit)
 
@@ -78,8 +82,10 @@ interface FirebaseApi {
     fun getCaseSummaryByPatient(id : String,  onSuccess:(case : CaseSummaryVO)->Unit, onFailure:(String)->Unit )
 
 
-    fun  checkOutMedicine(checkOutVO: CheckOutVO
-    , onSuccess: () -> Unit,
+    fun  checkOutMedicine(address : String,
+                          prescriptions : List<MedicineVO>,
+                          totalAmout : String,
+     onSuccess: () -> Unit,
                    onFailure: (String) -> Unit)
 
 
@@ -95,20 +101,30 @@ interface FirebaseApi {
     fun getConsultationRequestByDoctor(specail : String,onSuccess: (List<ConsultationRequest>) -> Unit,
                                        onFailure: (String) -> Unit)
 
+    fun getConsultationRequestByDoctorId(id : String,onSuccess: (List<ConsultationRequest>) -> Unit,
+                                       onFailure: (String) -> Unit)
+
 
     fun getConsultationById(id : String,onSuccess: (ConsultationVO) -> Unit,
                                        onFailure: (String) -> Unit)
 
 
 
-    fun getConsultationRequestById(id : String,onSuccess: (ConsultationRequest) -> Unit,
+    fun getConsultationRequestById(id : String,   onSuccess: (ConsultationRequest) -> Unit,
     onFailure: (String) -> Unit)
 
     fun updateConsultationRequestByDoctor(id: String ,onSuccess: () -> Unit,
                                        onFailure: (String) -> Unit)
 
+    fun getPrescriptionByConsultationId(id : String,onSuccess: (List<MedicineVO>) -> Unit,
+                            onFailure: (String) -> Unit)
+
 
     fun addConsultationNote(id : String, note: String, onSuccess: () -> Unit, onFailure: (String) -> Unit)
 
-
+    fun getNoteByConsultationId(
+        id: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    )
 }

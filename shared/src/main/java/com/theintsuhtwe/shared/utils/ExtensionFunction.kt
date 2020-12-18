@@ -3,8 +3,10 @@
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.util.Base64
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
 import com.bumptech.glide.Glide
 import com.google.common.reflect.TypeToken
@@ -14,6 +16,19 @@ import com.google.gson.Gson
 import com.theintsuhtwe.shared.data.vos.*
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+
+ fun randomImage() : String{
+    var img : MutableList<String> = arrayListOf()
+    img.add("https://previews.123rf.com/images/yupiramos/yupiramos1707/yupiramos170726578/82990209-surgeon-avatar-character-icon-vector-illustration-design.jpg")
+    img.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1CKDWyfyCPo6iyesi_slg-zPaPqRz2wJv_A&usqp=CAU")
+    img.add("https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg")
+    img.add("https://cdn3.iconfinder.com/data/icons/avatar-profession-2/512/Avatar_17_-_Professions_-_Background-02-512.png")
+
+    return img.random()
+}
 
 
 fun createNotiRequsetBody(to : String, body : String, title : String) : JSONObject
@@ -119,7 +134,6 @@ fun MutableMap<String,Any>?.convertToPatientVO(): Patient {
     val patient= Patient()
     patient.id = this?.get("id") as String
 //    patient.address = (this?.get("address") as Address)
-    patient.device_token =  this?.get("device_token") as String
     patient.email =  this?.get("email") as String
     patient.phone =  this?.get("phone") as String
     patient.image=  this?.get("image") as String
@@ -162,7 +176,27 @@ fun MutableMap<String, Any>?.convertToMedicineVO() : MedicineVO{
     return medicine
 }
 
-fun MutableMap<String, Any>?.convertToCaseSummary() : CaseSummaryVO{
+ fun MutableMap<String, Any>?.convertToMedicinesVO() : MedicineVO{
+     val medicine = MedicineVO()
+     medicine.id =  this?.get("id") as String
+     medicine.name =  this?.get("name") as String
+     medicine.price =  this?.get("price") as Long
+    medicine.note =  this?.get("note") as String?
+       medicine.price =  this?.get("price") as Long
+      medicine.quantity =  this?.get("quantity") as Long
+      medicine.sub_total =  this?.get("sub_total") as Long
+   //   medicine.repeat =  this?.get("repeat") as String
+     return medicine
+ }
+
+ fun MutableMap<String, Any>?.convertToNote() :  String{
+     var note = ""
+      note =   this?.get("consultation_note") as String
+     return  note
+ }
+
+
+ fun MutableMap<String, Any>?.convertToCaseSummary() : CaseSummaryVO{
     val casesummary =  CaseSummaryVO()
     casesummary.id = this?.get("id") as String
     casesummary.questionList = this?.get("questions") as ArrayList<QuestionVO>
@@ -174,6 +208,7 @@ fun MutableMap<String, Any>?.convertToConsultationRequest() : ConsultationReques
     val consultationRequest = ConsultationRequest()
     consultationRequest.id = this?.get("id") as String
     consultationRequest.consultationId = this?.get("consultation_chat_id") as String?
+    consultationRequest.recent_id = this?.get("recent_doctor_id") as String?
     consultationRequest.patient = toPatient((this?.get("patient")  as  HashMap<String, String>))
     consultationRequest.doctor = toDoctor((this?.get("doctor")  as  HashMap<String, String>? ))
    consultationRequest.specialities = this?.get("specialities") as String
@@ -193,6 +228,16 @@ fun  MutableMap<String, Any>?.convertToDeliveryRoutione() : DeliveryRoutine{
     return  routine
 }
 
+
+ fun randomBDate() : String{
+     val bd : MutableList<String> = arrayListOf()
+     bd.add("23 Dec 2020")
+     bd.add("10 Jan 1998")
+     bd.add("15 July 2020")
+     bd.add("30 Oct 2020")
+     bd.add("27 Apirl 2020")
+     return bd.random()
+ }
 
 fun MutableMap<String, Any>?.convertToMessageVO() : MessageVO{
     val message = MessageVO()
@@ -230,6 +275,7 @@ fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     val consultation = ConsultationVO()
     consultation.id = this?.get("id") as String
     consultation.special = this?.get("speciality") as String
+    consultation.statue = this?.get("consultation_status") as String
     val ques  : ArrayList<QuestionVO> = arrayListOf()
     val value = this?.get("case_summary") as ArrayList<HashMap<String, Any>>?
     value?.forEach {
@@ -243,3 +289,11 @@ fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
 
     return consultation
 }
+
+ @RequiresApi(Build.VERSION_CODES.O)
+ fun currentDate() : String{
+     val dateTime = LocalDateTime.now()
+//     println(dateTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)))
+//     println(dateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)))
+     return dateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT))
+ }

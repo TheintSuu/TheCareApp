@@ -6,6 +6,8 @@ import com.theintsuhtwe.shared.data.vos.*
 interface PatientModel {
     fun  addPatient(patient: Patient, onSuccess:()->Unit, onFailure:(String)->Unit)
 
+    fun  addRecentDoctor(id: String, doctors: DoctorVO, onSuccess:()->Unit, onFailure:(String)->Unit)
+
     fun  getPatient(id : String, onSuccess:(patient: Patient)->Unit, onFailure:(String)->Unit)
 
     fun  getPatientByEmail(email  : String, onSuccess:(patient: Patient)->Unit, onFailure:(String)->Unit)

@@ -53,13 +53,14 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
                 onSuccess = {
                     val patient = getCurrentPatientInfo()
                     patient.question = it
-                    mConsultationModel.sendConsultationRequest(patient, special, list, onSuccess = {
+                    mConsultationModel.sendConsultationRequest(SessionManager.patient_recent_doctor_id.toString(),patient, special, list, onSuccess = {
                         mView?.navigateToHome(it)
                     },
                             onFailure = {
 
                             }
                     )
+                    SessionManager.patient_recent_doctor_id = ""
                 },
                 onFaiure = {
 
@@ -79,7 +80,9 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
        
     }
 
-  
+    override fun onTapRecentDoctor(id: String, doctorId: String) {
+
+    }
 
 
 }

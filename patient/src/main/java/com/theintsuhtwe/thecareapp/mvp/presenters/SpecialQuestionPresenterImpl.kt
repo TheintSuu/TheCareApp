@@ -4,12 +4,9 @@ import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
-import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
-import com.theintsuhtwe.thecareapp.mvp.views.CaseSummaryView
 import com.theintsuhtwe.thecareapp.mvp.views.SpecialQuestionView
-import com.theintsuhtwe.thecareapp.utils.getCurrentPatientInfo
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -53,6 +50,10 @@ class SpecialQuestionPresenterImpl : SpecialQuestionPresenter, AbstractBasePrese
                answer = answer
        )
        )
+    }
+
+    override fun onTapRecentDoctor(id: String, doctorId: String) {
+
     }
 
 }

@@ -7,6 +7,7 @@ import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.network.auth.AuthManager
 import com.theintsuhtwe.shared.network.auth.AuthenticationManagerImpl
+import com.theintsuhtwe.shared.utils.randomImage
 import java.util.*
 
 object AuthenticationModelImpl : AuthenticationModel {
@@ -15,7 +16,11 @@ object AuthenticationModelImpl : AuthenticationModel {
     private var mPatientModel = PatientModelImpl
 
     override fun login(email: String, password: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        mAuthManager.login(email,password,onSuccess, onFailure)
+        mAuthManager.login(email,password,onSuccess = {
+            onSuccess()
+        }, onFailure = {
+
+        })
     }
 
     override fun loginWithFacebook(
@@ -33,6 +38,7 @@ object AuthenticationModelImpl : AuthenticationModel {
                     id = UUID.randomUUID().toString(),
                     name = userName,
                     email = email,
+                    image = randomImage(),
                     device_token = ""
             )
             mPatientModel.addPatient(patientVO, onSuccess, onFailure)
@@ -43,12 +49,14 @@ object AuthenticationModelImpl : AuthenticationModel {
     override fun registerDoctor(
         email: String,
         password: String,
-        userName: String,
-        category: CategoryVO,
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
-        mAuthManager.registerDoctor(email,password,userName, category, onSuccess =onSuccess,onFailure= onFailure)
+        mAuthManager.registerDoctor(email,password, onSuccess = {
+            onSuccess()
+        },onFailure= {
+
+        })
     }
 
     override fun getUserProfile(): Patient {

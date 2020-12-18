@@ -114,18 +114,12 @@ object AuthenticationManagerImpl : AuthManager {
     override fun registerDoctor(
         email: String,
         password: String,
-        userName: String,
-        category: CategoryVO,
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
         mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful && it.isComplete) {
-                mFirebaseAuth.currentUser?.updateProfile(
-                    UserProfileChangeRequest.Builder()
-                        .setDisplayName(userName)
-                        .build()
-                )
+
 
                 onSuccess()
             } else {
@@ -133,6 +127,7 @@ object AuthenticationManagerImpl : AuthManager {
             }
         }
     }
+
 
     override fun getUserProfile(): Patient {
         return Patient(

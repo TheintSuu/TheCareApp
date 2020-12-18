@@ -27,31 +27,11 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
 
     override fun onTapRegister(
         email: String,
-        password: String,
-        userName: String,
-        categoryVO: CategoryVO
-    ) {
-        mAuthenticationModel.registerDoctor(email,password,userName, categoryVO, onSuccess = {
-            val degrees : ArrayList<String> = arrayListOf()
-            degrees.add("M.B.B.S(Y.G.N)")
-            val doctor = DoctorVO(
-                id = UUID.randomUUID().toString(),
-                name = "Professor U Aung Win",
-                email = email,
-                specialities = "Dental",
-                image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNUOgjEhHpfUqnVk-Tp2uN1AhrrzXhwdX9A&usqp=CAU",
-                degrees = degrees,
-                device_token = ""
-            )
-            mDoctor.addDoctor(
-                doctor,
-                onSuccess = {
+        password: String
 
-                },
-                onFailure = {
-                    Log.d("Add Doctor Failure", "Failure")
-                }
-            )
+    ) {
+        mAuthenticationModel.registerDoctor(email,password, onSuccess = {
+            mView?.navigateToToLoginScreen()
 
 
         },
@@ -59,8 +39,6 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
                 Log.d("Register Doctor Failure", "Failure")
             })
 
-
     }
-
 
 }

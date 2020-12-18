@@ -25,8 +25,6 @@ interface AuthenticationModel {
     fun registerDoctor(
         email: String,
         password: String,
-        userName: String,
-        category: CategoryVO,
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     )

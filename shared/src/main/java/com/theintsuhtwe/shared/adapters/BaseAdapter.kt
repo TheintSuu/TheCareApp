@@ -29,4 +29,14 @@ abstract class BaseAdapter<T: BaseViewHolder<W>,W> : RecyclerView.Adapter<T>(){
         notifyDataSetChanged()
     }
 
+    fun appendData(data : List<W>){
+        mDataList.addAll(data)
+        notifyDataSetChanged()
+    }
+
+    fun removeData(data : W){
+        mDataList.remove(data)
+        notifyDataSetChanged()
+    }
+
 }

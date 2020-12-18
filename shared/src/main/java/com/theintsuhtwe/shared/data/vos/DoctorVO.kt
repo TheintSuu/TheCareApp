@@ -15,6 +15,7 @@ data class DoctorVO(
         @SerializedName("id") var id: String = "",
         @SerializedName("name") var name: String = "",
         @SerializedName("phone") var phone: String = "",
+        @SerializedName("bd") var birth: String = "",
         @SerializedName("email") var email: String ?= null,
         @SerializedName("biography") var biography: String = "",
         @SerializedName("degrees") var degrees : List<String> ?= arrayListOf(),

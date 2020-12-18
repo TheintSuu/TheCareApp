@@ -2,24 +2,21 @@ package com.theintsuhtwe.thecareapp.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.shared.activities.BaseActivity
-import com.theintsuhtwe.shared.data.vos.CategoryVO
 import com.theintsuhtwe.thecareapp.R
+import com.theintsuhtwe.thecareapp.mvp.presenters.LoginPresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.presenters.RegisterPresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.RegisterPresenterImpl
+import com.theintsuhtwe.thecareapp.mvp.views.LoginView
 import com.theintsuhtwe.thecareapp.mvp.views.RegisterView
+import kotlinx.android.synthetic.main.activity_register.*
+
 
 class RegisterActivity : BaseActivity(), RegisterView {
 
     private lateinit var mPresenter: RegisterPresenter
 
-    //private lateinit var token : String
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -33,7 +30,6 @@ class RegisterActivity : BaseActivity(), RegisterView {
 
         setUpPresenter()
 
-        getToken()
 
         setUpListener()
 
@@ -55,34 +51,25 @@ class RegisterActivity : BaseActivity(), RegisterView {
     }
 
     private fun setUpListener(){
-//        mPresenter.onTapRegister(
+        btnRegister.setOnClickListener {
+            mPresenter.onTapRegister(this,etEmail.text.toString(), tvPassword.text.toString(), tvName.text.toString())
+        }
+
+    }
+
+//    private fun getToken() {
+//        FirebaseInstanceId.getInstance().instanceId
+//            .addOnCompleteListener(OnCompleteListener { task ->
+//                if (!task.isSuccessful) {
+//                    Log.w("Token", "getInstanceId failed", task.exception)
+//                    return@OnCompleteListener
+//                }
 //
-//            "helentheintsuu@gmail.com",
-//            "hazel$1998",
-//            "Theint Su",token
-//        )
-
-        mPresenter.onTapRegister(
-                    this,
-                "theintsuhtwe1998@gmail.com",
-                "hazel$1998",
-                "hazel",""
-        )
-    }
-
-    private fun getToken() {
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.w("Token", "getInstanceId failed", task.exception)
-                    return@OnCompleteListener
-                }
-
-
-               // token = task.result.token
-
-
-
-            })
-    }
+//
+//               // token = task.result.token
+//
+//
+//
+//            })
+//    }
 }

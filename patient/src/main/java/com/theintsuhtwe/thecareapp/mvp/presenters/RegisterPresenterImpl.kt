@@ -24,13 +24,13 @@ class RegisterPresenterImpl : RegisterPresenter, AbstractBasePresenter<RegisterV
     }
 
     @SuppressLint("LongLogTag")
-    override fun onTapRegister(lifecycleOwner: LifecycleOwner, email: String, password: String, userName: String, token: String) {
+    override fun onTapRegister(lifecycleOwner: LifecycleOwner, email: String, password: String, userName: String) {
         mAuthenticationModel.register(email,password,userName,  onSuccess = {
 
             mView?.navigateToToLoginScreen()
         },
             onFailure = {
-                Log.d("Register Patient Failure", "Failure")
+
             })
 
 

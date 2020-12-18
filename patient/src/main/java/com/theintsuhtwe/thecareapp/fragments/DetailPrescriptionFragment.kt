@@ -1,19 +1,21 @@
 package com.theintsuhtwe.thecareapp.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.theintsuhtwe.thecareapp.R
 import com.theintsuhtwe.thecareapp.mvp.presenters.PrescriptionPresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.PrescriptionPresenterImpl
+import kotlinx.android.synthetic.main.activity_note.*
 import kotlinx.android.synthetic.main.fragment_detail_prescription.*
-import kotlinx.android.synthetic.main.fragment_detail_prescription.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -54,62 +56,94 @@ class DetailPrescriptionFragment: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpPresenter()
 
+        setUpListener()
 
         setData()
 
-        view.btnAddPrescription.setOnClickListener {
-            arguments?.getString(DetailPrescriptionFragment.BUNDLE_CATEGORY_ID)?.let { it1 -> arguments?.getLong(DetailPrescriptionFragment.BUNDLE_Price_ID)?.let { it2 ->
-                mPresenter.onTapAdd(it1,
-                    it2)
-            } }
-            dismiss()
-        }
+//        view.btnAddPrescription.setOnClickListener {
+//            arguments?.getString(DetailPrescriptionFragment.BUNDLE_CATEGORY_ID)?.let { it1 -> arguments?.getLong(DetailPrescriptionFragment.BUNDLE_Price_ID)?.let { it2 ->
+//                mPresenter.onTapAdd(it1,
+//                    it2)
+//            } }
+//            dismiss()
+//        }
 
     }
 
     private fun setUpPresenter() {
-        tvPrescriptionName.text =  arguments?.getString(DetailPrescriptionFragment.BUNDLE_CATEGORY_ID)
+//        tvPrescriptionName.text =  arguments?.getString(DetailPrescriptionFragment.BUNDLE_CATEGORY_ID)
         activity?.let {
             mPresenter = ViewModelProviders.of(it).get(PrescriptionPresenterImpl::class.java)
         }
 
     }
 
+   private fun setUpListener(){
+       spRoutine.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+           override fun onNothingSelected(p0: AdapterView<*>?) {
+
+           }
+
+           override fun onItemSelected(
+               parent: AdapterView<*>,
+               view: View,
+               position: Int,
+               id: Long
+           ) {
+              mPresenter.onTapSelectedRoutines( parent.getItemAtPosition(position).toString())
+           }
+       }
+   }
+
     private fun setData(){
-        for (index in 0 until cgCategory.childCount) {
-            val chip: Chip = cgCategory.getChildAt(index) as Chip
+        for (index in 0 until cgRoutine.childCount) {
+            val chip: Chip = cgRoutine.getChildAt(index) as Chip
 
             // Set the chip checked change listener
             chip.setOnCheckedChangeListener{view, isChecked ->
                 if (isChecked){
-                    mPresenter.onTapSelectedRoutine(chip.text.toString())
+                   mPresenter.onTapSelectedRoutine(view.text.toString())
                 }else{
-                    mPresenter.onTapRemoveRoutine(chip.text.toString())
+                    mPresenter.onTapRemoveRoutine(view.text.toString())
                 }
 
 
             }
         }
 
+        for (index in 0 until cgBeforeAfter.childCount) {
+            val chip: Chip = cgBeforeAfter.getChildAt(index) as Chip
 
-
-//        for (index in 0 until cgRoutine.childCount) {
-//            val chip: Chip = cgRoutine.getChildAt(index) as Chip
-//
-//            // Set the chip checked change listener
-//            chip.setOnCheckedChangeListener{view, isChecked ->
-//                if (isChecked){
-//                    mPresenter.onTapMedicineBeforeAfter(chip.text.toString())
-//                }
-//            }
-//        }
-
-        view?.etNote?.text.toString().isNotEmpty().let{
-            mPresenter.onTapNote(etNote.text.toString())
+            // Set the chip checked change listener
+            chip.setOnCheckedChangeListener{view, isChecked ->
+                if (isChecked){
+                    mPresenter.onTapMedicineBeforeAfter(view.text.toString())
+                }else{
+                    mPresenter.onTapRemoveMedicineBeforeAfter(view.text.toString())
+                }
+            }
         }
 
-        view?.etQuantity?.text.isNullOrEmpty().let{
-            mPresenter.onTapQuantity(etQuantity.text.toString())
+        btnAddPrescription.setOnClickListener {
+            arguments?.getLong(BUNDLE_Price_ID)?.toLong()?.let { it1 ->
+                mPresenter.onTapAdd(arguments?.getString(BUNDLE_CATEGORY_ID).toString(),
+                    it1
+                )
+            }
+
+            dismiss()
         }
+
+        etNote.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                mPresenter.onTapNote(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
     }
 }

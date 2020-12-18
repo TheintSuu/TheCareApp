@@ -4,12 +4,9 @@ import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
-import com.theintsuhtwe.shared.data.vos.ConsultationRequest
-import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSumaryQuestionView
-import com.theintsuhtwe.thecareapp.mvp.views.HomeView
 
 class CaseSummaryQuestionPresenterImpl : CaseSummaryQuestionPresenter, AbstractBasePresenter<CaseSumaryQuestionView>(){
     var mTheCareModel = SpecialitiesModelImpl
@@ -60,5 +57,9 @@ class CaseSummaryQuestionPresenterImpl : CaseSummaryQuestionPresenter, AbstractB
     }
 
     override fun onTapQuestion(descption: String, answer: String) {
+    }
+
+    override fun onTapRecentDoctor(id: String, doctorId: String) {
+        TODO("Not yet implemented")
     }
 }

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_medium"
         android:textStyle="bold"
-        android:layout_marginTop="@dimen/margin_medium_3"
+        android:layout_marginTop="@dimen/margin_medium"
         android:text="1 )."
         android:textColor="@color/black"
         android:textSize="@dimen/text_regular_2x" />
@@ -22,7 +22,7 @@
         android:padding="@dimen/margin_medium"
         android:textStyle="bold"
         android:layout_toRightOf="@id/tvNumber"
-        android:layout_marginTop="@dimen/margin_medium_3"
+        android:layout_marginTop="@dimen/margin_medium"
         android:text="Default Question"
         android:textColor="@color/black"
         android:textSize="@dimen/text_regular_2x" />

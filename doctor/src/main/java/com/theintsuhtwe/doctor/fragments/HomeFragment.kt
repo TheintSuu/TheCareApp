@@ -13,16 +13,22 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.activities.ChatActivity
+import com.theintsuhtwe.doctor.activities.LoginActivity
 import com.theintsuhtwe.doctor.adapters.ConsultationHistoryAdapter
 import com.theintsuhtwe.doctor.adapters.ConsultationRequestAdapter
+import com.theintsuhtwe.doctor.adapters.DetailPrescriptionAdapter
 import com.theintsuhtwe.doctor.fragments.DialogFragment.Companion.BUNDLE_DOCTOR_ID
 import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenter
 import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenterImpl
 import com.theintsuhtwe.doctor.mvp.views.HomeView
+import com.theintsuhtwe.doctor.utils.EMPTY_IMAGE_URL
+import com.theintsuhtwe.doctor.utils.EM_NO_NEWS_AVAILABLE
 import com.theintsuhtwe.doctor.utils.SessionManager
+import com.theintsuhtwe.doctor.views.viewpods.EmptyViewPod
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.fragments.BaseFragment
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.fragment_consultation_prescription.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,6 +51,10 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var mAdapter : ConsultationRequestAdapter
 
     private lateinit var mHistoryAdapter : ConsultationHistoryAdapter
+
+    private lateinit var mViewPodEmpty: EmptyViewPod
+
+
 
 
 
@@ -74,12 +84,16 @@ class HomeFragment : BaseFragment(), HomeView {
 
         setUpRecyclerView()
 
+        hideEmptyView()
+
         setUpListener()
+
+        setUpViewPods()
 
         bindData()
         
 
-        mPresenter.onUiReady("", this)
+        mPresenter.onUiReady( this)
     }
 
     companion object {
@@ -98,18 +112,23 @@ class HomeFragment : BaseFragment(), HomeView {
         mAdapter = ConsultationRequestAdapter(mPresenter)
         mHistoryAdapter = ConsultationHistoryAdapter(mPresenter)
 
+
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
         val gridLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvRequest.layoutManager = linearLayoutManager
         rvRequest.adapter = mAdapter
 
         rvHistory.layoutManager = gridLayoutManager
         rvHistory.adapter = mHistoryAdapter
+
+
     }
 
     private fun setUpListener(){
-
-
+        btnSignOut.setOnClickListener {
+            mPresenter.onTapSignOut()
+        }
     }
     
     private  fun setUpPresenter(){
@@ -141,6 +160,10 @@ class HomeFragment : BaseFragment(), HomeView {
        mHistoryAdapter.setData(history)
     }
 
+    override fun displayRecentConsultation(history: List<ConsultationRequest>) {
+       mAdapter.appendData(history)
+    }
+
     override fun displayConsultationConfirm(history: ConsultationRequest) {
 
     }
@@ -153,12 +176,39 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
+    override fun displayEmptyView() {
+        showEmptyView()
+    }
+
+    override fun removeConsultationRequest(request: ConsultationRequest) {
+        mAdapter.removeData(request)
+    }
+
+    override fun displayPrescriptionDialog(id: String, list : List<MedicineVO>) {
+        childFragmentManager?.let {
+            val mDialog  =   ConsultationPrescriptionFragment.newFragmentWithList(list)
+            val bundle = Bundle()
+
+            mPresenter.onDialogUiReady(id)
+
+            bundle.putString(BUNDLE_DOCTOR_ID, id)
+
+
+            mDialog?.arguments = bundle
+            mDialog?.show(
+                it,  BUNDLE_DOCTOR_ID
+            )
+
+        }
+    }
+
+
+
     override fun showDialog() {
         childFragmentManager?.let {
             val mDialog  =   DialogFragment.newFragment()
             val bundle = Bundle()
             bundle.putString(BUNDLE_DOCTOR_ID, SessionManager.doctor_id)
-
 
             mDialog?.arguments = bundle
             mDialog?.show(
@@ -168,8 +218,35 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
+    override fun showDialogNote(note : String) {
+        childFragmentManager?.let {
+            val mDialog  =   NoteFragment.newFragment()
+            val bundle = Bundle()
+            bundle.putString(BUNDLE_DOCTOR_ID, note)
+
+            mDialog?.arguments = bundle
+            mDialog?.show(
+                it,  BUNDLE_DOCTOR_ID
+            )
+
+        }
+    }
+
+    override fun navigateToLogin() {
+        startActivity(activity?.let { LoginActivity.newIntent(it) })
+    }
+
     override fun navigateToChatActivity(id: String) {
         startActivity(activity?.let { ChatActivity.newIntentWithId(it, id) })
+    }
+
+    override fun navigateToNoteActivity(id: String) {
+
+    }
+
+    override fun navigateToChatHistoryActivity(id: String, type: String) {
+        hideEmptyView()
+        startActivity(activity?.let { ChatActivity.newIntentWithType(it, id, type) })
     }
 
     private  fun showConsultationRequestList(request : List<ConsultationRequest>){
@@ -190,6 +267,20 @@ class HomeFragment : BaseFragment(), HomeView {
         tvRecentDoctor.text = SessionManager.doctor_name.toString()
 
 
+    }
+
+    private fun setUpViewPods() {
+        mViewPodEmpty = vpEmpty as EmptyViewPod
+        mViewPodEmpty.setEmptyData(EM_NO_NEWS_AVAILABLE, EMPTY_IMAGE_URL)
+        mViewPodEmpty.setDeledate(mPresenter)
+    }
+
+    private fun showEmptyView() {
+        vpEmpty.visibility = View.VISIBLE
+    }
+
+    private fun hideEmptyView() {
+        vpEmpty.visibility = View.GONE
     }
 
 

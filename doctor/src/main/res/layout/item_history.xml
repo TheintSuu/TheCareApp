@@ -98,7 +98,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/btn_white"
                 android:gravity="center"
                 android:text="ဆေှတ်တမ်"
                 android:textColor="@color/colorPrimary"
@@ -114,7 +113,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/btn_white"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium_2"
                 android:paddingVertical="@dimen/margin_medium"
@@ -132,7 +130,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/btn_white"
                 android:gravity="center"
                 android:text="မှတ်ချက်"
                 android:textStyle="bold"
@@ -141,7 +138,7 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#c0c0c0"/>
+                android:background="#D1C7C7"/>
         </TableRow>
     </RelativeLayout>
 

@@ -36,8 +36,8 @@
             android:paddingHorizontal="@dimen/margin_medium_3"
             android:paddingVertical="@dimen/margin_medium"
             android:text="Address"
-            android:background="@drawable/btn_background"
-            android:textColor="@color/black"
+            android:background="@drawable/btn_blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_regular" />
 
             <TextView
@@ -70,7 +70,7 @@
                     android:paddingHorizontal="@dimen/margin_medium_2"
                     android:paddingVertical="@dimen/margin_medium"
                     android:layout_marginTop="@dimen/margin_medium"
-                    android:text="Your order will be deliveryed after payment slip is received "
+                    android:text="ငွေပေးချေမှု အတည်ပြုပီး နောက်တရက်မှ စတင်၍ ဆေးများကို လိုက်လံပို့ဆောင်မည် ဖြစ်ပါသည်"
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/margin_medium"
                     android:textSize="@dimen/text_regular" />
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Payment"
+                    android:text="ငွေပေးချေမည်"
                     android:id="@+id/btnPayment"
                     android:paddingHorizontal="@dimen/margin_xxlarge"
                     android:textStyle="bold"

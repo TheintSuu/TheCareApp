@@ -119,7 +119,7 @@ object SessionManager {
             it.putString(sharePreferencePatientBloodPressure, value)
         }
 
-    var doctor_photo : String?
+    var doctor_login_status : String?
 
         get() = preferences.getString(sharePreferencePatientPhoto, "")
 

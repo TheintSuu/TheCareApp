@@ -12,9 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheCareAppDoctor">
-        <activity android:name=".activities.ChatActivity"></activity>
-        <activity android:name=".activities.RegisterActivity"></activity>
+        <activity android:name=".activities.RegisterFormActivity"></activity>
+        <activity android:name=".activities.MoreCaseSummaryActivity" />
+        <activity android:name=".activities.ChatActivity" />
+        <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.NoteActivity" />
+        <activity android:name=".activities.PrescriptionActivity" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

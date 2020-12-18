@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4EFEF"
+    tools:context=".activities.NoteActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+         <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    app:titleTextColor="@color/black"
+                    app:title="ဆေးကုသမှုမှတ်တမ်း"
+                    android:elevation="4dp"
+                    app:layout_collapseMode="pin"
+                    app:titleTextAppearance="@style/Toolbar.TitleText"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:theme ="?attr/actionBarTheme"
+                    android:layout_height="?actionBarSize"
+                    android:id="@+id/toolbar"/>
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:expandedTitleGravity="start|top"
+            android:backgroundTint="@color/homeBackgroundColor"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+               </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        android:weightSum="2" >
+        <TextView
+            android:id="@+id/tvPName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="လူနာ နာမည်"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:id="@+id/tvPatientName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="Aung Aung"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2" >
+        <TextView
+            android:id="@+id/tvBD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="မွေးနေ့"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:id="@+id/tvPatientBD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="Aung Aung"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2" >
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="ွေးနွေးမှုပြုလုပ်သည့်ရက်စွဲ"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:text="Aung Aung"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular" />
+    </TableRow>
+    <TextView
+       android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingHorizontal="@dimen/margin_medium"
+        android:text="ဆေးကုသမှုမှတ်တမ်း"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_regular" />
+      <RelativeLayout
+            android:layout_width="match_parent"
+          android:layout_marginTop="@dimen/margin_medium_3"
+          android:layout_marginBottom="@dimen/margin_medium_3"
+            android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="10dp"
+        android:id="@+id/layoutNote"
+        android:layout_above="@id/btnClose"
+        android:layout_margin="10dp"
+        android:layout_marginTop="@dimen/margin_medium_3"
+        app:cardBackgroundColor="@color/white">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:maxLines="4"
+            android:lines="5"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textSize="13sp"
+            android:maxLength="2000"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:id="@+id/etConsultationNote"
+            android:layout_margin="5dp"/>
+
+    </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_marginTop="@dimen/margin_medium_2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_medium_3"
+            android:paddingHorizontal="@dimen/margin_medium_3"
+            android:paddingVertical="@dimen/margin_medium"
+            android:text="သိမ်းမည်"
+            android:background="@drawable/btn_blue"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_regular" />
+
+
+</RelativeLayout>
+
+
+</LinearLayout>

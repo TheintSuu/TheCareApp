@@ -1,6 +1,7 @@
 package com.theintsuhtwe.thecareapp.mvp.presenters
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.AuthenticationModel
 import com.theintsuhtwe.shared.data.models.AuthenticationModelImpl
@@ -29,10 +30,10 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
                 mPatientModel.getPatientByEmail(email, onSuccess = {
                     mView?.navigateToHomeScreen(patient = it)
                 }, onFailure = {
-
+                    Log.w("error", it)
                 })
             }, onFailure = {
-
+                Log.w("error", it)
             })
 
 

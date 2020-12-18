@@ -3,6 +3,15 @@ package com.theintsuhtwe.thecareapp.utils
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 
+
+//Error Messages
+const val EM_NO_INTERNET_CONNECTION = "No Internet Connection"
+const val EM_NO_NEWS_AVAILABLE = "There are no news available"
+
+//Empty Image
+const val EMPTY_IMAGE_URL = "https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png"
+
+
 fun getCurrentPatientInfo(): Patient {
         val patient = Patient()
         patient.id = SessionManager.patient_id.toString()

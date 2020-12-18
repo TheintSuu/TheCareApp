@@ -17,8 +17,13 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
     var mPatientModel = PatientModelImpl
 
+    var mDoctorVO = DoctorVO()
+
+    var mRecentDoctor : MutableList<DoctorVO> = arrayListOf()
+
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
+
         getAllData(lifecycleOwner)
 
         mTheCareModel.getDeviceToken()
@@ -30,10 +35,44 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
 
     override fun onTapConfirm(id : String, special: String) {
+
         mView?.navigateToQuestion(id, special)
+
+    }
+
+    override fun onTapStartConsulataion(id: String) {
+        isExistRecentDoctor(mDoctorVO)
+        mConsultationModel.updateConsultationRequestByPateint(id, onSuccess = {
+            mView?.navigateToChat(id)
+        }, onFaiure = {})
+
+
+
+
+    }
+
+    private fun isExistRecentDoctor(doctorVO: DoctorVO){
+        val isExistDoctor =  mRecentDoctor.find { doc ->
+            doc.id.toString()
+                .equals(
+                    doctorVO.id.toString()
+                )
+        }
+        when(isExistDoctor== null){
+            true -> {
+                mPatientModel.addRecentDoctor(SessionManager.patient_id.toString(),
+                    mDoctorVO, onSuccess = {
+
+                    }, onFailure = {
+
+                    })
+            }
+
+        }
     }
 
     override fun onTapStartChat(id: String) {
+
       mView?.navigateToChat(id)
     }
 
@@ -67,6 +106,8 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
         mPatientModel.getAllRecentDoctorsFromDB()
                 .observe(lifecycleOwner, Observer {
+                    mRecentDoctor.clear()
+                    mRecentDoctor.addAll(it)
             mView?.displayRecentDoctorList(it)
         }
         )
@@ -74,7 +115,9 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
         mConsultationModel.getConsultationConfirmByPatient(
                 SessionManager.request_id.toString(),
             onSuccess = {
-                it.doctor?.let { it1 -> mView?.showConsultationRecevied(it) }
+                it.doctor?.let { it1 ->
+                    mDoctorVO = it1
+                    mView?.showConsultationRecevied(it) }
             },
             onFaiure = {
 
@@ -85,6 +128,10 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
     override fun onTapQuestion(descption : String, answer: String) {
 
+    }
+
+    override fun onTapRecentDoctor(id: String, special: String) {
+       mView?.showRecentConfirmDialog(id, special)
     }
 
 

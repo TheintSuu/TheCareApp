@@ -3,11 +3,11 @@ package com.theintsuhtwe.doctor.mvp.presenters.impls
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.doctor.delegates.ConsultationItemDelegate
 import com.theintsuhtwe.doctor.mvp.views.ChatView
-import com.theintsuhtwe.doctor.mvp.views.HomeView
 import com.theintsuhtwe.shared.data.vos.MessageVO
 import com.theintsuhtwe.shared.mvp.presenters.BasePresenter
 
-interface ChatPresenter : BasePresenter<ChatView>, ConsultationItemDelegate {
+
+interface ChatPresenter : BasePresenter<ChatView>,ConsultationItemDelegate {
 
     fun onUiReady(id : String, lifecycleOwner: LifecycleOwner)
 
@@ -18,6 +18,9 @@ interface ChatPresenter : BasePresenter<ChatView>, ConsultationItemDelegate {
     fun onTapNote()
 
     fun onTapMore()
+
+
+    fun onTapCheckOut(id : String)
 
     fun onTapSend(id : String, text : String, image : String)
 

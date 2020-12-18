@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CaseSummaryActivity">
+    tools:context=".activities.PrescriptionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -25,11 +25,11 @@
                     android:layout_width="match_parent"
                     android:background="@color/white"
                     app:titleTextColor="@color/black"
-                    app:title="လူနာအချက်အလက်များ စစ်ဆေးပါ"
+                    app:title="ဆေးညွှန်းမည်"
                     android:elevation="4dp"
                     app:layout_collapseMode="pin"
                     app:titleTextAppearance="@style/Toolbar.TitleText"
-                    app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                     android:theme ="?attr/actionBarTheme"
                     android:layout_height="?actionBarSize"
                     android:id="@+id/toolbar"/>
@@ -46,7 +46,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/margin_medium_3"
          >
 
             <androidx.cardview.widget.CardView
@@ -68,9 +68,10 @@
                         android:id="@+id/ed_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/round_text_background"
+                        android:background="@drawable/btn_serach"
                         android:drawableEnd="@drawable/ic_baseline_search_24"
                         android:hint="ရှာမည်"
+                        android:layout_marginTop="@dimen/margin_medium_2"
                         android:layout_marginHorizontal="@dimen/margin_medium"
                         android:textSize="@dimen/text_regular"
                         android:padding="@dimen/margin_medium"
@@ -82,7 +83,7 @@
                         android:id="@+id/rvMedicine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_medium"
+                        android:layout_marginTop="@dimen/margin_medium_2"
                         android:layout_marginStart="@dimen/margin_medium_2"
                         android:backgroundTint="@color/homeBackgroundColor" />
 
@@ -105,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:layout_marginBottom="@dimen/margin_medium_3"
+        android:layout_marginBottom="@dimen/margin_xxlarge"
         android:paddingHorizontal="@dimen/margin_medium_3"
         android:paddingVertical="@dimen/margin_medium"
         android:text="ဆေးညွှန်းပီး တွေးနွေးမှု ပီးဆုံးမည်"

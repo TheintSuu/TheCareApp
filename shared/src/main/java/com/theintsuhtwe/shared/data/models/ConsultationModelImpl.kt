@@ -2,6 +2,8 @@ package com.theintsuhtwe.shared.data.models
 
 import android.annotation.SuppressLint
 import android.media.session.MediaSessionManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
 import java.text.SimpleDateFormat
@@ -14,12 +16,24 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
         return mFirebase.getConsultationByPatient(id, onSuccess, onFaiure)
     }
 
+    override fun updateConsultationRequestByPateint(id: String, onSuccess: () -> Unit, onFaiure: (String) -> Unit) {
+        return mFirebase.updateConsultationRequestByPatient(id, onSuccess, onFaiure)
+    }
+
     override fun getConsultationRequestByDoctor(
         special: String,
         onSuccess: (List<ConsultationRequest>) -> Unit,
         onFaiure: (String) -> Unit
     ) {
-       mFirebase.getConsultationRequestByDoctor(special, onSuccess , onFaiure)
+       mFirebase.getConsultationRequestByDoctor(special,  onSuccess , onFaiure)
+    }
+
+    override fun getConsultationRequestByDoctorId(
+        id: String,
+        onSuccess: (List<ConsultationRequest>) -> Unit,
+        onFaiure: (String) -> Unit
+    ) {
+        mFirebase.getConsultationRequestByDoctorId(id,  onSuccess , onFaiure)
     }
 
     override fun getConsultationConfirmByPatient(
@@ -34,33 +48,13 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
         return mFirebase.getConsultationByDoctor(id, onSuccess, onFaiure)
     }
 
-    override fun getConsultationRequestById(id: String, doctorId : DoctorVO, onSuccess: (String) -> Unit, onFaiure: (String) -> Unit) {
+    override fun getConsultationRequestById(id: String,  onSuccessRequest: (con : ConsultationRequest) -> Unit, onFaiure: (String) -> Unit) {
 
 
-        return mFirebase.getConsultationRequestById(id, onSuccess= {
-            val con = it
-           val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
-           val currentDateAndTime: String = simpleDateFormat.format(Date())
-           it.patient?.let { it1 ->
-                   it.caseSummary?.toList()?.let { it3 ->
-                           mFirebase.startConsultation(id,
-                               currentDateAndTime,
-                               it3,
-                               it1,
-                               doctorId,
-                               onSuccess = {
-                                   onSuccess(it)
-                               },
-                               onFailure = {
-                                   onFaiure(it)
-                               }
+        return mFirebase.getConsultationRequestById(id,  onSuccess= {
+                req ->
 
-
-                           )
-
-                   }
-
-           }
+          onSuccessRequest(req)
 
        }, onFailure ={
            onFaiure(it)
@@ -76,9 +70,10 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     }
 
     override fun addConsultation(consulationId: String, dateTime: String, questionAnswerList: List<QuestionVO>, patientVO: Patient, doctorVO: DoctorVO,  onSuccess: (String) -> Unit, onFailure: (String) -> Unit) {
-       mFirebase.startConsultation(consulationId, dateTime, questionAnswerList, patientVO, doctorVO,  onSuccess, onFailure)
+      return  mFirebase.startConsultation(consulationId, dateTime, questionAnswerList, patientVO, doctorVO,  onSuccess, onFailure)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun sendMessageBySenderType(id: String, message: MessageVO, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
        mFirebase.sendMessage(id, message, onSuccess, onFailure)
     }
@@ -92,7 +87,15 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     }
 
     override fun addPrescriptionByDoctor(id: String, medicines: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-       mFirebase.addPrescriptions(id, medicines, onSuccess, onFailure )
+       mFirebase.addPrescriptions(id, medicines, onSuccess = {
+           mFirebase.updateConsultationById(id, onSuccess= {
+               onSuccess()
+           }, onFailure = {
+
+           })
+       }, onFailure ={
+
+       } )
     }
 
     override fun deletePrescriptionByDoctor(id: String, medicines: List<MedicineVO>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
@@ -106,8 +109,34 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     }
 
     @SuppressLint("CheckResult")
-    override fun sendConsultationRequest(patient: Patient, special: String, id : ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
-        mFirebase.sendConsultationRequest(patient, special,  id, onSuccess, onFailure)
+    override fun sendConsultationRequest(recentId: String, patient: Patient, special: String, id : ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
+        mFirebase.sendConsultationRequest(recentId, patient, special,  id, onSuccess, onFailure)
+    }
+
+    override fun getPrescriptionByConsultationId(
+        id: String,
+        onSuccess: (List<MedicineVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+      mFirebase.getPrescriptionByConsultationId(id, onSuccess, onFailure)
+    }
+
+    override fun getNoteByConsultationId(
+        id: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebase.getNoteByConsultationId(id, onSuccess, onFailure)
+    }
+
+    override fun checkOut(
+        address: String,
+        medicines: List<MedicineVO>,
+        total : String,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mFirebase.checkOutMedicine(address, medicines, total, onSuccess, onFailure)
     }
 
     override fun addConsultationNote(

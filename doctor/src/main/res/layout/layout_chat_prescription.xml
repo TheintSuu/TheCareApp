@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_margin="12dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/blue_400"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medicine Recommendation"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPrescriptionMedicine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:padding="@dimen/margin_small"
+                    android:paddingHorizontal="@dimen/margin_medium_3" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+<!--    <TextView-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="@dimen/margin_medium"-->
+<!--        android:id="@+id/btnCheckOut"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="right|bottom"-->
+<!--        android:layout_marginRight="@dimen/margin_medium_3"-->
+<!--        android:layout_marginBottom="@dimen/margin_xxlarge"-->
+<!--        android:paddingHorizontal="@dimen/margin_medium_3"-->
+<!--        android:paddingVertical="@dimen/margin_medium"-->
+<!--        android:text="ဆေးညွှန်း မှာယူမည်"-->
+<!--        android:background="@drawable/btn_blue"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/text_regular" />-->
+
+
+</LinearLayout>

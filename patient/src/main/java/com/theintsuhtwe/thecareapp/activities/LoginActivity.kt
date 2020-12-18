@@ -14,6 +14,10 @@ import com.theintsuhtwe.thecareapp.mvp.presenters.LoginPresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.LoginPresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.LoginView
 import com.theintsuhtwe.thecareapp.utils.SessionManager
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.btnRegister
+import kotlinx.android.synthetic.main.activity_login.etEmail
+
 
 class LoginActivity : BaseActivity(), LoginView {
 
@@ -44,7 +48,14 @@ class LoginActivity : BaseActivity(), LoginView {
 
     private fun setUpActionListeners() {
 
-        mPresenter.onTapLogin(this,"helentheintsuu@gmail.com","hazel$1998")
+        btnRegister.setOnClickListener {
+            mPresenter.onTapRegister()
+        }
+
+        btnLogin.setOnClickListener {
+            mPresenter.onTapLogin(this,etEmail.text.toString(), tvPassword.text.toString())
+        }
+
 
 
 //        btnRegister.setOnClickListener {

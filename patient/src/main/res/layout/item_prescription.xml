@@ -4,22 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="@dimen/margin_medium_2"
-    android:layout_height="50dp">
+    android:layout_height="65dp">
 
     <TextView
         android:id="@+id/tvMedicineName"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingRight="@dimen/margin_medium_2"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_regular_2x"
         android:text="Acetaminophen (Tylenol)"
         />
     <ImageView
         android:id="@+id/tvAdd"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/margin_medium_3"
-        android:layout_width="50dp"
+        android:layout_width="65dp"
         android:layout_height="match_parent"
         android:src="@drawable/ic_baseline_add_circle_outline_24"
         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="#F4EFEF"/>
 
 </RelativeLayout>

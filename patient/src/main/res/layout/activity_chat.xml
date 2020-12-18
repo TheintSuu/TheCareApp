@@ -15,7 +15,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/patientname"
+                android:id="@+id/tvName"
                 android:gravity="center"
                 android:text=""
                 android:textSize="15sp"
@@ -121,11 +121,19 @@
                     android:layout_marginBottom="70dp"
                     android:nestedScrollingEnabled="true"/>
 
+                <include layout="@layout/layout_chat_prescription"
+                    android:id="@+id/layoutChatPrescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:visibility="gone"/>
+
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
         <LinearLayout
+            android:id="@+id/layoutRootHide"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -196,6 +204,7 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
             <RelativeLayout
+                android:id="@+id/layoutHideChat"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="match_parent"

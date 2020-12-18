@@ -2,7 +2,6 @@ package com.theintsuhtwe.thecareapp.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.theintsuhtwe.shared.activities.BaseActivity
@@ -75,7 +74,7 @@ class PrescriptionActivity : BaseActivity(), PrescriptionView {
     }
 
     override fun navigateToChat(id: String) {
-
+       startActivity(ChatActivity.newIntentWithId(this, id))
     }
 
     override fun showDetailPrescription(id: String, price : Long) {

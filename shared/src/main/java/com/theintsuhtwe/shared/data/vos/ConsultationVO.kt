@@ -10,6 +10,9 @@ data class ConsultationVO(
         @PrimaryKey(autoGenerate = true)
         @SerializedName("id") var id: String = "",
         @SerializedName("speciality") var special : String ?= null,
+        @SerializedName("status") var statue : String = "",
+
+        @SerializedName("create_at") var careateAt : String ?= null,
         @SerializedName("patient") var patient: Patient ?= null,
         @SerializedName("doctor") var doctor: DoctorVO ?= null,
         @SerializedName("chats") var message : List<MessageVO>  = arrayListOf(),

@@ -3,7 +3,6 @@ package com.theintsuhtwe.thecareapp.fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import com.theintsuhtwe.thecareapp.activities.QuestionActivity
 import com.theintsuhtwe.thecareapp.adapters.RecentDoctorItemDoctorAdapter
 import com.theintsuhtwe.thecareapp.adapters.SpecialityItemAdapter
 import com.theintsuhtwe.thecareapp.fragments.ConfirmDialogFragment.Companion.BUNDLE_CATEGORY_ID
-import com.theintsuhtwe.thecareapp.fragments.ConfirmDialogFragment.Companion.BUNDLE_PATIENT_ID
+import com.theintsuhtwe.thecareapp.fragments.ConfirmDialogFragment.Companion.BUNDLE_ID
 import com.theintsuhtwe.thecareapp.fragments.ConfirmDialogFragment.Companion.TAG_ADD_GROCERY_DIALOG
 import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.HomePresenterImpl
@@ -129,9 +128,25 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun showConfirmDialog(spcial : String) {
         childFragmentManager?.let {
+            SessionManager.patient_recent_doctor_id = " "
             val mDialog  =   ConfirmDialogFragment.newFragment()
             val bundle = Bundle()
             bundle.putString(BUNDLE_CATEGORY_ID, spcial)
+
+            mDialog?.arguments = bundle
+            mDialog?.show(
+                it,  BUNDLE_CATEGORY_ID
+            )
+
+        }
+    }
+
+    override fun showRecentConfirmDialog(id: String,special: String) {
+        childFragmentManager?.let {
+            val mDialog  =   ConfirmDialogFragment.newFragment()
+            val bundle = Bundle()
+            (SessionManager).patient_recent_doctor_id = id
+            bundle.putString(BUNDLE_CATEGORY_ID, special)
 
             mDialog?.arguments = bundle
             mDialog?.show(
@@ -176,7 +191,8 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private fun setUpListener(){
     btnStartConsultation.setOnClickListener {
-        startActivity(activity?.let { it1 -> ChatActivity.newIntentWithId(it1, mConsultationId) })
+        mPresenter.onTapStartConsulataion(SessionManager.request_id.toString())
+      //  startActivity(activity?.let { it1 -> ChatActivity.newIntentWithId(it1, mConsultationId) })
     }
 
     }
@@ -208,7 +224,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private fun hideRecentDoctor(){
         rvRecentDoctor.visibility = View.GONE
-        rvRecentDoctor.visibility = View.GONE
+        tvRecentDoctor.visibility = View.GONE
     }
 
     private fun showConsultationReceived(consulation: ConsultationRequest){

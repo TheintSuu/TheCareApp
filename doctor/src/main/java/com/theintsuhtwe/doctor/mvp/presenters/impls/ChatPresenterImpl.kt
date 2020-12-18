@@ -2,11 +2,13 @@ package com.theintsuhtwe.doctor.mvp.presenters.impls
 
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.doctor.mvp.views.ChatView
-import com.theintsuhtwe.doctor.mvp.views.HomeView
 import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.DoctorModelImpl
+import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
+import com.theintsuhtwe.shared.data.vos.ConsultationRequest
+import com.theintsuhtwe.shared.data.vos.ConsultationVO
 import com.theintsuhtwe.shared.data.vos.MessageVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import java.text.SimpleDateFormat
@@ -19,12 +21,17 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
 
     var mDoctorModel = DoctorModelImpl
 
+    var mPatientModel = PatientModelImpl
+
+    var mConsulation = ConsultationVO()
+
     override fun onUiReady(id : String, lifecycleOwner: LifecycleOwner) {
 
       mModel.getConsultationById(id,
       onSuccess = {
-          it.patient?.question?.let { it1 -> mView?.displayPatientGeneralQuestion(it1) }
-
+          mConsulation = it
+          getCaseSummary()
+          it?.special?.let { it1 -> mView?.showSpeciality(it1) }
           mView?.displayPatientSpecialQuestion(it.caseSummary)
       },
           onFaiure = {
@@ -32,16 +39,38 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
           }
       )
 
-       mModel.getAllChatMessages(id, onSuccess = {
+
+
+
+        mModel.getAllChatMessages(id, onSuccess = {
            mView?.displayPatientChat(it)
        },
        onFailure = {
 
        })
+
+        mModel.getPrescriptionByConsultationId(id, onSuccess = {
+            mView?.displayPrescription(it)
+        }, onFailure = {
+
+        })
+    }
+
+    private fun getCaseSummary(){
+        mConsulation.patient?.id?.let {
+            mPatientModel.getQuestionByPatient(
+                it,
+                onSuccess = {
+                    mView?.displayPatientGeneralQuestion(it)
+                },
+                onFaiure = {
+
+                })
+        }
     }
 
     override fun onTapPrescription(special: String) {
-
+            mView?.navigateToPrescription(special)
     }
 
     override fun onTapSpecailQuestion(special: String) {
@@ -53,6 +82,10 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
     }
 
     override fun onTapMore() {
+
+    }
+
+    override fun onTapCheckOut(id: String) {
 
     }
 
@@ -77,14 +110,20 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
     }
 
     override fun onTapRequest(name: String) {
-
+       
     }
 
     override fun onTapAccept(id: String) {
+        
+    }
+
+    override fun onTapCancel(id: ConsultationRequest) {
 
     }
 
-    override fun onTapConsultationHistory(name: String) {
 
-    }
+
+
+
+
 }

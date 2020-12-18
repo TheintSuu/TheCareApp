@@ -1,31 +1,71 @@
 package com.theintsuhtwe.doctor.mvp.presenters.impls
 
 import androidx.lifecycle.LifecycleOwner
+import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.mvp.views.HomeView
+import com.theintsuhtwe.doctor.utils.SIGN_OUT
 import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.DoctorModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
 import com.theintsuhtwe.shared.data.vos.ConsultationRequest
+import com.theintsuhtwe.shared.data.vos.DoctorVO
+import com.theintsuhtwe.shared.data.vos.MedicineVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
+
     var mTheCareModel = SpecialitiesModelImpl
 
     var mModel = ConsultationModelImpl
 
     var mDoctorModel = DoctorModelImpl
-    override fun onUiReady(id : String,lifecycleOwner: LifecycleOwner) {
-        getAllData(id, lifecycleOwner)
+
+    private var doctor  = DoctorVO()
+
+    private var flag = false
+
+    private var consulation = ConsultationRequest()
+
+    private var dialogMedicineVO : List<MedicineVO> = arrayListOf()
+
+    private var mConsulationRequest : MutableList<ConsultationRequest> = arrayListOf()
+
+    override fun onUiReady(lifecycleOwner: LifecycleOwner) {
+
+        getAllData( lifecycleOwner)
 
         mTheCareModel.getDeviceToken()
 
+        mDoctorModel.getDoctorByEmail(SessionManager.doctor_email.toString(), onSuccess = { doc ->
+            doctor = doc
+        }, onFailure = {
+
+        })
+
+
+
 
     }
 
-    override fun onTapStartConsultation(consultation: ConsultationRequest) {
+    override fun onDialogUiReady(id: String) {
+        mModel.getPrescriptionByConsultationId(id, onSuccess = {
+
+        }, onFailure = {
+
+        }
+        )
+
 
     }
+
+    override fun onTapSignOut() {
+        SessionManager.doctor_login_status = SIGN_OUT
+        mView?.navigateToLogin()
+    }
+
 
     override fun onTapPostpone(time: String, consultation: ConsultationRequest) {
 
@@ -36,41 +76,96 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
     override fun onTapRequest(name: String) {
 
 
-        //mView?.showDialog()
+        mView?.showDialog()
     }
 
     override fun onTapAccept(id: String) {
+        mModel.getConsultationRequestById(id, onSuccessRequest = {
+            consulation = it
 
-        mDoctorModel.getDoctorByEmail(SessionManager.doctor_email.toString(), onSuccess = {
-            mModel.getConsultationRequestById(id,
-                    doctorId = it,
-                    onSuccess = {
-                        mView?.navigateToChatActivity(id)
-                    },
-                    onFaiure = {
+           onTapChatByUiReady(id)
 
-                    })
-        }, onFailure = {
+        }, onFaiure = {
 
         })
 
-    }
-
-    override fun onTapConsultationHistory(name: String) {
 
     }
 
+    override fun onTapCancel(request : ConsultationRequest) {
+        mConsulationRequest.remove(request)
+        mView?.removeConsultationRequest(request)
+       // mView?.displayConsultationRequest(mConsulationRequest)
+    }
 
-    private fun getAllData(id: String, lifecycleOwner: LifecycleOwner){
+    private fun onTapChatByUiReady(id : String){
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
+        val currentDateAndTime: String = simpleDateFormat.format(Date())
+
+        consulation.caseSummary?.let {
+            consulation.patient?.let { it1 ->
+                mModel.addConsultation(id,
+                    currentDateAndTime,
+                    it,
+                    it1,
+                    doctor,
+                    onSuccess = { conId ->
+                        mView?.navigateToChatActivity(conId)
+                    },
+                    onFailure = {
+
+                    }
+
+
+                )
+            }
+        }
+    }
+
+
+
+    override fun onTapNote(id: String) {
+        mModel.getNoteByConsultationId(id, onSuccess = {
+            if(it.isNotEmpty())   mView?.showDialogNote(it)
+        }, onFailure = {
+
+        }
+        )
+
+    }
+
+    override fun onTapPrescription(id: String) {
+        mModel.getPrescriptionByConsultationId(id, onSuccess = {
+            mView?.displayPrescriptionDialog(id, it)
+        }, onFailure = {
+
+        }
+        )
+
+    }
+
+    override fun onTapChat(id: String, type: String) {
+       mView?.navigateToChatHistoryActivity(id, type)
+    }
+
+
+    override fun onTapTryAgain() {
+
+    }
+
+
+    private fun getAllData( lifecycleOwner: LifecycleOwner){
+
 
 
         mModel.getConsultationRequestByDoctor(
-           SessionManager.doctor_speciality.toString(),
-            onSuccess = {list->
-                list.isNotEmpty()?.let{
-                    mView?.displayConsultationRequest(list)
 
-            }
+            SessionManager.doctor_speciality.toString(),
+            onSuccess = {
+                    list->
+
+                    filterRecentDoctor(list)
+
 
 
             },
@@ -78,18 +173,18 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
             }
         )
+
+
+
+
+
 
         mModel.getConsultationByDoctor(
             SessionManager.doctor_id.toString(),
             onSuccess = {list->
-                when(list.size){
-                    0 -> {
 
-                    }
-                    else -> {
-                    mView?.displayConsultationHistory(list)
-                }
-                }
+                if(list.isEmpty()) mView?.displayEmptyView() else mView?.displayConsultationHistory(list)
+
 
             },
             onFaiure = {
@@ -98,9 +193,18 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
         )
 
 
+    }
 
+    private fun filterRecentDoctor(list : List<ConsultationRequest>){
+        val isExistDoctor =  list.find { doc ->
 
+           doc.recent_id.equals(SessionManager.doctor_id)
+        }
+
+        mView?.displayConsultationRequest(list)
 
     }
+
+
 
 }

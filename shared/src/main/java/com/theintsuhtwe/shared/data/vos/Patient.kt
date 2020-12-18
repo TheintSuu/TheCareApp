@@ -18,6 +18,7 @@ data class Patient(
         @SerializedName("id") var id: String = "",
         @SerializedName("name") var name: String = "",
         @SerializedName("email") var email: String = "",
+        @SerializedName("birthday") var bDate : String = "",
         @SerializedName("image") var image: String = "",
         @SerializedName("phone") var phone: String = "",
         @SerializedName("device_token") var device_token: String = "",

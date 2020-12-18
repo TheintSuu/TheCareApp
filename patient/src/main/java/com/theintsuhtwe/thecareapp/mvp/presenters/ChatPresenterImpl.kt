@@ -50,6 +50,12 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
        onFailure = {
 
        })
+
+        mModel.getPrescriptionByConsultationId(id, onSuccess = {
+            mView?.displayPrescription(it)
+        }, onFailure = {
+
+        })
     }
 
     override fun onTapPrescription(special: String) {
@@ -65,6 +71,10 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
     }
 
     override fun onTapMore() {
+
+    }
+
+    override fun onTapCheckOut(id: String) {
 
     }
 
@@ -96,7 +106,9 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
 
     }
 
-
+    override fun onTapRecentDoctor(id: String, doctorId: String) {
+        TODO("Not yet implemented")
+    }
 
 
 }

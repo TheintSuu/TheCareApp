@@ -24,6 +24,7 @@
     <string name="height">အရပ်</string>
     <string name="Birth">မွေးနေ့</string>
     <string name="bl_type">သွေးအမျိုးအစား</string>
+    <string name="history">History</string>
 
     <string-array name="Month">
         <item>Janauary</item>

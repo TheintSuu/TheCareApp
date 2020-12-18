@@ -18,6 +18,8 @@ interface HomePresenter : BasePresenter<HomeView>, SpecialitiesItemDelegate {
 
     fun onTapConfirm(id : String, category : String)
 
+    fun onTapStartConsulataion(id : String)
+
     fun onTapStartChat(id : String)
 
     fun onTapCancel()

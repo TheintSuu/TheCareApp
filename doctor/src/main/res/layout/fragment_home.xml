@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAE3E3"
+    android:background="#F3EFEF"
     tools:context=".fragments.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="#F3EFEF">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_height="wrap_content"
+            app:expandedTitleGravity="start|top"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:scrimAnimationDuration="1000"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:padding="@dimen/margin_small"
+                android:background="@color/white"
                 android:layout_height="wrap_content">
                 <com.theintsuhtwe.doctor.views.components.RoundedCornerImageView
                     android:id="@+id/ivConfirmDoctorImage"
@@ -45,13 +48,27 @@
                     android:layout_marginLeft="@dimen/margin_medium_2"
                     android:layout_marginTop="@dimen/margin_xlarge"
                     android:text="Recently Doctor List"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_regular_3x"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/btnSignOut"
+                   android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:text="Sign Out"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/margin_medium_2"
                     android:textStyle="bold" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvRequest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#F3EFEF"
                     android:paddingTop="@dimen/margin_medium"
                     android:layout_below="@id/ivConfirmDoctorImage"
                     android:layout_marginTop="@dimen/margin_medium_2" />
@@ -61,6 +78,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
+            app:layout_collapseMode="pin"
             android:layout_height="?attr/actionBarSize">
             <TextView
                 android:layout_width="wrap_content"
@@ -76,12 +94,23 @@
         android:layout_height="match_parent"
         android:padding="@dimen/margin_medium"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+
+        <include
+            android:id="@+id/vpEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/view_pod_empty"/>
+
+        </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
 

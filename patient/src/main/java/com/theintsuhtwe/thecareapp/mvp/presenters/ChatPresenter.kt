@@ -18,6 +18,9 @@ interface ChatPresenter : BasePresenter<ChatView>,SpecialitiesItemDelegate {
 
     fun onTapMore()
 
+
+    fun onTapCheckOut(id : String)
+
     fun onTapSend(id : String, text : String, image : String)
 
 

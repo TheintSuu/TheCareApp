@@ -14,7 +14,7 @@ class ChatPatientViewHolder (private val mDelegate: ConsultationItemDelegate, it
     init {
         itemView.setOnClickListener {
             mData?.let {
-                mDelegate.onTapRequest(it.id)
+
             }
 
         }

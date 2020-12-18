@@ -8,7 +8,7 @@ import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.persistence.dao.*
 
 
-@Database(entities = [ CategoryVO::class, DoctorVO::class, CaseSummaryVO::class, Patient::class, QuestionVO::class], version = 11, exportSchema = false)
+@Database(entities = [ CategoryVO::class, DoctorVO::class, CaseSummaryVO::class, Patient::class, QuestionVO::class], version = 14, exportSchema = false)
 //@Database(entities = [  Patient::class], version = 5, exportSchema = false)
 abstract class TheCareDB : RoomDatabase() {
     companion object {

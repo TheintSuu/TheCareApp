@@ -20,8 +20,8 @@
         android:paddingHorizontal="@dimen/margin_medium_3"
         android:paddingVertical="@dimen/margin_medium"
         android:text="Prescription"
-        android:background="@drawable/btn_background"
-        android:textColor="@color/black"
+        android:background="@drawable/btn_blue"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_regular" />
 
     <androidx.recyclerview.widget.RecyclerView

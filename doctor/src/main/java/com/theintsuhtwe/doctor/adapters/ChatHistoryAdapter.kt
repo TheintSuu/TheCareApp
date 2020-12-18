@@ -6,6 +6,7 @@ import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.delegates.ConsultationItemDelegate
 import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.doctor.views.viewholders.ChatDoctorViewHolder
+import com.theintsuhtwe.doctor.views.viewholders.ChatPatientViewHolder
 import com.theintsuhtwe.doctor.views.viewholders.RequestViewHolder
 import com.theintsuhtwe.shared.adapters.BaseAdapter
 import com.theintsuhtwe.shared.data.vos.MessageVO
@@ -23,7 +24,7 @@ class ChatHistoryAdapter   (private val mDelegate: ConsultationItemDelegate) : B
             }
             else ->{
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_bypatient,parent,false)
-                return  ChatDoctorViewHolder(mDelegate,v)
+                return  ChatPatientViewHolder(mDelegate,v)
             }
         }
 
