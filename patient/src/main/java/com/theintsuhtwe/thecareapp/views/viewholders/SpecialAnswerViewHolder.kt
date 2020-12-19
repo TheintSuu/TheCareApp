@@ -13,7 +13,7 @@ class SpecialAnswerViewHolder (private val mDelegate: SpecialitiesItemDelegate, 
     init {
         itemView.setOnClickListener {
             mData?.let {
-                mDelegate.onTapSpecialities(it.description)
+                it.description?.let { it1 -> mDelegate.onTapSpecialities(it1) }
             }
 
         }
@@ -21,8 +21,6 @@ class SpecialAnswerViewHolder (private val mDelegate: SpecialitiesItemDelegate, 
 
     override fun bindData(data: QuestionVO) {
         mData = data
-
-
         itemView.tvDescription.text = data.description
         itemView.tvAnswer.text = data.answer
         itemView.tvNumber.text = ( position + "1".toLong()  ).toString() +")."

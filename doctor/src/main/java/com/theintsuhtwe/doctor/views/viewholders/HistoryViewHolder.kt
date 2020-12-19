@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.delegates.ConsultationItemDelegate
 import com.theintsuhtwe.doctor.delegates.HistoryDelegate
+import com.theintsuhtwe.doctor.utils.FINISH
 import com.theintsuhtwe.shared.data.vos.ConsultationVO
 import com.theintsuhtwe.shared.viewholders.BaseViewHolder
 import kotlinx.android.synthetic.main.item_history.view.*
@@ -44,7 +45,7 @@ class HistoryViewHolder (private val mDelegate: HistoryDelegate, itemView: View)
         mData = data
 
         when(data.statue){
-            "finish" -> {
+             FINISH -> {
                 itemView.btnSend.setTextColor(Color.BLACK)
                itemView.btnSend.setBackgroundResource(R.drawable.btn_serach)
             }else -> {
@@ -54,6 +55,8 @@ class HistoryViewHolder (private val mDelegate: HistoryDelegate, itemView: View)
 
 
         itemView.tvName.text = data.patient?.name
+
+        itemView.tvBDDate.text = data.patient?.bDate
 
 
        // itemView.tvBDDate.text=  data.patient?.bDate

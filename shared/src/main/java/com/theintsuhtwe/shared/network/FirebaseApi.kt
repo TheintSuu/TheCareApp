@@ -127,4 +127,6 @@ interface FirebaseApi {
         onSuccess: (String) -> Unit,
         onFailure: (String) -> Unit
     )
+
+    fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit)
 }

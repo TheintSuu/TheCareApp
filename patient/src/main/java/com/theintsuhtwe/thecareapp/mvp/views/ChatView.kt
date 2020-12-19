@@ -26,4 +26,6 @@ interface ChatView : BaseView {
     fun displayPrescription(list :List<MedicineVO>)
 
     fun navigateToCheckOut(id : String)
+
+    fun showSendMessageLayout()
 }

@@ -14,7 +14,7 @@ class AnswerViewHolder(private val mDelegate: SpecialitiesItemDelegate, itemView
     init {
         itemView.setOnClickListener {
             mData?.let {
-                mDelegate.onTapSpecialities(it.description)
+                it.description?.let { it1 -> mDelegate.onTapSpecialities(it1) }
             }
 
         }

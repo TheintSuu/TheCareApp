@@ -12,8 +12,8 @@ import com.theintsuhtwe.shared.persistence.typeconverter.QuestionsConverter
 data class QuestionVO(
         @PrimaryKey
     @SerializedName("id") var id: String = "",
-    @SerializedName("description") var description: String = "",
+    @SerializedName("description") var description: String ?= null,
     @SerializedName("type") var type: String = "",
-    @SerializedName("answer") var answer: String =  ""
+    @SerializedName("answer") var answer:  String ?= null
 
 )

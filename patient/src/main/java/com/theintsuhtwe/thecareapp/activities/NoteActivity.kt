@@ -11,7 +11,6 @@ import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.thecareapp.R
 import com.theintsuhtwe.thecareapp.mvp.presenters.NotePresenter
 import com.theintsuhtwe.thecareapp.mvp.presenters.NotePresenterImpl
-import com.theintsuhtwe.thecareapp.mvp.presenters.PrescriptionPresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.NoteView
 import com.theintsuhtwe.thecareapp.mvp.views.PrescriptionView
 import kotlinx.android.synthetic.main.activity_note.*

@@ -54,8 +54,8 @@ fun createNotiRequsetBody(to : String, body : String, title : String) : JSONObje
 
 fun MutableMap<String,Any>?.convertToQuestionVO(): QuestionVO {
     val question = QuestionVO()
-    question.description = this?.get("description") as String
-    question.answer = this?.get("answer") as String
+    question.description = this?.get("description") as String ?
+    question.answer = this?.get("answer") as String ?
 
 
 
@@ -184,14 +184,17 @@ fun MutableMap<String, Any>?.convertToMedicineVO() : MedicineVO{
     medicine.note =  this?.get("note") as String?
        medicine.price =  this?.get("price") as Long
       medicine.quantity =  this?.get("quantity") as Long
+      medicine.total_day =  this?.get("total_day") as String?
+      medicine.tablet =  this?.get("tablet") as String?
       medicine.sub_total =  this?.get("sub_total") as Long
+     medicine.routine = this?.get("routines") as String ?
    //   medicine.repeat =  this?.get("repeat") as String
      return medicine
  }
 
- fun MutableMap<String, Any>?.convertToNote() :  String{
-     var note = ""
-      note =   this?.get("consultation_note") as String
+ fun MutableMap<String, Any>?.convertToNote() :  String?{
+     var note : String ?= null
+      note =   this?.get("consultation_note") as String?
      return  note
  }
 
@@ -274,7 +277,7 @@ fun MutableMap<String, Any>?.convertToSpecialities() : CategoryVO{
 fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     val consultation = ConsultationVO()
     consultation.id = this?.get("id") as String
-    consultation.special = this?.get("speciality") as String
+    consultation.special = this?.get("speciality") as String?
     consultation.statue = this?.get("consultation_status") as String
     val ques  : ArrayList<QuestionVO> = arrayListOf()
     val value = this?.get("case_summary") as ArrayList<HashMap<String, Any>>?

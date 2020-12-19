@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
                 android:id="@+id/userprofile"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,6 +44,7 @@
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_large"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <androidx.cardview.widget.CardView
@@ -144,6 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:weightSum="3"
+                android:id="@+id/layoutHideChat"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
@@ -204,7 +208,7 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
             <RelativeLayout
-                android:id="@+id/layoutHideChat"
+                android:id="@+id/layoutSend"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="match_parent"

@@ -24,6 +24,8 @@ interface PrescriptionPresenter : BasePresenter<PrescriptionView>, ConsultationI
 
     fun onTapSelectedRoutines(rou : String)
 
+    fun onSaveTablet(name : String)
+
     fun onTapQuantity(quantity : String)
 
     fun onTapNote(name : String)

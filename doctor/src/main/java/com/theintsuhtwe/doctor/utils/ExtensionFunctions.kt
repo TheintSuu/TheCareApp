@@ -15,10 +15,23 @@ fun saveDoctorToSession(doctor : DoctorVO) {
 
 }
 
+ fun totalMedicines( quantitly : String, dayWeek : Int , beforAter : Int) : Int{
+    quantitly.toInt()?.let{
+        return quantitly.toInt() * dayWeek * beforAter
+    }
+    return 1
+}
+
+  fun subTotalMedicinePrice(quan : Int , price : Int) : Int{
+    return quan * price
+}
+
 //Error Messages
 const val EM_NO_INTERNET_CONNECTION = "No Internet Connection"
 const val EM_NO_NEWS_AVAILABLE = "There are no news available"
 
+
+const val  FINISH = "FINISH"
 
 const val SIGN_OUT = "SIGN_OUT"
 const val SIGN_IN = "SIGN_IN"

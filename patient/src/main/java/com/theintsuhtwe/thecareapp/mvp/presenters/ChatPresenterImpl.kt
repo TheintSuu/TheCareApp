@@ -1,5 +1,7 @@
 package com.theintsuhtwe.thecareapp.mvp.presenters
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.DoctorModelImpl
@@ -8,6 +10,7 @@ import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
 import com.theintsuhtwe.shared.data.vos.MessageVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.ChatView
+import com.theintsuhtwe.thecareapp.utils.FINISH
 import com.theintsuhtwe.thecareapp.utils.SessionManager
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,6 +30,8 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
       onSuccess = {
 
           it?.special?.let { it1 -> mView?.showSpeciality(it1) }
+          if(it?.statue != FINISH ) mView?.showSendMessageLayout()
+
           mView?.displayPatientSpecialQuestion(it.caseSummary)
       },
           onFaiure = {
@@ -78,6 +83,7 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onTapSend(id: String, text : String, image : String) {
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
         val currentDateAndTime: String = simpleDateFormat.format(Date())

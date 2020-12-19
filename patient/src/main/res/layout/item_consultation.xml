@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     app:cardCornerRadius="@dimen/margin_medium_2"
+    android:padding="@dimen/text_small"
     app:cardUseCompatPadding="true">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,40 +61,43 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_regular_2x" />
 
-        <TableRow
+        <LinearLayout
             android:id="@+id/tb1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@drawable/btn_blue"
-            android:layout_marginTop="@dimen/margin_xlarge"
+            android:layout_marginTop="@dimen/margin_large"
             android:layout_below="@id/ivConfirmDoctorImage"
             android:weightSum="2" >
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
                 android:id="@+id/btnSendChat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_blue"
                 android:gravity="center"
-                android:text="Send Message"
+                android:text="စာပို့မည်"
+                android:padding="@dimen/margin_medium_2"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:icon="@drawable/ic_baseline_message_24"
                 app:iconGravity="textStart" />
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
                 android:id="@+id/btnPrescription"
-                style="@style/btnStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="@dimen/margin_medium_2"
                 android:background="@drawable/btn_blue"
                 android:gravity="center"
-                android:text="Prescription"
+                android:text="ဆေးညွှန်"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:icon="@drawable/ic_baseline_sticky_note_2_24"
                 app:iconGravity="textStart" />
-        </TableRow>
+        </LinearLayout>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -17,7 +17,6 @@
             android:paddingTop="@dimen/margin_medium"
             android:paddingHorizontal="@dimen/margin_medium"
             android:text="Hello"
-            android:textColor="@color/black"
             android:textSize="@dimen/text_regular" />
 
         <TextView
@@ -28,7 +27,6 @@
             android:paddingTop="@dimen/margin_medium"
             android:paddingHorizontal="@dimen/margin_medium"
             android:text="Aung Aung"
-            android:textColor="@color/black"
             android:textSize="@dimen/text_regular" />
     </TableRow>
 </LinearLayout>

@@ -132,6 +132,12 @@ class ChatActivity : BaseActivity(), ChatView {
             mPresenter.onTapPrescription(special)
         }
 
+        tvName.setOnClickListener {
+           onBackPressed()
+        }
+
+
+
         if(intent.getStringExtra(ChatActivity.PARM_DOCUMENTID2).toString() == getString(R.string.finish))  hideSendMessage()  else showSendMessage()
 
 
@@ -177,6 +183,7 @@ class ChatActivity : BaseActivity(), ChatView {
             true -> {
                 showPrescription()
                mPrescriptionAdapter.setData(list)
+                startActivity(MainActivity.newIntent(this))
             }
             else -> {
                 hidePrescription()

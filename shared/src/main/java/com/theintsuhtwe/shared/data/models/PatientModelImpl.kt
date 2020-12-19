@@ -44,6 +44,12 @@ object PatientModelImpl: PatientModel,  BaseModel() {
 
     }
 
+    override fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit) {
+        mFirebase.getOnceTimeQuestion(id, name, bdd, phone, onSuccess, onFailure)
+    }
+
+
+
     override fun getRecentDoctors(id: String, onSuccess: () -> Unit, onFaiure: (String) -> Unit) {
        return mFirebase.getRecentlyDoctorByUser(id, onSuccess={
            mTheCareDB.patientDao.deleteAll()

@@ -55,6 +55,10 @@ class NoteActivity : BaseActivity(), NoteView {
     private fun setUpActionListener(){
         btnClose.setOnClickListener {
             mPresenter.onTapSaveNote(intent.getStringExtra(NoteActivity.PARM_DOCUMENTID).toString())
+
+        }
+
+        toolbar.setOnClickListener {
             onBackPressed()
         }
 
@@ -74,7 +78,7 @@ class NoteActivity : BaseActivity(), NoteView {
 
 
     override fun navigateToChat(id: String) {
-
+        startActivity(ChatActivity?.newIntentWithId(this, id))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

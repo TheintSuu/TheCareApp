@@ -191,9 +191,10 @@ class HomeFragment : BaseFragment(), HomeView {
 
     private fun setUpListener(){
     btnStartConsultation.setOnClickListener {
-        mPresenter.onTapStartConsulataion(SessionManager.request_id.toString())
+        mPresenter.onTapStartConsulataion(SessionManager.request_id.toString(), mConsultationId)
       //  startActivity(activity?.let { it1 -> ChatActivity.newIntentWithId(it1, mConsultationId) })
     }
+
 
     }
 

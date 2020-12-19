@@ -14,6 +14,7 @@ import com.google.android.material.chip.Chip
 import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.mvp.presenters.impls.PrescriptionPresenter
 import com.theintsuhtwe.doctor.mvp.presenters.impls.PrescriptionPresenterImpl
+import com.theintsuhtwe.doctor.utils.totalMedicines
 import kotlinx.android.synthetic.main.fragment_detail_prescription.*
 
 
@@ -39,6 +40,14 @@ class DetailPrescriptionFragment: DialogFragment() {
             return DetailPrescriptionFragment()
         }
     }
+
+    private var mDayMonthWeek = 1
+
+    private var mMorningNight = 1
+
+    private var mBeforeAfter = 1
+
+    private var mQuantityMedicine = 1
 
     private lateinit var mPresenter: PrescriptionPresenter
 
@@ -92,21 +101,42 @@ class DetailPrescriptionFragment: DialogFragment() {
                position: Int,
                id: Long
            ) {
-              mPresenter.onTapSelectedRoutines( parent.getItemAtPosition(position).toString())
+              when(parent.getItemAtPosition(position).toString()){
+                  getString(R.string.week) -> {
+                      mDayMonthWeek = 7
+                  }
+                  getString(R.string.month) -> {
+                      mDayMonthWeek = 30
+                  }
+                  else -> {
+                      mDayMonthWeek = 1
+                  }
+              }
            }
        }
+
+
    }
 
     private fun setData(){
+
+
         for (index in 0 until cgRoutine.childCount) {
             val chip: Chip = cgRoutine.getChildAt(index) as Chip
 
             // Set the chip checked change listener
             chip.setOnCheckedChangeListener{view, isChecked ->
                 if (isChecked){
-                   mPresenter.onTapSelectedRoutine(view.text.toString())
+                    if(view.text.toString() == "မနက်")  mPresenter.onTapSelectedRoutine("Morning")
+                    if(view.text.toString() == "နေ့")  mPresenter.onTapSelectedRoutine("Launch")
+                    if(view.text.toString() == "ည")  mPresenter.onTapSelectedRoutine("Night")
+
+                    mMorningNight += 1
                 }else{
-                    mPresenter.onTapRemoveRoutine(view.text.toString())
+                    if(view.text.toString() == "မနက်")  mPresenter.onTapRemoveRoutine("Morning")
+                    if(view.text.toString() == "နေ့") mPresenter.onTapRemoveRoutine("Launch")
+                    if(view.text.toString() == "ည") mPresenter.onTapRemoveRoutine("Night")
+                    mMorningNight -= 1
                 }
 
 
@@ -120,13 +150,17 @@ class DetailPrescriptionFragment: DialogFragment() {
             chip.setOnCheckedChangeListener{view, isChecked ->
                 if (isChecked){
                     mPresenter.onTapMedicineBeforeAfter(view.text.toString())
+                   mBeforeAfter += 1
                 }else{
                     mPresenter.onTapRemoveMedicineBeforeAfter(view.text.toString())
+                    mBeforeAfter -= 1
                 }
             }
         }
 
         btnAddPrescription.setOnClickListener {
+            val totalMedicine : Int = totalMedicines(ed_amount.text.toString(), mDayMonthWeek, mBeforeAfter)
+            mPresenter.onTapQuantity(totalMedicine.toString())
             arguments?.getLong(BUNDLE_Price_ID)?.toLong()?.let { it1 ->
                 mPresenter.onTapAdd(arguments?.getString(BUNDLE_CATEGORY_ID).toString(),
                     it1

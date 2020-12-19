@@ -137,6 +137,8 @@ class ChatActivity : BaseActivity(), ChatView {
         btnCheckOut.setOnClickListener {
             startActivity(CheckoutActivity.newIntentWithId(this, intent.getStringExtra(ChatActivity.PARM_DOCUMENTID).toString()))
         }
+
+
     }
 
     override fun displayPatientGeneralQuestion(list: ArrayList<QuestionVO>) {
@@ -154,7 +156,7 @@ class ChatActivity : BaseActivity(), ChatView {
     }
 
     override fun navigateToPrescription(special : String) {
-        startActivity(PrescriptionActivity.newIntentWithId(this, intent.getStringExtra(ChatActivity.PARM_DOCUMENTID).toString(), special ))
+       // startActivity(PrescriptionActivity.newIntentWithId(this, intent.getStringExtra(ChatActivity.PARM_DOCUMENTID).toString(), special ))
     }
 
     override fun navigateToNote() {
@@ -189,6 +191,10 @@ class ChatActivity : BaseActivity(), ChatView {
 
     override fun navigateToCheckOut(id: String) {
 
+    }
+
+    override fun showSendMessageLayout() {
+        layoutSend.visibility = View.VISIBLE
     }
 
     override fun showErrorMessage(error: String) {

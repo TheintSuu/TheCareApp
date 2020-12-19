@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
+import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSummaryView
@@ -19,6 +20,8 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
 
     var mPatientModel = PatientModelImpl
 
+    var mPatient: Patient = Patient()
+
 
     override fun onUiReady(caseId : String, lifecycleOwner: LifecycleOwner) {
 
@@ -32,6 +35,14 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
 
                 })
 
+
+        mPatientModel.getPatientByEmail(SessionManager.patient_email.toString(),
+        onSuccess = {
+            mPatient = it
+        }, onFailure = {
+
+        }
+        )
 
         mTheCareModel.getCaseSummaryToDB(caseId).
         observe(lifecycleOwner, Observer {
@@ -51,7 +62,7 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
         mPatientModel.getQuestionByPatient(
                 SessionManager.patient_id.toString(),
                 onSuccess = {
-                    val patient = getCurrentPatientInfo()
+                    val patient = mPatient
                     patient.question = it
                     mConsultationModel.sendConsultationRequest(SessionManager.patient_recent_doctor_id.toString(),patient, special, list, onSuccess = {
                         mView?.navigateToHome(it)

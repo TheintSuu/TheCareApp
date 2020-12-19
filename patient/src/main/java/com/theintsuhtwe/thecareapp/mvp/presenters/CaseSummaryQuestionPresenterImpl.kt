@@ -18,39 +18,64 @@ class CaseSummaryQuestionPresenterImpl : CaseSummaryQuestionPresenter, AbstractB
     override fun onUiReady(id : String, life: LifecycleOwner) {
         mPatientModel.getQuestionByPatient(id,
         onSuccess = {
-            mView?.displayOneTimeAnswer(it)
+            if(it.size>0) mView?.displayOneTimeAnswer(it)
+
         },
         onFaiure = {
 
         })
     }
 
-    override fun onTapNext(id : String, type: String,  special : String, list : ArrayList<QuestionVO>) =
-            when(type){
-                "once" -> {
-                    mPatientModel.sendQuestion(id, list,
-                        onSuccess = {
-                            //mTheCareModel.GeneralQuestionDeletAndInsertToDB(list)
-                            mView?.showAlwaysQuestion(id, id)
+    override fun onTapNext(id : String, type: String,  special : String, list : ArrayList<QuestionVO>) {
 
-                        },
-                        onFaiure = {
+               when(type){
+                   "once" -> {
+                       mPatientModel.sendQuestion(id, list,
+                               onSuccess = {
+                                   //mTheCareModel.GeneralQuestionDeletAndInsertToDB(list)
+                                   mView?.showAlwaysQuestion(id, id)
 
-                        }
-                    )
-                }
-                else -> {
-                    mPatientModel.sendQuestion(id, list,
-                        onSuccess = {
-                          //  mTheCareModel.addGeneralQuestionToDB(list)
-                            mView?.navigaeToSpecialQuestion(id, special)
-                        },
-                        onFaiure = {
+                               },
+                               onFaiure = {
 
-                        }
-                    )
-                }
+                               }
+                       )
+                   }
+                       else -> {
+                           mPatientModel.sendQuestion(id, list,
+                                   onSuccess = {
+                                       //  mTheCareModel.addGeneralQuestionToDB(list)
+                                       mView?.navigaeToSpecialQuestion(id, special)
+                                   },
+                                   onFaiure = {
+
+                                   }
+                           )
+                       }
+
+               }
+
+
             }
+
+    override fun onTapNextOnce(id: String, type: String, name: String, bdd: String, phone: String, special: String, list: ArrayList<QuestionVO>) {
+
+        mPatientModel.getOnceTimeQuestion(id, name, bdd, phone, onSuccess = {
+            mPatientModel.sendQuestion(id, list,
+                    onSuccess = {
+                        //mTheCareModel.GeneralQuestionDeletAndInsertToDB(list)
+
+                        mView?.navigaeToSpecialQuestion(id, special)
+
+                    },
+                    onFaiure = {
+
+                    }
+            )
+        }, onFailure = {
+
+        })
+    }
 
     override fun onTapSpecialities(name: String) {
 
@@ -60,6 +85,6 @@ class CaseSummaryQuestionPresenterImpl : CaseSummaryQuestionPresenter, AbstractB
     }
 
     override fun onTapRecentDoctor(id: String, doctorId: String) {
-        TODO("Not yet implemented")
+
     }
 }

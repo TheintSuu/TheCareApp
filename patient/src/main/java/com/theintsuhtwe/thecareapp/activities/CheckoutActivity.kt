@@ -18,6 +18,7 @@ import com.theintsuhtwe.thecareapp.mvp.presenters.CheckoutPresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.presenters.NotePresenterImpl
 import com.theintsuhtwe.thecareapp.mvp.views.CheckoutView
 import com.theintsuhtwe.thecareapp.mvp.views.NoteView
+import com.theintsuhtwe.thecareapp.utils.DEL_FEE
 import kotlinx.android.synthetic.main.activity_checkout.*
 import kotlinx.android.synthetic.main.activity_note.*
 import kotlinx.android.synthetic.main.activity_question.*
@@ -65,6 +66,8 @@ class CheckoutActivity :BaseActivity(), CheckoutView {
         btnPayment.setOnClickListener {
             mPresenter.onTapCheckOut(intent.getStringExtra(CheckoutActivity.PARM_DOCUMENTID).toString())
         }
+
+
     }
 
     private fun setUpRecyclerView(){
@@ -79,6 +82,19 @@ class CheckoutActivity :BaseActivity(), CheckoutView {
 
     override fun displayPrescription(list: List<MedicineVO>) {
         mAdapter.setData(list)
+        var total : Long = 1
+        list.forEach {
+            it?.sub_total.let{
+                if (it != null) {
+                    total +=  it
+                }
+            }
+
+        }
+        tvSubAmount.text = total.toString()
+        tvDeliveryFee.text = DEL_FEE.toString()
+        val amount =  total + DEL_FEE
+        tvTotalAmount.text = amount.toString()
     }
 
     override fun navigateToHome() {
@@ -86,6 +102,6 @@ class CheckoutActivity :BaseActivity(), CheckoutView {
     }
 
     override fun showErrorMessage(error: String) {
-        TODO("Not yet implemented")
+
     }
 }

@@ -28,6 +28,11 @@ class ConsultationPrescriptionFragment : DialogFragment() {
 
     private lateinit var mPrescriptionAdapter : DetailPrescriptionAdapter
 
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

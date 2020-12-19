@@ -244,7 +244,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
         onSuccess: (ArrayList<QuestionVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        db.collection("patients/${id}/question")
+        db.collection("patients/${id}/questions")
             .addSnapshotListener { value, error ->
                 error?.let {
                     onFailure(it.message ?: "Please check internet connection")
@@ -408,6 +408,29 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
         }.addOnFailureListener { e ->
             Log.w("Status Update", "Transaction failure.", e)
         }
+    }
+
+
+    override  fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit){
+
+    val sfDocRef = db.collection("patients").document("${id}")
+
+    db.runTransaction { transaction ->
+        val snapshot = transaction.get(sfDocRef)
+
+        transaction.update(sfDocRef, "name", name)
+        transaction.update(sfDocRef, "birthDay", bdd)
+        transaction.update(sfDocRef, "phone", phone)
+
+
+
+
+    }.addOnSuccessListener { result ->
+        onSuccess()
+        Log.d("Status Update", "Transaction success: $result")
+    }.addOnFailureListener { e ->
+        Log.w("Status Update", "Transaction failure.", e)
+    }
     }
     override fun startConsultation(
             consulationId: String, dateTime: String, questionAnswerList: List<QuestionVO>, patientVO: Patient, doctorVO: DoctorVO,
@@ -582,24 +605,26 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
     ) {
         ques.forEach {
             val messageMap = hashMapOf(
-                "description " to it.description,
+                "description" to it.description,
                 "answer" to it.answer,
                 "type" to it.type
 
             )
             it?.description.let {
-                db.collection("patients/${id}/questions")
-                    .document(it)
-                    .set(messageMap)
-                    .addOnSuccessListener {
+                it?.let { it1 ->
+                    db.collection("patients/${id}/questions")
+                            .document(it1)
+                            .set(messageMap)
+                            .addOnSuccessListener {
 
-                        Log.d("success", "Successfully add question")
-                        onSuccess()
-                    }
-                    .addOnFailureListener {
-                        Log.d("onFailure", "Failed to add question")
-                        onFailure("Failed to add question")
-                    }
+                                Log.d("success", "Successfully add question")
+                                onSuccess()
+                            }
+                            .addOnFailureListener {
+                                Log.d("onFailure", "Failed to add question")
+                                onFailure("Failed to add question")
+                            }
+                }
             }
         }
 
@@ -612,7 +637,9 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
                 "price" to medicineVO.price,
                 "quantity" to medicineVO.quantity,
                 "sub_total" to medicineVO.sub_total,
+                "tablet" to medicineVO.tablet,
             "total_day" to medicineVO.total_day,
+                "routines" to medicineVO.routine,
                 "note" to medicineVO.note,
                 "repeat" to medicineVO.repeat
         )

@@ -99,7 +99,7 @@ class HistoryFragment : BaseFragment(), ConsultationHistoryView {
         mAdapter = HistoryAdatper(mPresenter)
 
 
-        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvHistory.layoutManager = linearLayoutManager
         rvHistory.adapter = mAdapter
     }

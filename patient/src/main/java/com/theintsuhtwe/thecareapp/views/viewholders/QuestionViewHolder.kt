@@ -39,7 +39,7 @@ class QuestionViewHolder (private val mDelegate: SpecialitiesItemDelegate, itemV
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 mData?.let {
-                    mDelegate.onTapQuestion(it.description, s.toString())
+                    it.description?.let { it1 -> mDelegate.onTapQuestion(it1, s.toString()) }
                 }
             }
 

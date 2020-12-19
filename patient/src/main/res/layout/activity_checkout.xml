@@ -5,10 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.CheckoutActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:padding="@dimen/margin_medium_2"
+        android:background="#F6F0F0"
         android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/homeBackgroundColor"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:background="@color/white"
+                        app:titleTextColor="@color/black"
+                        app:title="ဆေးကုသမှုမှတ်တမ်း"
+                        android:elevation="4dp"
+                        app:layout_collapseMode="pin"
+                        app:titleTextAppearance="@style/Toolbar.TitleText"
+                        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+                        android:theme ="?attr/actionBarTheme"
+                        android:layout_height="?actionBarSize"
+                        android:id="@+id/toolbar"/>
+
+                </LinearLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/margin_small"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            app:cardUseCompatPadding="true">
 
     <include
         android:id="@+id/layout_prescription"
@@ -16,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+        </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -74,7 +116,7 @@
                     android:textColor="@color/black"
                     android:layout_marginBottom="@dimen/margin_medium"
                     android:textSize="@dimen/text_regular" />
-                <com.google.android.material.button.MaterialButton
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -82,7 +124,9 @@
                     android:id="@+id/btnPayment"
                     android:paddingHorizontal="@dimen/margin_xxlarge"
                     android:textStyle="bold"
-                    android:background="@drawable/btn_white"
+                    android:textColor="@color/white"
+                    android:padding="@dimen/margin_medium_2"
+                    android:background="@drawable/btn_blue"
                     android:layout_marginBottom="@dimen/margin_medium_3"
                     android:gravity="center"
                     android:layout_marginHorizontal="@dimen/margin_xxlarge"/>

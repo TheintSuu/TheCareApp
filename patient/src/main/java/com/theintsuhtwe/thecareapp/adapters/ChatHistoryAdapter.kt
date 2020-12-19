@@ -19,12 +19,13 @@ class ChatHistoryAdapter   (private val mDelegate: SpecialitiesItemDelegate) : B
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<MessageVO> {
         when(viewType){
             Doctor_ViewType -> {
-                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_doctor,parent,false)
-                return  ChatDoctorViewHolder(mDelegate,v)
-            }
-            else ->{
                 val v = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_bypatient,parent,false)
                 return  ChatPatientViewHolder(mDelegate,v)
+
+            }
+            else ->{
+                val v = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_doctor,parent,false)
+                return  ChatDoctorViewHolder(mDelegate,v)
             }
         }
 

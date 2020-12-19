@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvName"
         android:layout_marginTop="@dimen/margin_medium_2"
-        android:paddingHorizontal="@dimen/margin_medium_3" />
+        android:paddingHorizontal="@dimen/text_small" />
 
     <View
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:layout_below="@id/rvMedicine"
         android:id="@+id/drawer1"
         android:layout_margin="@dimen/margin_medium"
-        android:background="#c0c0c0"/>
+        android:background="#EAE7E7"/>
 
     <TextView
         android:id="@+id/tvSub"
@@ -62,6 +62,7 @@
         android:paddingVertical="@dimen/margin_medium"
         android:layout_below="@id/drawer1"
         android:text="@string/_18_500"
+        android:textStyle="bold"
         android:layout_alignParentRight="true"
         android:textColor="@color/black"
         android:textSize="@dimen/text_regular" />
@@ -89,6 +90,7 @@
         android:paddingVertical="@dimen/margin_medium"
         android:layout_below="@id/tvSubAmount"
         android:text="@string/_18_500"
+        android:textStyle="bold"
         android:layout_alignParentRight="true"
         android:textColor="@color/black"
         android:textSize="@dimen/text_regular" />
@@ -99,7 +101,7 @@
         android:layout_below="@id/tvDev"
         android:id="@+id/drawer2"
         android:layout_margin="@dimen/margin_medium"
-        android:background="#c0c0c0"/>
+        android:background="#EAE7E7"/>
 
     <TextView
 
@@ -124,6 +126,7 @@
         android:paddingVertical="@dimen/margin_medium"
         android:layout_below="@id/drawer2"
         android:text="@string/_18_500"
+        android:textStyle="bold"
         android:layout_alignParentRight="true"
         android:textColor="@color/black"
         android:textSize="@dimen/text_regular" />

@@ -54,7 +54,7 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
 
         hideSpecialQuestion()
 
-        mPresenter.onUiReady("patient000", this)
+        mPresenter.onUiReady(SessionManager.patient_id.toString(), this)
     }
 
 
@@ -84,15 +84,14 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
                     val data3 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.height) , answer = ed_height.text.toString())
                     val data4 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.allegric_comment), answer = etNote.text.toString())
                     val data5 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.bl_type), answer = bloodtype_spinner.selectedItem.toString())
-                    val data6 = QuestionVO(id = UUID.randomUUID().toString(),description = getString(R.string.Birth), answer = day_spinner.selectedItem.toString()+"/"+ month_spinner.selectedItem.toString()+"/"+year_spinner.selectedItem.toString())
+
                     ques.add(data)
                     ques.add(data2)
                     ques.add(data3)
                     ques.add(data4)
                     ques.add(data5)
-                    ques.add(data6)
                     queList.addAll(ques)
-                    mPresenter.onTapNext(SessionManager.patient_id.toString(), type, intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString(), ques)
+                    mPresenter.onTapNextOnce(SessionManager.patient_id.toString(),  type, edName.text.toString(), etBD.text.toString(), etPhone.text.toString(),  intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString(),  ques)
 
             }
             else -> {

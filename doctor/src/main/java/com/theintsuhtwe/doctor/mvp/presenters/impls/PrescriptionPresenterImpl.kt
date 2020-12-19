@@ -1,7 +1,9 @@
 package com.theintsuhtwe.doctor.mvp.presenters.impls
 
 import androidx.lifecycle.LifecycleOwner
+import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.mvp.views.PrescriptionView
+import com.theintsuhtwe.doctor.utils.subTotalMedicinePrice
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
@@ -17,12 +19,15 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
 
     var mPatientModel = PatientModelImpl
 
-    var mConsultationId = ""
+    var mTablet = "1"
     
     var routine : MutableList<String> = arrayListOf()
-    var quantityMedicine : String = "1"
-    var beforeAter : String = ""
+    var beforeAter : MutableList<String> = arrayListOf()
+
+
     var note : String = ""
+
+    var mTotalMedicinesQuantity = "1"
 
     var mMedicineVO : MutableList<MedicineVO> = arrayListOf()
 
@@ -51,19 +56,23 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
     }
 
     override fun onTapMedicineBeforeAfter(name: String) {
-       beforeAter = name
+       beforeAter.add(name)
     }
 
     override fun onTapRemoveMedicineBeforeAfter(name: String) {
-       
+       beforeAter.remove(name)
     }
 
     override fun onTapSelectedRoutines(rou: String) {
       routine.add(rou)
     }
 
+    override fun onSaveTablet(name: String) {
+        mTablet = name
+    }
+
     override fun onTapQuantity(quantity: String) {
-       quantityMedicine = quantity
+       mTotalMedicinesQuantity = quantity
     }
 
     override fun onTapNote(name: String) {
@@ -71,18 +80,26 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
     }
 
     override fun onTapAdd(name : String, price : Long) {
+        val subtotal = subTotalMedicinePrice(mTotalMedicinesQuantity.toInt() ,  price.toInt())
         val medicineVO = MedicineVO()
         medicineVO.id = UUID.randomUUID().toString()
         medicineVO.name = name
         medicineVO.note = note
-        medicineVO.quantity = quantityMedicine.toLong()
-        medicineVO?.quantity?.let{
+        medicineVO.quantity = mTotalMedicinesQuantity.toLong()
+        medicineVO.price = price
+        medicineVO.tablet = mTablet
+        medicineVO.sub_total = subtotal.toLong()
+       routine?.forEach {
 
-            medicineVO.sub_total = it * routine.size.toLong()
+            medicineVO.routine = it.toString()+"/"
 
         }
-        medicineVO.price = price
+        medicineVO.routine?.trimEnd('/')
         mMedicineVO.add(medicineVO)
+
+        beforeAter.clear()
+        routine.clear()
+
 
 
 

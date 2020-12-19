@@ -8,10 +8,12 @@ import com.theintsuhtwe.shared.data.vos.QuestionVO
 const val EM_NO_INTERNET_CONNECTION = "No Internet Connection"
 const val EM_NO_NEWS_AVAILABLE = "There are no news available"
 
+const val FINISH = "FINISH"
+
 //Empty Image
 const val EMPTY_IMAGE_URL = "https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png"
 
-
+const val DEL_FEE = 2000
 fun getCurrentPatientInfo(): Patient {
         val patient = Patient()
         patient.id = SessionManager.patient_id.toString()

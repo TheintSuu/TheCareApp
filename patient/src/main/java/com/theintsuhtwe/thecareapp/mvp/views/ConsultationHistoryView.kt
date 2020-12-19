@@ -21,5 +21,7 @@ interface ConsultationHistoryView : BaseView {
 
 
 
+
+
     fun navigetToDetailPrescription(id : String)
 }

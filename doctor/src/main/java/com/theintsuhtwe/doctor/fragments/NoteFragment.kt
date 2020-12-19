@@ -53,7 +53,8 @@ class NoteFragment : DialogFragment() {
         }
 
         arguments?.getString(BUNDLE_DOCTOR_ID).toString().let {
-            tvNote.text = it
+           if(it.isNullOrEmpty()) tvNote.text = getString(R.string.no_note) else  tvNote.text = it
+
         }
 
 

@@ -62,10 +62,14 @@ class RegisterFormActivity : BaseActivity(), RegisterFormView {
                etPhone.text.toString(),
                special,
                etBD.text.toString(),
-               etDegrees.toString(),
-               etBiography.toString()
+               etDegrees.text.toString(),
+               etBiography.text.toString()
                )
        }
+
+        toolbar.setOnClickListener {
+            onBackPressed()
+        }
 
 
 //        btnRegister.setOnClickListener {

@@ -51,4 +51,5 @@
         android:elevation="@dimen/margin_small"
         android:textColor="@color/colorPrimary"
         android:padding="@dimen/margin_medium_2" />
+
 </RelativeLayout>

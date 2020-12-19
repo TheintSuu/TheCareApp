@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_medium_2"
+    android:padding="@dimen/margin_medium"
     android:layout_height="80dp">
 
     <TextView
         android:id="@+id/tvMedicineName"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_height="match_parent"
-        android:paddingRight="@dimen/margin_medium_2"
         android:text="Acetaminophen (Tylenol)"
         />
     <TextView

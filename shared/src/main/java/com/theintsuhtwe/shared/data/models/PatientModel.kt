@@ -36,6 +36,8 @@ interface PatientModel {
 
     fun getPatientByEmailFromDB(email: String)  : LiveData<Patient>
 
+    fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit)
+
 
 
 

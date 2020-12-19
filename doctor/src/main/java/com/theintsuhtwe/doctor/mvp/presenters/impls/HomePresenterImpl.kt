@@ -136,7 +136,8 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
     override fun onTapPrescription(id: String) {
         mModel.getPrescriptionByConsultationId(id, onSuccess = {
-            mView?.displayPrescriptionDialog(id, it)
+            if(it.isNotEmpty())  mView?.displayPrescriptionDialog(id, it)
+
         }, onFailure = {
 
         }

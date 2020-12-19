@@ -40,16 +40,16 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
     }
 
-    override fun onTapStartConsulataion(id: String) {
+    override fun onTapStartConsulataion(id: String, chatId: String) {
         isExistRecentDoctor(mDoctorVO)
+
         mConsultationModel.updateConsultationRequestByPateint(id, onSuccess = {
-            mView?.navigateToChat(id)
+            mView?.navigateToChat(chatId)
         }, onFaiure = {})
-
-
-
-
     }
+
+
+
 
     private fun isExistRecentDoctor(doctorVO: DoctorVO){
         val isExistDoctor =  mRecentDoctor.find { doc ->
