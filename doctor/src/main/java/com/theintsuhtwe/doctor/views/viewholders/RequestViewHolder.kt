@@ -15,7 +15,7 @@ class RequestViewHolder(private val mDelegate: ConsultationItemDelegate, itemVie
     init {
         itemView.btnAccept.setOnClickListener {
             mData?.let {
-                mDelegate.onTapAccept(it.id)
+                it.consultationId?.let { it1 -> mDelegate.onTapAccept(it1) }
             }
 
         }

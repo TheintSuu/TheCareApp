@@ -24,9 +24,8 @@
         <activity android:name=".activities.CaseSummaryActivity" />
         <activity android:name=".activities.QuestionActivity" />
         <activity android:name=".activities.DetailCheckoutActivity" />
-        <activity android:name=".DetailPrescriptionActivity" />
         <activity android:name=".activities.CheckoutActivity" />
-        <activity android:name=".activities.PrescriptionActivity" />
+
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,12 +37,15 @@
         <activity android:name=".activities.MainActivity" />
 
         <service
-            android:name=".fcm.FirebaseCloudMessagingService"
+            android:name=".fcm.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="" />
     </application>
 
 </manifest>

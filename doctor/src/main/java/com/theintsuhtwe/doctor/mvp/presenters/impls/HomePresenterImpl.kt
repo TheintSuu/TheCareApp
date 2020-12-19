@@ -1,5 +1,7 @@
 package com.theintsuhtwe.doctor.mvp.presenters.impls
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.mvp.views.HomeView
@@ -12,6 +14,7 @@ import com.theintsuhtwe.shared.data.vos.ConsultationRequest
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.MedicineVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
+import com.theintsuhtwe.shared.utils.currentDate
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -79,6 +82,7 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
         mView?.showDialog()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onTapAccept(id: String) {
         mModel.getConsultationRequestById(id, onSuccessRequest = {
             consulation = it
@@ -98,6 +102,7 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
        // mView?.displayConsultationRequest(mConsulationRequest)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun onTapChatByUiReady(id : String){
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z")
         val currentDateAndTime: String = simpleDateFormat.format(Date())
@@ -105,7 +110,7 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
         consulation.caseSummary?.let {
             consulation.patient?.let { it1 ->
                 mModel.addConsultation(id,
-                    currentDateAndTime,
+                    currentDate().toString(),
                     it,
                     it1,
                     doctor,

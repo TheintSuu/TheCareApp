@@ -1,6 +1,6 @@
 package com.theintsuhtwe.shared.utils
 
-const val SERVER_KEY = "AAAAy_mQ588:APA91bH1WwBI1pe20Q25-o7NFjK3dw1nFo96-qRCmTIbBiYdyqQ94K3K5mqOjvoSKOmFqZp3bCL1mMmXzlUDI0i20qFniRv-pOJpYeGbUQ8_oCW2nDv6CHi6zp-4BgrjxYUX_OVBqeoq"
+const val SERVER_KEY = "key=AAAAy_mQ588:APA91bH1WwBI1pe20Q25-o7NFjK3dw1nFo96-qRCmTIbBiYdyqQ94K3K5mqOjvoSKOmFqZp3bCL1mMmXzlUDI0i20qFniRv-pOJpYeGbUQ8_oCW2nDv6CHi6zp-4BgrjxYUX_OVBqeoq"
 
 
 const val NOTI_TYPE_SEND_BROADCASET_REQUEST = 0
@@ -34,4 +34,6 @@ const val sharePreferencePatientBodyWeight  = "weight"
 const val sharePreferencePatientBloodPressure  = "blod_pressure"
 const val sharePreferencePatientPhoto  = "photo"
 const val sharePreferenceDoctor  = "doctor"
+const val sharePreferenceDoctorDeviceToken  = "doctor token"
+const val sharePreferencePatientDeviceToken  = "patient token"
 const val sharePreferenceGeneralQuestion  = "question"

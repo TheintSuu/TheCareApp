@@ -66,26 +66,26 @@ class PrescriptionActivity : BaseActivity(), PrescriptionView {
             mPresenter.onTapFinishConsultation(intent.getStringExtra(PrescriptionActivity.PARM_DOCUMENTID).toString())
         }
 
-        etConsultationNote.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val medicine = MedicineVO()
-                medicine.name = s.toString()
-
-                val filter: List<MedicineVO> = mPrescriptionFilter.filter {
-                  med ->
-                    med.name.contains(medicine.name.toString())
-                }
-                if(filter.isNotEmpty()) mAdapter.setData(filter)
-            }
-        })
+//        etConsultationNote.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {
+//
+//
+//            }
+//
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                val medicine = MedicineVO()
+//                medicine.name = s.toString()
+//
+//                val filter: List<MedicineVO> = mPrescriptionFilter.filter {
+//                  med ->
+//                    med.name.contains(medicine.name.toString())
+//                }
+//                if(filter.isNotEmpty()) mAdapter.setData(filter)
+//            }
+//        })
 
 
 

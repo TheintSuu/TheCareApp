@@ -32,14 +32,14 @@ object AuthenticationModelImpl : AuthenticationModel {
 
     }
 
-    override fun register(email: String, password: String, userName: String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+    override fun register(email: String, password: String, userName: String, token : String, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
         mAuthManager.register(email,password,userName,onSuccess ={
             val patientVO = Patient(
                     id = UUID.randomUUID().toString(),
                     name = userName,
                     email = email,
                     image = randomImage(),
-                    device_token = ""
+                    device_token = token
             )
             mPatientModel.addPatient(patientVO, onSuccess, onFailure)
 

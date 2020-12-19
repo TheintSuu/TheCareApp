@@ -69,13 +69,7 @@ object SessionManager {
             it.putString(sharePreferenceRequestID, value)
         }
 
-    var patient_device_token: String?
 
-        get() = preferences.getString(sharePreferencePatientDeviceID, "")
-
-        set(value) = preferences.edit {
-            it.putString(sharePreferencePatientDeviceID, value)
-        }
 
     var patient_dateOfBirth: String?
 
@@ -140,6 +134,23 @@ object SessionManager {
         set(value) = preferences.edit {
             it.putString(sharePreferenceDoctor, value)
         }
+
+    var  recent_doctor_device_token : String?
+
+        get() = preferences.getString(sharePreferenceDoctorDeviceToken, "")
+
+        set(value) = preferences.edit {
+            it.putString(sharePreferenceDoctorDeviceToken, value)
+        }
+
+    var  patient_device_token : String?
+
+        get() = preferences.getString(sharePreferencePatientDeviceToken, "")
+
+        set(value) = preferences.edit {
+            it.putString(sharePreferencePatientDeviceToken, value)
+        }
+
 
 
 

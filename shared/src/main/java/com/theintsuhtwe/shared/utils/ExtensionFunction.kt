@@ -103,7 +103,9 @@ fun toPatient(data: HashMap<String, String>?): Patient? {
         patient.image = data.get("image").toString()
         patient.id = data.get("id").toString()
         patient.name = data.get("name").toString()
+        patient.bDate = data.get("birthDay").toString()
         patient.email = data.get("email").toString()
+        patient.device_token = data.get("device_token").toString()
 //        val value = data.get("question").toString()
 //        val gson  = Gson()
 //        val ques : MutableList<QuestionVO> =   gson.fromJson(value, Array<QuestionVO>::class.java).toMutableList()
@@ -124,6 +126,8 @@ fun toDoctor(data : HashMap<String, String>?) : DoctorVO?{
         doctor.image = data.get("image").toString()
         doctor.biography = data.get("biography").toString()
         doctor.specialities = data.get("specialities").toString()
+        doctor.device_token = data.get("device_token").toString()
+        doctor.birth = data.get("birthDay").toString()
         return doctor
     }
     return null
@@ -138,6 +142,8 @@ fun MutableMap<String,Any>?.convertToPatientVO(): Patient {
     patient.phone =  this?.get("phone") as String
     patient.image=  this?.get("image") as String
     patient.name =   this?.get("name") as String
+    patient.device_token =   this?.get("device_token") as String
+    patient.bDate =   this?.get("birthDay") as String
   //patient.question=  this?.get("question") as List<QuestionVO>
 //    patient.recent_doctors=  this?.get("recent_doctors") as List<DoctorVO>
     patient.phone=  this?.get("phone") as String
@@ -152,6 +158,7 @@ fun MutableMap<String, Any>?.convertToDoctorVO() : DoctorVO{
     doctor.image = this?.get("image") as String
    doctor.biography = this?.get("biography") as String
     doctor.specialities = this?.get("specialities") as String
+    doctor.device_token = this?.get("device_token") as String
 //    doctor.phone= this?.get("phone") as String
 //    doctor.degrees = this?.get("degrees") as List<String>
 //    doctor.device_token = this?.get("device_token") as String
@@ -287,8 +294,7 @@ fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     consultation.caseSummary = ques
     consultation.doctor = toDoctor(this?.get("doctor") as HashMap<String, String>?)
    consultation.patient =     toPatient(this?.get("patient") as HashMap<String, String>?)
-//    consultation.medicine = this?.get("prescriptions") as List<MedicineVO>
-//    consultation.message = this?.get("chats") as List<MessageVO>
+
 
     return consultation
 }

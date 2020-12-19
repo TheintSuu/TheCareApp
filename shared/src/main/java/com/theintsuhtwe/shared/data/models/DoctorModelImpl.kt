@@ -3,6 +3,10 @@ package com.theintsuhtwe.shared.data.models
 import androidx.lifecycle.LiveData
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
+import com.theintsuhtwe.shared.network.response.NotiResponse
+import com.theintsuhtwe.shared.network.response.NotificationVO
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 object DoctorModelImpl : DoctorModel, BaseModel(){
 
@@ -44,5 +48,24 @@ object DoctorModelImpl : DoctorModel, BaseModel(){
 
     override fun getDoctorInfoFromDB(email: String): LiveData<DoctorVO> {
         return mTheCareDB.doctorDao().getDoctorByemail(email)
+    }
+
+
+    override fun sendNotificationToPatient(
+            notificationVO: NotificationVO,
+            onSuccess: (notiResponse: NotiResponse) -> Unit,
+            onFailure: (String) -> Unit
+    ) {
+
+        mApi.sendFcm(notificationVO)
+                .map { it }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    it?.let { data -> onSuccess(it)
+                    }
+                }, {
+                    onFailure(it.localizedMessage ?: "ERROR MESSAGE")
+                })
     }
 }

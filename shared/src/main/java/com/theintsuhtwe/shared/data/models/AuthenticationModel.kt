@@ -18,6 +18,7 @@ interface AuthenticationModel {
         email: String,
         password: String,
         userName: String,
+        device_token : String,
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     )

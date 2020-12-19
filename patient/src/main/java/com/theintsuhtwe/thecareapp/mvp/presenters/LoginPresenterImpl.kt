@@ -10,11 +10,11 @@ import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.LoginView
+import com.theintsuhtwe.thecareapp.utils.SessionManager
 
 class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
 
     private val mAuthenticatioModel: AuthenticationModel = AuthenticationModelImpl
-
 
     private val mPatientModel : PatientModel = PatientModelImpl
 
@@ -28,6 +28,7 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
         } else {
             mAuthenticatioModel.login(email, password, onSuccess = {
                 mPatientModel.getPatientByEmail(email, onSuccess = {
+                    it.device_token = SessionManager.patient_device_token.toString()
                     mView?.navigateToHomeScreen(patient = it)
                 }, onFailure = {
                     Log.w("error", it)

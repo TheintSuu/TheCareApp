@@ -1,7 +1,9 @@
 package com.theintsuhtwe.thecareapp.utils
 
+import android.content.Context
 import com.theintsuhtwe.shared.data.vos.Patient
-import com.theintsuhtwe.shared.data.vos.QuestionVO
+import com.theintsuhtwe.shared.network.response.DataVO
+import com.theintsuhtwe.shared.network.response.NotificationVO
 
 
 //Error Messages
@@ -31,6 +33,17 @@ fun getCurrentPatientInfo(): Patient {
 //        patient.question = que
 
     return  patient
+}
+
+fun prepareNotificationForPatient(context: Context, to:String?, data: Patient): NotificationVO {
+        val notificationVO = NotificationVO()
+        val dataVO = DataVO()
+        notificationVO.to = to.toString()
+        dataVO.title = "အကြောင်းကြားစာ"
+        dataVO.body = "${data.name} မှ သင့်အာ ဆွေးနွေးပေးရန် request လုပ်ပါသည်"
+        dataVO.id = data.id
+        notificationVO.data = dataVO
+        return notificationVO
 }
 
 

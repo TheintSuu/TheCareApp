@@ -5,6 +5,7 @@ import com.bumptech.glide.Glide
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.viewholders.BaseViewHolder
 import com.theintsuhtwe.thecareapp.delegates.SpecialitiesItemDelegate
+import com.theintsuhtwe.thecareapp.utils.SessionManager
 import kotlinx.android.synthetic.main.item_recent_doctor.view.*
 
 
@@ -15,6 +16,7 @@ class RecentDoctorViewHolder(private val mDelegate: SpecialitiesItemDelegate, it
         itemView.setOnClickListener {
             mData?.let {
                mDelegate.onTapRecentDoctor(it.id, it.specialities)
+                SessionManager.recent_doctor_device_token = it.device_token
             }
 
         }

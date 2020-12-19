@@ -2,6 +2,8 @@ package com.theintsuhtwe.shared.data.models
 
 import androidx.lifecycle.LiveData
 import com.theintsuhtwe.shared.data.vos.DoctorVO
+import com.theintsuhtwe.shared.network.response.NotiResponse
+import com.theintsuhtwe.shared.network.response.NotificationVO
 
 interface DoctorModel {
 
@@ -18,4 +20,10 @@ interface DoctorModel {
 
 
     fun getDoctorInfoFromDB(email : String) : LiveData<DoctorVO>
+
+    fun sendNotificationToPatient(
+            notificationVO: NotificationVO,
+            onSuccess: (notiResponse: NotiResponse) -> Unit,
+            onFailure: (String) -> Unit
+    )
 }

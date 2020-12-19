@@ -1,11 +1,16 @@
 package com.theintsuhtwe.shared.data.models
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import com.theintsuhtwe.shared.data.vos.CaseSummaryVO
 import com.theintsuhtwe.shared.data.vos.DoctorVO
 import com.theintsuhtwe.shared.data.vos.Patient
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
+import com.theintsuhtwe.shared.network.response.NotiResponse
+import com.theintsuhtwe.shared.network.response.NotificationVO
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 object PatientModelImpl: PatientModel,  BaseModel() {
 
@@ -96,6 +101,21 @@ object PatientModelImpl: PatientModel,  BaseModel() {
 
     override fun getCaseSummaryByPatient(id: String, onSuccess: (ques: CaseSummaryVO) -> Unit, onFaiure: (String) -> Unit) {
        return mFirebase.getCaseSummaryByPatient(id, onSuccess, onFaiure)
+    }
+
+    @SuppressLint("CheckResult")
+    override fun sendBroadcastToDoctor(notificationVO: NotificationVO, onSuccess: (notiResponse: NotiResponse) -> Unit, onFailure: (String) -> Unit) {
+        mApi.sendFcm(notificationVO)
+                .map { it }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    it?.let { data ->
+                        onSuccess(it)
+                    }
+                }, {
+                    onFailure(it.localizedMessage ?: "ERROR MESSAGE")
+                })
     }
 
 

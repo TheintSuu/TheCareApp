@@ -3,6 +3,7 @@ package com.theintsuhtwe.shared.data.models
 import android.annotation.SuppressLint
 import android.media.session.MediaSessionManager
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.theintsuhtwe.shared.data.vos.*
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
@@ -111,6 +112,8 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     @SuppressLint("CheckResult")
     override fun sendConsultationRequest(recentId: String, patient: Patient, special: String, id : ArrayList<QuestionVO>, onSuccess: (id : String) -> Unit, onFailure: (String) -> Unit) {
         mFirebase.sendConsultationRequest(recentId, patient, special,  id, onSuccess, onFailure)
+
+
     }
 
     override fun getPrescriptionByConsultationId(

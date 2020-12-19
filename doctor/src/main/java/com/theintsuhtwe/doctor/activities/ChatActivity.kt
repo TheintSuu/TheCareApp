@@ -183,7 +183,7 @@ class ChatActivity : BaseActivity(), ChatView {
             true -> {
                 showPrescription()
                mPrescriptionAdapter.setData(list)
-                startActivity(MainActivity.newIntent(this))
+              // startActivity(MainActivity.newIntent(this))
             }
             else -> {
                 hidePrescription()

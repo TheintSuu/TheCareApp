@@ -2,6 +2,8 @@ package com.theintsuhtwe.shared.data.models
 
 import androidx.lifecycle.LiveData
 import com.theintsuhtwe.shared.data.vos.*
+import com.theintsuhtwe.shared.network.response.NotiResponse
+import com.theintsuhtwe.shared.network.response.NotificationVO
 
 interface PatientModel {
     fun  addPatient(patient: Patient, onSuccess:()->Unit, onFailure:(String)->Unit)
@@ -38,7 +40,6 @@ interface PatientModel {
 
     fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit)
 
-
-
+    fun sendBroadcastToDoctor(notificationVO: NotificationVO, onSuccess: (notiResponse: NotiResponse) -> Unit, onFailure: (String) -> Unit)
 
 }

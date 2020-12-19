@@ -128,7 +128,7 @@ class HomeFragment : BaseFragment(), HomeView {
 
     override fun showConfirmDialog(spcial : String) {
         childFragmentManager?.let {
-            SessionManager.patient_recent_doctor_id = " "
+            SessionManager.patient_recent_doctor_id = ""
             val mDialog  =   ConfirmDialogFragment.newFragment()
             val bundle = Bundle()
             bundle.putString(BUNDLE_CATEGORY_ID, spcial)

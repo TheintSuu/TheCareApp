@@ -57,7 +57,7 @@ class CaseSummaryActivity : BaseActivity(), CaseSummaryView {
 
     private fun setUpListener(){
         btnConfirm.setOnClickListener{
-            mPresenter.onTapSendConsultationRequest(intent.getStringExtra(CaseSummaryActivity.PARM_DOCUMENTID2).toString(),caseSummaryVO, this)
+            mPresenter.onTapSendConsultationRequest(this, intent.getStringExtra(CaseSummaryActivity.PARM_DOCUMENTID2).toString(),caseSummaryVO, this)
         }
         toolbar.setOnClickListener {
             onBackPressed()
