@@ -1,6 +1,6 @@
 package com.theintsuhtwe.shared.utils
 
-const val SERVER_KEY = "AAAAcmg0mJw:APA91bFwpLBU78CVAJ-SqRcBjJUur3iBetA0KMIaKMzWfYjuXNAZQX46Q8EIQ8ISVVJNK3XUeXWgbTAtyz0KEz9srGKEL2NSdBSaqhWUAorTbdSmGj6x3_HfVfntrKSPFjGvHUQh04EA"
+const val SERVER_KEY = "key=AAAAy_mQ588:APA91bH1WwBI1pe20Q25-o7NFjK3dw1nFo96-qRCmTIbBiYdyqQ94K3K5mqOjvoSKOmFqZp3bCL1mMmXzlUDI0i20qFniRv-pOJpYeGbUQ8_oCW2nDv6CHi6zp-4BgrjxYUX_OVBqeoq"
 const val NOTI_TYPE_SEND_BROADCASET_REQUEST = 0
 
 val CHANNel_ID = "NOTIFICATION_CHANNEL"
@@ -12,7 +12,7 @@ val Collapse_Key = "type_a"
 
 const val msgType = 0
 
-const val  FirebaseURL = "https://fcm.googleapis.com"
+const val  FirebaseURL = "https://fcm.googleapis.com/"
 
 
 //Share Perfrenence for patient

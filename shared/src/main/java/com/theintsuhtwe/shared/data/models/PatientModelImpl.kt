@@ -105,6 +105,8 @@ object PatientModelImpl: PatientModel,  BaseModel() {
 
     @SuppressLint("CheckResult")
     override fun sendBroadcastToDoctor(notificationVO: NotificationVO, onSuccess: (notiResponse: NotiResponse) -> Unit, onFailure: (String) -> Unit) {
+
+
         mApi.sendFcm(notificationVO)
                 .map { it }
                 .subscribeOn(Schedulers.io())

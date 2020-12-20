@@ -22,6 +22,7 @@ fun prepareNotificationForDoctor(context: Context, to:String?, doctorName : Stri
     val notificationVO = NotificationVO()
     val dataVO = DataVO()
     notificationVO.to = to.toString()
+    //notificationVO.to = "dM5uQGAATCOXvCUZEATpXa:APA91bHyqF1-KKKXqWruehBrx9RAE7f0kjT-LEYoUlJ65e0tna2NrmJW4JnjSBGQ8cPsCJtCMRSCeL8jyfr0nHxN_VnXOiu3drQYtsMxVtkhww_sBYGu0wM8NaeaS3Sh4y98e8Gm7q_o"
     dataVO.title = "အကြောင်းကြားစာ"
     dataVO.body = "$doctorName မှ သင့်အား လက်ခံလိုက်ပါ ပြီ ယခုပင်ဆွေးနွေးမှုစတင်နိုင်ပါပြီ"
     dataVO.id = doctorId

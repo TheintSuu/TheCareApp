@@ -24,6 +24,19 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
         if(SessionManager.doctor_login_status.toString()== SIGN_IN){
+            mDoctor.getDoctorByEmail(SessionManager.doctor_email.toString(), onSuccess = {
+                it.device_token = SessionManager.doctor_device_token.toString()
+                saveDoctorToSession(it)
+                mDoctor.addDoctor(it, onSuccess = {
+
+                }, onFailure = {
+
+                })
+                SessionManager.doctor_login_status = SIGN_IN
+                mView?.navigateToHomeScreen()
+            }, onFailure = {
+
+            })
            mView?.navigateToHomeScreen()
         }
     }
@@ -35,7 +48,13 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
 
             mAuthenticatioModel.login(email, password, onSuccess = {
                 mDoctor.getDoctorByEmail(email, onSuccess = {
+                    it.device_token = SessionManager.doctor_device_token.toString()
                     saveDoctorToSession(it)
+                    mDoctor.addDoctor(it, onSuccess = {
+
+                    }, onFailure = {
+
+                    })
                     SessionManager.doctor_login_status = SIGN_IN
                     mView?.navigateToHomeScreen()
                 }, onFailure = {

@@ -53,8 +53,17 @@ class MainActivity :   BaseActivity() {
     private fun setUpScribeToTopic(){
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
             Log.d("fbToken", it.token)
+
+
         }
-        Firebase.messaging.subscribeToTopic(SessionManager.doctor_speciality.toString())
+        var convertToEng = ""
+        when(SessionManager.doctor_speciality.toString()){
+            "နှလုံးအထူးကု" ->  convertToEng = "cardiology"
+            "အရေပြားဆိုင်ရာ" -> convertToEng = "skin"
+            else -> convertToEng = SessionManager.doctor_speciality.toString()
+        }
+
+        Firebase.messaging.subscribeToTopic(convertToEng)
                 .addOnCompleteListener { task ->
                     var msg = "Subscribed"
                     if (!task.isSuccessful) {

@@ -29,6 +29,7 @@ class LoginPresenterImpl : LoginPresenter, AbstractBasePresenter<LoginView>() {
             mAuthenticatioModel.login(email, password, onSuccess = {
                 mPatientModel.getPatientByEmail(email, onSuccess = {
                     it.device_token = SessionManager.patient_device_token.toString()
+                    mPatientModel.addPatient(it, onSuccess = {}, onFailure = {})
                     mView?.navigateToHomeScreen(patient = it)
                 }, onFailure = {
                     Log.w("error", it)

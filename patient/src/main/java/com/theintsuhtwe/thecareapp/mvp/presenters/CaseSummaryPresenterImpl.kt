@@ -83,7 +83,13 @@ class CaseSummaryPresenterImpl : CaseSummaryPresenter, AbstractBasePresenter<Cas
         val notiData : NotificationVO
         if(SessionManager.patient_recent_doctor_id.toString()=="") {
             // Send Noti All Doctor
-            notiData = prepareNotificationForPatient(context, "/topics/$special", mPatient)
+            var convertToEng = ""
+            when(special.toString()){
+                "နှလုံးအထူးကု" ->  convertToEng = "cardiology"
+                "အရေပြားဆိုင်ရာ" -> convertToEng = "skin"
+                else -> convertToEng =  special
+            }
+            notiData = prepareNotificationForPatient(context, "/topics/$convertToEng", mPatient)
         }else
         {
             notiData = prepareNotificationForPatient(context,  SessionManager.recent_doctor_device_token.toString(), mPatient)
