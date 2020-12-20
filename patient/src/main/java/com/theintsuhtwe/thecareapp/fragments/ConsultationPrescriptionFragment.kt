@@ -43,17 +43,17 @@ class ConsultationPrescriptionFragment : DialogFragment() {
         return inflater.inflate(R.layout.fragment_consultation_prescription, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT
-        )
-        dialog?.apply {
-            setCancelable(false)
-            window?.setBackgroundDrawableResource(android.R.color.transparent)
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        dialog?.window?.setLayout(
+//                WindowManager.LayoutParams.MATCH_PARENT+20,
+//                WindowManager.LayoutParams.MATCH_PARENT-50
+//        )
+//        dialog?.apply {
+//            setCancelable(false)
+//            window?.setBackgroundDrawableResource(android.R.color.transparent)
+//        }
+//    }
 
     companion object {
         const val BUNDLE_CATEGORY_ID = " BUNDLE_CATEGORY_ID"

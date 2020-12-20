@@ -214,6 +214,10 @@ class ChatActivity : BaseActivity(), ChatView {
         Glide.with(this)
                 .load(SessionManager.patient_photo.toString())
                 .into(userprofile)
+
+        tvUserName.text = SessionManager.patient_name
+
+
     }
 
     private fun hideView(){

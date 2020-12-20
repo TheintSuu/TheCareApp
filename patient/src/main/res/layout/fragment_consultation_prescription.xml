@@ -4,31 +4,41 @@
 
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:paddingHorizontal="@dimen/margin_medium_3"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:layout_marginBottom="85dp"
+
        >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/margin_medium_2"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/margin_medium_2"
+        android:padding="@dimen/text_small"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/margin_medium_3"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
             <TextView
 
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium_3"
                 android:paddingVertical="@dimen/margin_medium"
                 android:text="ဆေးညွှန်"
-                android:background="@drawable/btn_background"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:paddingStart="@dimen/margin_medium_2"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_regular" />
 
@@ -36,6 +46,8 @@
                 android:id="@+id/rvPrescriptionList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginStart="@dimen/margin_medium_2"
                 android:layout_marginTop="@dimen/margin_medium_2"
                 android:layout_below="@id/tvName"
                 android:backgroundTint="@color/homeBackgroundColor"
@@ -51,10 +63,6 @@
                 android:background="@drawable/btn_blue"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_alignParentBottom="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:layout_marginBottom="@dimen/margin_large"
                 android:layout_marginHorizontal="@dimen/margin_medium_3"
@@ -64,6 +72,7 @@
 
 
         </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     </androidx.core.widget.NestedScrollView>
 

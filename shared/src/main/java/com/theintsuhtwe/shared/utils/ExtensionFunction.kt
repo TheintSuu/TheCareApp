@@ -265,6 +265,7 @@ fun MutableMap<String, Any>?.convertToConsultationVO() : ConsultationVO{
     val consultation = ConsultationVO()
     consultation.id = this?.get("id") as String
     consultation.special = this?.get("speciality") as String?
+    consultation.careateAt = this?.get("create_at") as String?
     consultation.statue = this?.get("consultation_status") as String
     val ques  : ArrayList<QuestionVO> = arrayListOf()
     val value = this?.get("case_summary") as ArrayList<HashMap<String, Any>>?

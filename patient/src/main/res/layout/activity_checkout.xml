@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/margin_small"
             android:background="@color/white"
-            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
             app:cardUseCompatPadding="true">
 
     <include
@@ -70,7 +70,7 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
         <TextView
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium_2"
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

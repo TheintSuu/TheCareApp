@@ -10,13 +10,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
+        android:background="@color/grey_white"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+       >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/homeBackgroundColor"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
@@ -27,11 +27,12 @@
                     android:id="@+id/layout_confirm_receive"
                     layout="@layout/layout_consultion_received"
                     android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium"
                     android:layout_height="wrap_content"
                    />
                 <TextView
                     android:id="@+id/tvRecentDoctor"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_medium_2"
                     android:textColor="@color/black"
@@ -44,6 +45,7 @@
                     android:id="@+id/rvRecentDoctor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTintMode="@color/white"
                     android:layout_below="@id/tvRecentDoctor"
                     android:layout_marginTop="@dimen/margin_medium_2" />
             </RelativeLayout>
@@ -52,6 +54,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
+            android:background="@color/grey_white"
             android:layout_height="?attr/actionBarSize">
             <TextView
                 android:layout_width="wrap_content"

@@ -12,6 +12,6 @@
         android:text="မတည့်သော ဆေးအမျိုးအစား"
         android:textSize="13sp"
         android:id="@+id/tvChatPrescription"
-        android:textColor="@color/black"
+        android:textColor="#424656"
         android:textStyle="bold"/>
 </RelativeLayout>

@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Medicine Recommendation"
-                    android:textColor="@color/black"
+                    android:textColor="#424656"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     />
@@ -42,13 +42,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:background="#F4EFEF"/>
+                    android:background="#d8d8d8"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPrescriptionMedicine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvName"
-                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:paddingHorizontal="@dimen/margin_medium_3" />
             </LinearLayout>
 
