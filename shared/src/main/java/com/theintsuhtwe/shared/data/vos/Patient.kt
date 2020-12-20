@@ -18,11 +18,12 @@ data class Patient(
         @SerializedName("id") var id: String = "",
         @SerializedName("name") var name: String = "",
         @SerializedName("email") var email: String = "",
-        @SerializedName("birthday") var bDate : String = "",
+        @SerializedName("birthday") var bDate : String ?= null,
         @SerializedName("image") var image: String = "",
         @SerializedName("phone") var phone: String = "",
         @SerializedName("device_token") var device_token: String = "",
+        @SerializedName("adddress")var address : String ?= null,
         @SerializedName("question") var question: ArrayList<QuestionVO> = arrayListOf(),
-        @SerializedName("address")  var address  : ArrayList<Address> = arrayListOf(),
+        @SerializedName("address")  var addressList  : ArrayList<Address> = arrayListOf(),
         @SerializedName("recent_doctors")  var recent_doctors  : ArrayList<DoctorVO> = arrayListOf()
 )

@@ -43,6 +43,12 @@ class CheckoutActivity :BaseActivity(), CheckoutView {
             return intent
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        this.finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)

@@ -11,5 +11,5 @@ interface CaseSummaryQuestionPresenter :  BasePresenter<CaseSumaryQuestionView>,
     SpecialitiesItemDelegate {
     fun onUiReady(id : String, life : LifecycleOwner)
     fun onTapNext(id : String, type : String, special : String, list : ArrayList<QuestionVO>)
-    fun onTapNextOnce(id : String, type : String,name : String, bdd : String, phone : String, special : String, list : ArrayList<QuestionVO>)
+    fun onTapNextOnce(id : String, type : String,name : String, bdd : String, phone : String, address : String, special : String, list : ArrayList<QuestionVO>)
 }

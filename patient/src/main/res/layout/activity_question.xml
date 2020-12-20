@@ -173,6 +173,30 @@
                         android:id="@+id/etPhone"
                         android:layout_margin="5dp"/>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="လိပ်စာ"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:textSize="@dimen/text_regular"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/btn_white"
+                        android:paddingHorizontal="@dimen/margin_medium_2"
+                        android:maxLines="1"
+                        android:hint=" "
+                        android:inputType="text"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/etAddress"
+                        android:layout_margin="5dp"/>
+
+
 
                     <TextView
                         android:layout_width="match_parent"

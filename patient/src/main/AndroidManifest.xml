@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheCareAppPatient">
-        <activity android:name=".activities.NoteActivity"></activity>
+        <activity android:name=".activities.BeforeCheckOut"></activity>
+        <activity android:name=".activities.NoteActivity" />
         <activity android:name=".activities.DetailPrescriptionActivity" />
         <activity android:name=".activities.ChatActivity" />
         <activity android:name=".activities.SpecialQuestionActivity" />
@@ -25,7 +26,6 @@
         <activity android:name=".activities.QuestionActivity" />
         <activity android:name=".activities.DetailCheckoutActivity" />
         <activity android:name=".activities.CheckoutActivity" />
-
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +43,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="" />

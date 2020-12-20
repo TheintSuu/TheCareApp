@@ -17,18 +17,20 @@
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/margin_medium_2"
+            android:textColor="@color/black"
             android:text="25/11/2020"
             />
         <com.theintsuhtwe.thecareapp.views.components.RoundedCornerImageView
             android:id="@+id/ivConfirmDoctorImage"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_below="@id/tvConsultDate"
             android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_medium"
             android:src="@mipmap/ic_launcher"
-            app:cornerRadius="36dp"
+            app:cornerRadius="30dp"
             android:layout_alignBottom="@id/tvDoctorSpeciality"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +47,7 @@
             android:layout_marginTop="@dimen/margin_medium_3"
             android:layout_toRightOf="@id/ivConfirmDoctorImage"
             android:text="Professor Doctor U Aung Win "
-            android:textColor="@color/black"
+            android:textColor="#424656"
             android:textSize="@dimen/text_regular_2x" />
 
         <TextView
@@ -58,14 +60,14 @@
             android:layout_alignStart="@id/tvDoctorName"
             android:text="Dental"
             android:layout_below="@id/tvDoctorName"
-            android:textColor="@color/black"
+            android:textColor="#00122d"
             android:textSize="@dimen/text_regular_2x" />
 
         <LinearLayout
             android:id="@+id/tb1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue"
+            android:background="#005ccc"
             android:layout_marginTop="@dimen/margin_large"
             android:layout_below="@id/ivConfirmDoctorImage"
             android:weightSum="2" >
@@ -75,7 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_blue"
+                android:background="#005ccc"
                 android:gravity="center"
                 android:text="စာပို့မည်"
                 android:padding="@dimen/margin_medium_2"
@@ -90,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="@dimen/margin_medium_2"
-                android:background="@drawable/btn_blue"
+                android:background="#005ccc"
                 android:gravity="center"
                 android:text="ဆေးညွှန်"
                 android:textColor="@color/white"

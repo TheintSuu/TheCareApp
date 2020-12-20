@@ -59,6 +59,7 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
 
 
     private fun setUpPresenter(){
+
         mPresenter = getPresenter<CaseSummaryQuestionPresenterImpl ,CaseSumaryQuestionView>()
 
 
@@ -91,7 +92,7 @@ class QuestionActivity : BaseActivity(), CaseSumaryQuestionView {
                     ques.add(data4)
                     ques.add(data5)
                     queList.addAll(ques)
-                    mPresenter.onTapNextOnce(SessionManager.patient_id.toString(),  type, edName.text.toString(), etBD.text.toString(), etPhone.text.toString(),  intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString(),  ques)
+                    mPresenter.onTapNextOnce(SessionManager.patient_id.toString(),  type, edName.text.toString(), etBD.text.toString(), etPhone.text.toString(), etAddress.text.toString(), intent.getStringExtra(QuestionActivity.PARM_DOCUMENTID).toString(),  ques)
 
             }
             else -> {

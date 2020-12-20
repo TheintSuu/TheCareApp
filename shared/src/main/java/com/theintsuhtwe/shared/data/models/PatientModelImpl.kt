@@ -49,8 +49,8 @@ object PatientModelImpl: PatientModel,  BaseModel() {
 
     }
 
-    override fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit) {
-        mFirebase.getOnceTimeQuestion(id, name, bdd, phone, onSuccess, onFailure)
+    override fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, address : String,  onSuccess : () -> Unit, onFailure : ()  -> Unit) {
+        mFirebase.getOnceTimeQuestion(id, name, bdd, phone, address, onSuccess, onFailure)
     }
 
 

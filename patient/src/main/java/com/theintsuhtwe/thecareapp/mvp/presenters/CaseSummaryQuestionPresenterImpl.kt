@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.PatientModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
+import com.theintsuhtwe.shared.data.vos.Address
 import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.mvp.presenters.AbstractBasePresenter
 import com.theintsuhtwe.thecareapp.mvp.views.CaseSumaryQuestionView
@@ -58,23 +59,24 @@ class CaseSummaryQuestionPresenterImpl : CaseSummaryQuestionPresenter, AbstractB
 
             }
 
-    override fun onTapNextOnce(id: String, type: String, name: String, bdd: String, phone: String, special: String, list: ArrayList<QuestionVO>) {
+    override fun onTapNextOnce(id: String, type: String, name: String, bdd: String, phone: String, address: String, special: String,  list: ArrayList<QuestionVO>) {
 
-        mPatientModel.getOnceTimeQuestion(id, name, bdd, phone, onSuccess = {
-            mPatientModel.sendQuestion(id, list,
-                    onSuccess = {
-                        //mTheCareModel.GeneralQuestionDeletAndInsertToDB(list)
+        mPatientModel.getOnceTimeQuestion(id, name, bdd, phone, address, onSuccess = {
 
-                        mView?.navigaeToSpecialQuestion(id, special)
-
-                    },
-                    onFaiure = {
-
-                    }
-            )
         }, onFailure = {
 
         })
+        mPatientModel.sendQuestion(id, list,
+            onSuccess = {
+                //mTheCareModel.GeneralQuestionDeletAndInsertToDB(list)
+
+                mView?.navigaeToSpecialQuestion(id, special)
+
+            },
+            onFaiure = {
+
+            }
+        )
     }
 
     override fun onTapSpecialities(name: String) {

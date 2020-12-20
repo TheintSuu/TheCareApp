@@ -135,7 +135,8 @@ class ChatActivity : BaseActivity(), ChatView {
         }
 
         btnCheckOut.setOnClickListener {
-            startActivity(CheckoutActivity.newIntentWithId(this, intent.getStringExtra(ChatActivity.PARM_DOCUMENTID).toString()))
+            finish()
+            startActivity(BeforeCheckOut.newIntentWithId(this, intent.getStringExtra(ChatActivity.PARM_DOCUMENTID).toString()))
         }
 
 

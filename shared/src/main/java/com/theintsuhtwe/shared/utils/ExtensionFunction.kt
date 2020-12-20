@@ -31,25 +31,6 @@ import java.time.format.FormatStyle
 }
 
 
-fun createNotiRequsetBody(to : String, body : String, title : String) : JSONObject
-{
-
-        val data = JSONObject()
-        data.put("name", "Professor U Aung Win")
-        data.put("specialities", "Dental")
-        data.put("biography", "Body of FCM Notification")
-
-
-        val jsonObj_ = JSONObject()
-        jsonObj_.put("to", "eXtOYb6USvWuty6lDtynZ-:APA91bHry8SrjUJSkD2XyV-xX0zJFlgbysrUaSwingfiKEi6K5mBRtwW8PIFT0MED_4m_R6tSxRdFleiHAuIPbkVlRUoTDxh2nrJ5JygvIG5o9asyTcd85Sg29BHmkDI37iiuaihhsU_")
-        jsonObj_.put("collapse_key", Collapse_Key)
-        jsonObj_.put("data", data)
-
-    return jsonObj_
-
-
-}
-
 
 
 fun MutableMap<String,Any>?.convertToQuestionVO(): QuestionVO {
@@ -57,9 +38,7 @@ fun MutableMap<String,Any>?.convertToQuestionVO(): QuestionVO {
     question.description = this?.get("description") as String ?
     question.answer = this?.get("answer") as String ?
 
-
-
-    return question
+     return question
 }
 
 fun MutableMap<String,Any>?.convertToQuestion(): QuestionVO {
@@ -105,6 +84,7 @@ fun toPatient(data: HashMap<String, String>?): Patient? {
         patient.name = data.get("name").toString()
         patient.bDate = data.get("birthDay").toString()
         patient.email = data.get("email").toString()
+        patient.address = data.get("address").toString()
         patient.device_token = data.get("device_token").toString()
 //        val value = data.get("question").toString()
 //        val gson  = Gson()

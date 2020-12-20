@@ -39,6 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_margin="@dimen/margin_medium_2"
+        android:textColor="#004247"
+        android:textStyle="bold"
         android:lineSpacingExtra="@dimen/margin_small"
         android:text="သွားဘက်ဆိုင်ရာ ဆရာဝန်နှင့် ဆွေးနွေးမှု ပြုလုပ်မှာ သေချာပါသည်"
         />
@@ -57,9 +59,10 @@
             android:layout_marginRight="@dimen/margin_medium_3"
             android:paddingVertical="@dimen/margin_medium"
             android:text="မလုပ်တော့ပါ"
+            android:textStyle="bold"
             android:textSize="@dimen/text_small"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="#4085d9" />
 
         <TextView
             android:id="@+id/btnConfirm"

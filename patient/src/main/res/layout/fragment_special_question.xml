@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_white"
+    android:paddingHorizontal="@dimen/margin_medium_2"
     tools:context=".activities.CaseSummaryActivity">
 
 
@@ -47,12 +49,11 @@
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvHistory"
-                android:layout_marginTop="@dimen/margin_medium"
                 android:layout_width="match_parent"
                 android:paddingVertical="@dimen/margin_medium"
                 android:layout_height="wrap_content"

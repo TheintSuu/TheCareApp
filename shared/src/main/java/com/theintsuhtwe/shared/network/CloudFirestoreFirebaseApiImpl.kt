@@ -412,7 +412,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
     }
 
 
-    override  fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, onSuccess : () -> Unit, onFailure : ()  -> Unit){
+    override  fun getOnceTimeQuestion(id: String, name: String, bdd: String, phone: String, address: String, onSuccess : () -> Unit, onFailure : ()  -> Unit){
 
     val sfDocRef = db.collection("patients").document("${id}")
 
@@ -422,9 +422,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
         transaction.update(sfDocRef, "name", name)
         transaction.update(sfDocRef, "birthDay", bdd)
         transaction.update(sfDocRef, "phone", phone)
-
-
-
+        transaction.update(sfDocRef, "address", address)
 
     }.addOnSuccessListener { result ->
         onSuccess()
@@ -433,6 +431,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
         Log.w("Status Update", "Transaction failure.", e)
     }
     }
+
     override fun startConsultation(
             consulationId: String, dateTime: String, questionAnswerList: List<QuestionVO>, patientVO: Patient, doctorVO: DoctorVO,
             onSuccess: (String) -> Unit,
