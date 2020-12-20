@@ -1,6 +1,9 @@
 package com.theintsuhtwe.doctor.utils
 
+import android.content.Context
 import com.theintsuhtwe.shared.data.vos.DoctorVO
+import com.theintsuhtwe.shared.network.response.DataVO
+import com.theintsuhtwe.shared.network.response.NotificationVO
 
 fun saveDoctorToSession(doctor : DoctorVO) {
     doctor.id?.let {
@@ -13,6 +16,17 @@ fun saveDoctorToSession(doctor : DoctorVO) {
 
     }
 
+}
+
+fun prepareNotificationForDoctor(context: Context, to:String?, doctorName : String, doctorId : String):NotificationVO{
+    val notificationVO = NotificationVO()
+    val dataVO = DataVO()
+    notificationVO.to = to.toString()
+    dataVO.title = "အကြောင်းကြားစာ"
+    dataVO.body = "$doctorName မှ သင့်အား လက်ခံလိုက်ပါ ပြီ ယခုပင်ဆွေးနွေးမှုစတင်နိုင်ပါပြီ"
+    dataVO.id = doctorId
+    notificationVO.data = dataVO
+    return notificationVO
 }
 
  fun totalMedicines( quantitly : String, dayWeek : Int , beforAter : Int) : Int{

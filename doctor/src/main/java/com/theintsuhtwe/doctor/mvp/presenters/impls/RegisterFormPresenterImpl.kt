@@ -2,6 +2,7 @@ package com.theintsuhtwe.doctor.mvp.presenters.impls
 
 import android.util.Log
 import com.theintsuhtwe.doctor.mvp.views.RegisterFormView
+import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.doctor.utils.saveDoctorToSession
 import com.theintsuhtwe.shared.data.models.DoctorModelImpl
 import com.theintsuhtwe.shared.data.vos.DoctorVO
@@ -30,7 +31,7 @@ class RegisterFormPresenterImpl  :  RegisterFormPresenter, AbstractBasePresenter
             biography = bio,
             image = randomImage(),
             degrees = degrees,
-            device_token = ""
+            device_token = SessionManager.doctor_device_token.toString()
         )
         mDoctorModel.addDoctor(
             doctor,

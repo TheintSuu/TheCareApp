@@ -71,7 +71,9 @@ object ConsultationModelImpl : ConsultationModel, BaseModel(){
     }
 
     override fun addConsultation(consulationId: String, dateTime: String, questionAnswerList: List<QuestionVO>, patientVO: Patient, doctorVO: DoctorVO,  onSuccess: (String) -> Unit, onFailure: (String) -> Unit) {
-      return  mFirebase.startConsultation(consulationId, dateTime, questionAnswerList, patientVO, doctorVO,  onSuccess, onFailure)
+       mFirebase.startConsultation(consulationId, dateTime, questionAnswerList, patientVO, doctorVO,  onSuccess, onFailure)
+
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

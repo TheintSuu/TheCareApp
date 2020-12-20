@@ -1,12 +1,14 @@
 package com.theintsuhtwe.doctor.mvp.presenters.impls
 
+import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
-import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.mvp.views.HomeView
 import com.theintsuhtwe.doctor.utils.SIGN_OUT
 import com.theintsuhtwe.doctor.utils.SessionManager
+import com.theintsuhtwe.doctor.utils.prepareNotificationForDoctor
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
 import com.theintsuhtwe.shared.data.models.DoctorModelImpl
 import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl
@@ -26,6 +28,8 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
     var mDoctorModel = DoctorModelImpl
 
+    lateinit var mContext : Context
+
     private var doctor  = DoctorVO()
 
     private var flag = false
@@ -36,7 +40,8 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
 
     private var mConsulationRequest : MutableList<ConsultationRequest> = arrayListOf()
 
-    override fun onUiReady(lifecycleOwner: LifecycleOwner) {
+    override fun onUiReady(context : Context, lifecycleOwner: LifecycleOwner) {
+        mContext = context
 
         getAllData( lifecycleOwner)
 
@@ -83,15 +88,20 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>(){
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onTapAccept(id: String) {
-        mModel.getConsultationRequestById(id, onSuccessRequest = {
-            consulation = it
+    override fun onTapAccept(requesst: ConsultationRequest) {
 
-           onTapChatByUiReady(id)
+       consulation = requesst
 
-        }, onFaiure = {
 
+
+        var notiObj=  prepareNotificationForDoctor(mContext, consulation.patient?.device_token, SessionManager.doctor_name.toString(),SessionManager.doctor_id.toString())
+        mDoctorModel.sendNotificationToPatient(notiObj,onSuccess = {
+            Log.d("onsuccess", it.success.toString())
+        }, onFailure = {
+            Log.d("notionFailure", it)
         })
+
+        onTapChatByUiReady(consulation.id)
 
 
     }

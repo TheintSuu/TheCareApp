@@ -1,9 +1,11 @@
 package com.theintsuhtwe.doctor.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -41,7 +43,11 @@ class ChatActivity : BaseActivity(), ChatView {
     companion object{
         const val PARM_DOCUMENTID = "Document ID"
         const val PARM_DOCUMENTID2 = "Special ID"
-        fun newIntent(context: Context): Intent {
+        const val PARM_DOCUMENTID3 = "Question"
+        private val QUESTION_TEMPLATE_ACTIVITY_REQUEST_CODE = 0
+        fun newIntent(context: Context, question : String): Intent {
+            val intent =  Intent(context, ChatActivity::class.java)
+            intent.putExtra(PARM_DOCUMENTID3, question)
             return Intent(context, ChatActivity::class.java)
         }
 
@@ -131,6 +137,9 @@ class ChatActivity : BaseActivity(), ChatView {
         btnPrescription.setOnClickListener {
             mPresenter.onTapPrescription(special)
         }
+        btnQuestion.setOnClickListener {
+            mPresenter.onTapSpecailQuestion(SessionManager.doctor_speciality.toString())
+        }
 
         tvName.setOnClickListener {
            onBackPressed()
@@ -172,6 +181,11 @@ class ChatActivity : BaseActivity(), ChatView {
 
     override fun showSpeciality(id: String) {
         special = id
+    }
+
+    override fun navigateToQuestion() {
+        val intent = Intent(this,  QuestionActivity::class.java)
+        startActivityForResult( intent ,QUESTION_TEMPLATE_ACTIVITY_REQUEST_CODE)
     }
 
     override fun navigateToSpecialQuestionByDoctor() {
@@ -229,6 +243,18 @@ class ChatActivity : BaseActivity(), ChatView {
 
     private fun hideView(){
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == QUESTION_TEMPLATE_ACTIVITY_REQUEST_CODE)
+        {
+            if( resultCode == Activity.RESULT_OK)
+            {
+                val returnString = data?.getStringExtra("questions")
+                etMessage.text = Editable.Factory.getInstance().newEditable(returnString)
+            }
+        }
     }
 
 }

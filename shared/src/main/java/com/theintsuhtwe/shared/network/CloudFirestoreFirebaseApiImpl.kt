@@ -370,6 +370,7 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
                 "image" to patient.image,
                 "id" to patient.id,
                 "phone" to patient.phone,
+                "device_token" to patient.device_token,
                 "address" to patient.address
         )
 
@@ -457,12 +458,13 @@ object CloudFirestoreFirebaseApiImpl : FirebaseApi {
                     .set(consultationMap)
                     .addOnSuccessListener {
                         Log.d("success", "Successfully add doctor")
-                            onSuccess(id)
-                            updateConsultationRequest(consulationId,id, doctorVO, onSuccess = {
-                                onSuccess(id)
-                            }, onFailure = {
 
-                            })
+                        updateConsultationRequest(consulationId,id, doctorVO, onSuccess = {
+
+                        }, onFailure = {
+
+                        })
+                        onSuccess(id)
 
 
 

@@ -23,7 +23,7 @@ class SpecialQuestionActivity :  BaseActivity() , SpecialQuestionView{
 
     private lateinit var mAdapter : QuestionItemAdapter
 
-    private var mQueList : ArrayList<QuestionVO> = arrayListOf()
+    private var mQueList : MutableList<QuestionVO> = arrayListOf()
 
 
     companion object{
@@ -54,7 +54,9 @@ class SpecialQuestionActivity :  BaseActivity() , SpecialQuestionView{
 
     private fun setUpListener(){
         btnConfirm.setOnClickListener{
-            mPresenter.onTapContinue(mQueList)
+            var list : ArrayList<QuestionVO> = arrayListOf()
+            list = mQueList as ArrayList<QuestionVO>
+            mPresenter.onTapContinue(list)
 
         }
     }
@@ -89,7 +91,19 @@ class SpecialQuestionActivity :  BaseActivity() , SpecialQuestionView{
     }
 
     override fun addQuestionToCaseSummary(ques: QuestionVO) {
-       mQueList.add(ques)
+        val isExist = mQueList.filter {
+            it.description.equals(ques.description)
+        }
+        when (isExist.isNotEmpty()){
+         true -> {
+             isExist.forEach {
+                     med -> mQueList.remove(med)
+             }
+             mQueList.add(ques)
+         }
+            else ->  mQueList.add(ques)
+        }
+
     }
 
     override fun showErrorMessage(error: String) {

@@ -4,9 +4,11 @@ package com.theintsuhtwe.thecareapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.iid.FirebaseInstanceId
 import com.theintsuhtwe.shared.activities.BaseActivity
 import com.theintsuhtwe.thecareapp.R
 import com.theintsuhtwe.thecareapp.fragments.HistoryFragment
@@ -44,6 +46,10 @@ class MainActivity :  BaseActivity() {
         callFragment(homeFragment)
 
         setUpBottomNavigation()
+
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+            Log.d("fbToken", it.token)
+        }
 
 
     }

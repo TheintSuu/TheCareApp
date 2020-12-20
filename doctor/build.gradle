@@ -95,6 +95,15 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-dynamic-links-ktx'
 //    implementation 'com.google.firebase:firebase-storage:19.2.0'
 
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-config-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    //implementation 'com.google.firebase:firebase-dynamic-links-ktx'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+
     //swiperefresh
     implementation rootProject.ext.libraries.swipeRefresh
 }

@@ -1,7 +1,10 @@
 package com.theintsuhtwe.shared.data.models
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
+import com.theintsuhtwe.shared.data.models.SpecialitiesModelImpl.mFirebaseApi
 import com.theintsuhtwe.shared.data.vos.DoctorVO
+import com.theintsuhtwe.shared.data.vos.QuestionVO
 import com.theintsuhtwe.shared.network.CloudFirestoreFirebaseApiImpl
 import com.theintsuhtwe.shared.network.response.NotiResponse
 import com.theintsuhtwe.shared.network.response.NotificationVO
@@ -20,6 +23,7 @@ object DoctorModelImpl : DoctorModel, BaseModel(){
             onFailure(it)
        })
     }
+
 
     override fun getDoctorByEmail(email: String, onSuccess: (doctor : DoctorVO) -> Unit, onFailure: (String) -> Unit) {
        mFirebase.getDoctorByEmail(email, onSuccess= {
@@ -42,6 +46,8 @@ object DoctorModelImpl : DoctorModel, BaseModel(){
         return mFirebase.getDeviceToken()
     }
 
+
+
     override fun addDoctorInfoToDB(doc: DoctorVO) {
        mTheCareDB.doctorDao().insertDoctor(doc)
     }
@@ -51,6 +57,7 @@ object DoctorModelImpl : DoctorModel, BaseModel(){
     }
 
 
+    @SuppressLint("CheckResult")
     override fun sendNotificationToPatient(
             notificationVO: NotificationVO,
             onSuccess: (notiResponse: NotiResponse) -> Unit,

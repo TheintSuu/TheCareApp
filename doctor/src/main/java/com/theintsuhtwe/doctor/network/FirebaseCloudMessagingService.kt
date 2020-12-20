@@ -9,87 +9,97 @@ import android.content.Intent
 import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.theintsuhtwe.doctor.activities.MainActivity
+import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.shared.R
+import com.theintsuhtwe.shared.network.response.NotificationVO
 import com.theintsuhtwe.shared.utils.NOTI_TYPE_SEND_BROADCASET_REQUEST
 import com.theintsuhtwe.shared.utils.msgType
 
 
-class FirebaseCloudMessagingService : FirebaseMessagingService() {
+class FirebaseMessagingService  : FirebaseMessagingService() {
+    companion object{
+        const val FCM_CHANNEL_ID = "FCM_CHANNEL_ID"
+        const val TAG = "FirebaseService"
 
-
-    override fun onNewToken(p0: String) {
-
-        //sendRegistrationToServer(token)
+        const val NOTIFICATION_ID = 1000
+        const val SUMMARY_ID = 1001
     }
 
-    private fun sendRegistrationToServer(token: String?) {
-
-        Log.d(TAG, "sendRegistrationTokenToServer($token)")
-    }
-
-    private var msgBody  =  ""
-    private var msgType = 1
-    private var title : String = ""
-    private var orderID : String = " "
+    val notificationVO = NotificationVO()
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.d("FCM", remoteMessage.data.toString() )
+        super.onMessageReceived(remoteMessage)
 
-        val body  = remoteMessage.data["body"]
-        val title  = remoteMessage.data["title"]
-
-        showNotification(title, body)
+        if(remoteMessage.data.isNotEmpty()){
+            val id = remoteMessage.data["id"]
+            val title = remoteMessage.data["title"]
+            val body = remoteMessage.data["body"]
+            notificationVO.data?.title = title
+            notificationVO.data?.body = body
+            createNotification(title,body)
+        }
+        remoteMessage.notification?.let {
+            Log.d(TAG,"${it.body} and ${it.title}")
+        }
+    }
+    override fun onDeletedMessages() {
+        super.onDeletedMessages()
     }
 
-    private fun showNotification(title : String?, body : String?){
-        val intent  = Intent()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent,
-            PendingIntent.FLAG_ONE_SHOT
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Log.d("TAG","onNewToken Called")
+        Log.d("Token",token)
+        SessionManager.doctor_device_token = token
+    }
 
-        )
-        val channelId = "Hello_FCM_Channel"
-        val channelName = "Hello_FCM_CHANNEL_HI"
-
-        val notificationManager = getSystemService(
-            Context.NOTIFICATION_SERVICE
-        ) as NotificationManager
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            setupNotificationChannels(channelId, channelName, notificationManager)
+    private fun createNotification(messageTitle:String?,messageBody:String?){
+        val intent = Intent(applicationContext, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra("notification","yes")
+            val bundle = Bundle()
+            bundle.putString("dataOne", messageTitle)
+            bundle.putString("dataTwo", messageBody)
+            this.putExtras(bundle)
         }
 
-        val soundUri  = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(title)
-            .setContentText(body)
-            .setAutoCancel(true)
-            .setSound(soundUri)
-            .setContentIntent(pendingIntent)
-        notificationManager.notify(0, notificationBuilder.build())
-    }
+        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder = NotificationCompat.Builder(this, FCM_CHANNEL_ID)
+                .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
+                .setContentTitle(messageTitle)
+                .setContentText(messageBody)
+                .setSound(defaultSoundUri)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .build()
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "The Care Myanmar"
+            val descriptionText = "PADC Learning Portal"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(FCM_CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun setupNotificationChannels(
-        channelId : String,
-        channelName : String,
-        notificationManager: NotificationManager
-    ){
-        val channel = NotificationChannel(
-            channelId, channelName, NotificationManager.IMPORTANCE_LOW
-        )
-        channel.enableLights(true)
-        channel.lightColor = Color.GREEN
-        channel.enableVibration(true)
-        notificationManager.createNotificationChannel(channel)
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        notificationManager.apply {
+            notify(NOTIFICATION_ID,notificationBuilder)
+        }
     }
 }

@@ -22,7 +22,7 @@ class PrescriptionActivity : BaseActivity(), PrescriptionView {
     private lateinit var mPresenter : PrescriptionPresenter
     private lateinit var mAdapter : PrescriptionAdapter
 
-    private var mPrescription : MutableList<MedicineVO> = arrayListOf()
+
     private var mPrescriptionFilter : MutableList<MedicineVO> = arrayListOf()
 
     companion object{
@@ -66,26 +66,14 @@ class PrescriptionActivity : BaseActivity(), PrescriptionView {
             mPresenter.onTapFinishConsultation(intent.getStringExtra(PrescriptionActivity.PARM_DOCUMENTID).toString())
         }
 
-//        etConsultationNote.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {
-//
-//
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                val medicine = MedicineVO()
-//                medicine.name = s.toString()
-//
-//                val filter: List<MedicineVO> = mPrescriptionFilter.filter {
-//                  med ->
-//                    med.name.contains(medicine.name.toString())
-//                }
-//                if(filter.isNotEmpty()) mAdapter.setData(filter)
-//            }
-//        })
+        ed_email.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                searchQuery(s.toString().toLowerCase())
+            }
+        })
 
 
 
@@ -101,8 +89,6 @@ class PrescriptionActivity : BaseActivity(), PrescriptionView {
     }
 
     override fun displayPrescription(list: List<MedicineVO>) {
-        mPrescription.clear()
-        mPrescription.addAll(list)
         mPrescriptionFilter.clear()
         mPrescriptionFilter.addAll(list)
         mAdapter.setData(list)
@@ -128,6 +114,24 @@ class PrescriptionActivity : BaseActivity(), PrescriptionView {
     }
 
     override fun showErrorMessage(error: String) {
+
+    }
+
+    private fun searchQuery(query : String)
+    {
+
+        when(query.isEmpty()) {
+            true -> mAdapter.setData(mPrescriptionFilter)
+            else -> {
+                val filterList = mPrescriptionFilter.filter {
+                    it.name.toLowerCase().contains(query)
+
+                }
+                mAdapter.setData(filterList)
+            }
+        }
+
+
 
     }
 }

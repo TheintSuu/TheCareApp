@@ -9,7 +9,9 @@ import com.theintsuhtwe.shared.utils.SERVER_KEY
 interface ApiService {
     @Headers(
             "Content-Type:application/json",
-            "Authorization:$SERVER_KEY"
+            "Authorization:$SERVER_KEY",
+            "prioirity:high",
+            "content_variable:true"
     )
     @POST("fcm/send")
     fun sendFcm(@Body notificationVO: NotificationVO) : Observable<NotiResponse>

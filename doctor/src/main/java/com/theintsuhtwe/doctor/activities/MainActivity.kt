@@ -1,25 +1,20 @@
 package com.theintsuhtwe.doctor.activities
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.fragments.HomeFragment
 import com.theintsuhtwe.doctor.fragments.ProfileFragment
-import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenter
-import com.theintsuhtwe.doctor.mvp.presenters.impls.HomePresenterImpl
-import com.theintsuhtwe.doctor.mvp.views.HomeView
+import com.theintsuhtwe.doctor.utils.SessionManager
 import com.theintsuhtwe.shared.activities.BaseActivity
-import com.theintsuhtwe.shared.data.vos.MedicineVO
-import com.theintsuhtwe.shared.data.vos.QuestionVO
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity :   BaseActivity() {
@@ -51,6 +46,21 @@ class MainActivity :   BaseActivity() {
         setUpBottomNavigation()
 
 
+        setUpScribeToTopic()
+
+    }
+
+    private fun setUpScribeToTopic(){
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+            Log.d("fbToken", it.token)
+        }
+        Firebase.messaging.subscribeToTopic(SessionManager.doctor_speciality.toString())
+                .addOnCompleteListener { task ->
+                    var msg = "Subscribed"
+                    if (!task.isSuccessful) {
+                        msg = "Failed"
+                    }
+                }
     }
 
     private fun setUpBottomNavigation(){

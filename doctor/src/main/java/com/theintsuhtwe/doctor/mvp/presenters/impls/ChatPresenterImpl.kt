@@ -74,7 +74,7 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
     }
 
     override fun onTapSpecailQuestion(special: String) {
-
+        mView?.navigateToQuestion()
     }
 
     override fun onTapNote() {
@@ -113,7 +113,7 @@ class ChatPresenterImpl :  ChatPresenter, AbstractBasePresenter<ChatView>() {
        
     }
 
-    override fun onTapAccept(id: String) {
+    override fun onTapAccept(requesst: ConsultationRequest) {
         
     }
 

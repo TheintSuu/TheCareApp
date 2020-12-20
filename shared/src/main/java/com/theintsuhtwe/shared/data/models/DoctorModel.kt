@@ -16,6 +16,8 @@ interface DoctorModel {
     fun getDeviceTokenByUser() : String
 
 
+
+
     fun addDoctorInfoToDB(doc : DoctorVO)
 
 
@@ -26,4 +28,6 @@ interface DoctorModel {
             onSuccess: (notiResponse: NotiResponse) -> Unit,
             onFailure: (String) -> Unit
     )
+
+
 }

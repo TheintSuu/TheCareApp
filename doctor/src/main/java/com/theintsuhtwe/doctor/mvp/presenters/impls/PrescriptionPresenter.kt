@@ -31,4 +31,6 @@ interface PrescriptionPresenter : BasePresenter<PrescriptionView>, ConsultationI
     fun onTapNote(name : String)
 
     fun onTapAdd(name : String, price : Long)
+
+
 }

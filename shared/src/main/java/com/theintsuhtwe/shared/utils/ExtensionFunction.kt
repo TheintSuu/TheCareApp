@@ -143,7 +143,7 @@ fun MutableMap<String,Any>?.convertToPatientVO(): Patient {
     patient.image=  this?.get("image") as String
     patient.name =   this?.get("name") as String
     patient.device_token =   this?.get("device_token") as String
-    patient.bDate =   this?.get("birthDay") as String
+
   //patient.question=  this?.get("question") as List<QuestionVO>
 //    patient.recent_doctors=  this?.get("recent_doctors") as List<DoctorVO>
     patient.phone=  this?.get("phone") as String

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheCareAppDoctor">
-        <activity android:name=".activities.RegisterFormActivity"></activity>
+        <activity android:name=".activities.QuestionActivity"></activity>
+        <activity android:name=".activities.RegisterFormActivity" />
         <activity android:name=".activities.MoreCaseSummaryActivity" />
         <activity android:name=".activities.ChatActivity" />
         <activity android:name=".activities.RegisterActivity" />
@@ -28,12 +29,16 @@
         </activity>
 
         <service
-            android:name=".network.FirebaseCloudMessagingService"
+            android:name=".network.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="" />
     </application>
 
 </manifest>

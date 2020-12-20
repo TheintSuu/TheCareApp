@@ -21,6 +21,10 @@ interface ChatView : BaseView {
 
     fun showSpeciality(id : String)
 
+    fun navigateToQuestion()
+
+
+
     fun navigateToSpecialQuestionByDoctor()
 
     fun displayPrescription(list :List<MedicineVO>)

@@ -17,52 +17,7 @@ class PrescriptionAdapter (private val mDelegate: MedicineItemDelegate) : BaseAd
         return  PrescriptionViewHolder(mDelegate,v)
     }
 
-    private var filter : MutableList<MedicineVO> = arrayListOf()
-    private var listFilter : MutableList<MedicineVO> = arrayListOf()
 
-    fun setList(list: MutableList<MedicineVO>){
-        filter.clear()
-        filter.addAll(list)
-    }
-    fun setFilter(list: MutableList<MedicineVO>){
-        listFilter.clear()
-        listFilter.addAll(list)
-    }
-
-     fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence): FilterResults {
-                val filterResults = FilterResults()
-                if (constraint == null || constraint.length == 0) {
-                    filterResults.count = filter.size
-                    filterResults.values = filter
-                } else {
-                    val resultsModel: MutableList<MedicineVO> = ArrayList()
-                    val searchStr = constraint.toString().toLowerCase()
-                    for (itemsModel in filter) {
-
-                            if (itemsModel.name.toLowerCase()
-                                            ?.contains(searchStr)!!
-                            ) {
-                                resultsModel.add(itemsModel)
-                            }
-
-                        filterResults.count = resultsModel.size
-                        filterResults.values = resultsModel
-                    }
-                }
-                return filterResults
-            }
-
-            override fun publishResults(
-                    constraint: CharSequence,
-                    results: FilterResults
-            ) {
-                mDataList = results.values as ArrayList<MedicineVO>
-                notifyDataSetChanged()
-            }
-        }
-    }
 
 
 

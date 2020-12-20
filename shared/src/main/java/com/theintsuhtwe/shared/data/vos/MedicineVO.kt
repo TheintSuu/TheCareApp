@@ -18,7 +18,9 @@ data class  MedicineVO(
     @SerializedName("repeat")  var repeat  : String ?= null,
     @SerializedName("total_day")  var total_day  : String ?= null,
     @SerializedName("routine") var  routine : String ?= null,
-    @SerializedName("tablet") var  tablet : String ?= null
+    @SerializedName("tablet") var  tablet : String ?= null,
+    @SerializedName("isSelected") var isSelected : Boolean ?= null
+
 
 
 )

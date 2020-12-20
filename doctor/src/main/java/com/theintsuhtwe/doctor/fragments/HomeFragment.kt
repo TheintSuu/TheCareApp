@@ -91,9 +91,9 @@ class HomeFragment : BaseFragment(), HomeView {
         setUpViewPods()
 
         bindData()
-        
 
-        mPresenter.onUiReady( this)
+
+        activity?.let { mPresenter.onUiReady(it, this) }
     }
 
     companion object {

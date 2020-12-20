@@ -1,7 +1,6 @@
 package com.theintsuhtwe.doctor.mvp.presenters.impls
 
 import androidx.lifecycle.LifecycleOwner
-import com.theintsuhtwe.doctor.R
 import com.theintsuhtwe.doctor.mvp.views.PrescriptionView
 import com.theintsuhtwe.doctor.utils.subTotalMedicinePrice
 import com.theintsuhtwe.shared.data.models.ConsultationModelImpl
@@ -107,13 +106,16 @@ class PrescriptionPresenterImpl : PrescriptionPresenter, AbstractBasePresenter<P
 
     }
 
-    
+    override fun onTapRemove(data: MedicineVO) {
+       mMedicineVO.remove(data)
+    }
+
 
     override fun onTapRequest(name: String) {
        
     }
 
-    override fun onTapAccept(id: String) {
+    override fun onTapAccept(requesst: ConsultationRequest) {
        
     }
 

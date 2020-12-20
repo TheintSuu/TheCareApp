@@ -2,12 +2,7 @@ package com.theintsuhtwe.doctor.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.theintsuhtwe.shared.utils.*
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
 
 object SessionManager {
 
@@ -95,13 +90,13 @@ object SessionManager {
 
 
 
-    var doctor_comment : String?
-
-        get() = preferences.getString(sharePreferencePatientComment, "")
-
-        set(value) = preferences.edit {
-            it.putString(sharePreferencePatientComment, value)
-        }
+//    var doctor_device_token : String?
+//
+//        get() = preferences.getString(sharePreferencePatientComment, "")
+//
+//        set(value) = preferences.edit {
+//            it.putString(sharePreferencePatientComment, value)
+//        }
 
     var doctor_weight : String?
 
